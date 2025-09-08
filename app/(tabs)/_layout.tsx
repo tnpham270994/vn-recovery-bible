@@ -29,15 +29,17 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: '',
+          tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="book.fill" color={focused ? color : 'gray'} />,
+          tabBarShowLabel: false,
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: '',
+          tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="magnifyingglass" color={focused ? color : 'gray'} />,
+          tabBarShowLabel: false,
         }}
       />
     </Tabs>

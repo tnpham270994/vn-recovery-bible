@@ -3,24 +3,38 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+const tintColorLight = '#8B7D6B';
+const tintColorDark = '#8B7D6B';
 
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#fff',
+    text: '#2C2C2C',
+    background: '#FEFCF8',
     tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
+    icon: '#8B7D6B',
+    tabIconDefault: '#8B7D6B',
     tabIconSelected: tintColorLight,
+    // Vietnamese Bible specific colors - lighter palette
+    headerFooter: '#D4C4B0',
+    emblem: '#E6D7C3',
+    readButton: '#F0E6D2',
+    searchButton: '#F5F0E8',
+    bookButton: '#F8F4F0',
+    footerText: '#A09080',
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
+    text: '#2C2C2C',
+    background: '#FEFCF8',
     tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
+    icon: '#8B7D6B',
+    tabIconDefault: '#8B7D6B',
     tabIconSelected: tintColorDark,
+    // Vietnamese Bible specific colors - lighter palette
+    headerFooter: '#D4C4B0',
+    emblem: '#E6D7C3',
+    readButton: '#F0E6D2',
+    searchButton: '#F5F0E8',
+    bookButton: '#F8F4F0',
+    footerText: '#A09080',
   },
 };
