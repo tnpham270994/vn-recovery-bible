@@ -1,0 +1,98 @@
+import { BORDER_RADIUS, COLORS, FONT_SIZES, FONT_WEIGHTS, SHADOWS, SPACING } from '@/constants/styles';
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: COLORS.modalOverlay,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  modalContentBottom: {
+    backgroundColor: COLORS.background,
+    borderTopLeftRadius: BORDER_RADIUS.xl,
+    borderTopRightRadius: BORDER_RADIUS.xl,
+    padding: SPACING.xl,
+    width: '100%',
+    height: '85%',
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderBottomWidth: 0,
+  },
+  modalDragIndicator: {
+    width: 40,
+    height: 4,
+    backgroundColor: COLORS.border,
+    borderRadius: 2,
+    alignSelf: 'center',
+    marginBottom: SPACING.lg,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: SPACING.lg,
+    paddingBottom: SPACING.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+  modalTitle: {
+    fontSize: FONT_SIZES.lg,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.text,
+    flex: 1,
+  },
+  closeButton: {
+    padding: 5,
+  },
+  modalScrollView: {
+    flex: 1,
+    paddingVertical: SPACING.sm,
+  },
+  modalFootnoteItem: {
+    flexDirection: 'row',
+    marginBottom: SPACING.lg,
+    alignItems: 'flex-start',
+    paddingBottom: SPACING.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+  modalFootnoteNumber: {
+    fontSize: FONT_SIZES.sm,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.secondary,
+    marginRight: SPACING.md,
+    minWidth: 30,
+  },
+  modalFootnoteText: {
+    fontSize: FONT_SIZES.md,
+    lineHeight: 22,
+    color: COLORS.text,
+    flex: 1,
+  },
+  modalFootnoteItemSelected: {
+    backgroundColor: COLORS.selectedBackground,
+    borderRadius: BORDER_RADIUS.md,
+    padding: SPACING.md,
+    marginBottom: SPACING.lg,
+    borderWidth: 3,
+    borderColor: COLORS.selected,
+    ...SHADOWS.medium,
+  },
+  modalFootnoteNumberSelected: {
+    color: COLORS.white,
+    fontSize: FONT_SIZES.lg,
+    fontWeight: FONT_WEIGHTS.bold,
+    backgroundColor: COLORS.selected,
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: SPACING.xs,
+    borderRadius: BORDER_RADIUS.md,
+    textAlign: 'center',
+    minWidth: 32,
+  },
+  modalFootnoteTextSelected: {
+    color: COLORS.selected,
+    fontSize: FONT_SIZES.md,
+    fontWeight: FONT_WEIGHTS.medium,
+  },
+});

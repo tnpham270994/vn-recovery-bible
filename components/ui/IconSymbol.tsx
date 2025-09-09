@@ -18,6 +18,7 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  'chevron.left': 'chevron-left',
   'book.fill': 'menu-book',
   'magnifyingglass': 'search',
   'arrow.left': 'arrow-back',
@@ -30,7 +31,9 @@ const MAPPING = {
   'bookmark.fill': 'bookmark',
   'clock': 'access-time',
   'menubar.rectangle': 'menu',
-  'xmark': 'close'
+  'xmark': 'close',
+  'list.bullet': 'list',
+  'book.circle': 'book'
 } as IconMapping;
 
 /**
