@@ -55,4 +55,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: SPACING.sm,
   },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: SPACING.xl,
+  },
 });

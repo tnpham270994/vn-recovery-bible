@@ -44,10 +44,7 @@ export const parseVerseWithFootnotes = (
         
         if (segment.text) {
           const textStyle = [
-            styles.verseText,
-            segment.isItalic && styles.italicText,
-            segment.isBold && styles.boldText,
-            segment.isUnderline && styles.underlineText,
+            styles.verseText
           ].filter(Boolean);
           
           return (
@@ -95,11 +92,11 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
     // If we have measured heights, use them for accurate scrolling
     if (verseHeights.length > verseIndex) {
       for (let i = 0; i < verseIndex; i++) {
-        scrollY += verseHeights[i] || 140; // fallback to 140px if height not measured
+        scrollY += verseHeights[i] || 150; // fallback to 140px if height not measured
       }
     } else {
       // Fallback to estimated height if measurements not available
-      scrollY = verseIndex * 140;
+      scrollY = verseIndex * 150;
     }
     
     scrollViewRef.current.scrollTo({
@@ -192,7 +189,7 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
                 onLayout={(event) => handleVerseLayout(event, index)}
               >
                 <ThemedText style={styles.verseLabel}>
-                  {book.code} {chapter}:{verseNumber}
+                  {book.code}. {chapter}:{verseNumber}
                 </ThemedText>
                 {parseVerseWithFootnotes(verse, verseNumber, handleVerseFootnotePress)}
               </View>

@@ -6,7 +6,7 @@ import { useBibleContext } from '@/contexts/BibleContext';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
-import { ScrollView } from 'react-native';
+import { Image, ScrollView } from 'react-native';
 import { styles } from './index.styles';
 
 export default function IndexScreen() {
@@ -45,6 +45,7 @@ export default function IndexScreen() {
 
       {/* Book Grid */}
       <ThemedView style={styles.mainContent}>
+        <Image source={require('@/assets/images/icon.png')} style={styles.logo} />
         <ThemedText style={styles.headerText}>KINH THÁNH BẢN KHÔI PHỤC</ThemedText>
         <BookGrid 
           books={BOOK_NAMES}

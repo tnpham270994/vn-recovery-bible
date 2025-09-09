@@ -1,3 +1,4 @@
+import { SPACING } from '@/constants/styles';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -12,9 +13,19 @@ export const styles = StyleSheet.create({
   },
   headerText: {
     color: '#5A4A3A',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    marginTop: SPACING.md,
+    marginBottom: SPACING.sm,
+  },
+  subtitleText: {
+    color: '#8B4513',
+    fontSize: 14,
+    fontWeight: '500',
+    textAlign: 'center',
+    marginBottom: SPACING.xl,
+    fontStyle: 'italic',
   },
   selectedBookText: {
     color: '#5A4A3A',
@@ -30,5 +41,19 @@ export const styles = StyleSheet.create({
     paddingVertical: 15,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    marginBottom: SPACING.md,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
 });

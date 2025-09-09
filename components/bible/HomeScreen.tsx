@@ -86,6 +86,7 @@ export const HomeScreen: React.FC = () => {
         <ThemedText style={styles.headerText}>KINH THÁNH BẢN KHÔI PHỤC</ThemedText>
       </ThemedView>
 
+
       {/* Main Content */}
       <ThemedView style={styles.mainContent}>
         {/* Book Detail View */}

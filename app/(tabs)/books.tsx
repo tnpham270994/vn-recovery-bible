@@ -82,7 +82,6 @@ export default function BooksScreen() {
     return (
       <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
         <ThemedView style={[styles.header, { backgroundColor: headerFooterColor }]}>
-          <ThemedText style={styles.headerText}>CHƯƠNG VÀ CÂU</ThemedText>
         </ThemedView>
         <ThemedView style={styles.mainContent}>
           <ThemedView style={styles.emptyStateContainer}>

@@ -1,18 +1,26 @@
 import { BOOK_DETAILS, BOOK_NAMES, BookDetail, CHAPTER_COUNTS, Footnote, FOOTNOTES_DATA, VERSE_DATA } from '@/constants/bibleData';
 
+// Function to strip HTML tags from text
+export const stripHTMLTags = (text: string): string => {
+  return text.replace(/<[^>]*>/g, '');
+};
+
 export const getChaptersForBook = (bookCode: string): number[] => {
   const totalChapters = CHAPTER_COUNTS[bookCode] || 1;
   return Array.from({ length: totalChapters }, (_, i) => i + 1);
 };
 
 export const getVersesForChapter = (bookCode: string, chapter: number): string[] => {
-  return VERSE_DATA[bookCode]?.[chapter] || [
+  const verses = VERSE_DATA[bookCode]?.[chapter] || [
     "Đây là câu đầu tiên của chương này.",
     "Đây là câu thứ hai của chương này.",
     "Đây là câu thứ ba của chương này.",
     "Đây là câu thứ tư của chương này.",
     "Đây là câu thứ năm của chương này."
   ];
+  
+  // Strip HTML tags from all verses
+  return verses.map(verse => stripHTMLTags(verse));
 };
 
 export const getBookDetail = (bookCode: string): BookDetail => {
@@ -68,7 +76,7 @@ export const searchVersesByKeyword = (keyword: string): SearchResult[] => {
             bookName,
             chapter,
             verse: verseNumber,
-            content: verseContent, // Keep original content with HTML tags for display
+            content: stripHTMLTags(verseContent), // Strip HTML tags from content
             fullReference: `${bookName} ${chapter}:${verseNumber}`
           });
         }
@@ -101,19 +109,11 @@ export const searchVersesByKeyword = (keyword: string): SearchResult[] => {
 export const parseTextWithHTML = (text: string) => {
   const segments: Array<{
     text: string;
-    isItalic: boolean;
-    isBold: boolean;
-    isUnderline: boolean;
     isFootnote: boolean;
-    isAnchor: boolean;
     footnoteId?: string;
-    anchorVerse?: number;
   }> = [];
   
   let currentText = text;
-  let isItalic = false;
-  let isBold = false;
-  let isUnderline = false;
   
   // Process HTML tags and special patterns
   while (currentText.length > 0) {
@@ -124,62 +124,29 @@ export const parseTextWithHTML = (text: string) => {
         // Add current accumulated text
         segments.push({
           text: '',
-          isItalic,
-          isBold,
-          isUnderline,
           isFootnote: false,
-          isAnchor: false
+          footnoteId: footnoteMatch[2]
         });
       }
       segments.push({
         text: footnoteMatch[1],
-        isItalic: false,
-        isBold: false,
-        isUnderline: false,
         isFootnote: true,
-        isAnchor: false,
         footnoteId: footnoteMatch[2]
       });
       currentText = currentText.substring(footnoteMatch[1].length);
       continue;
     }
-    
-    // Check for HTML tags
-    const htmlTagMatch = currentText.match(/^(<\/?[^>]+>)/);
-    if (htmlTagMatch) {
-      const tag = htmlTagMatch[1];
-      const isClosingTag = tag.startsWith('</');
-      const tagName = tag.replace(/<\/?([^>]+)>/, '$1').toLowerCase();
-      
-      // Update styling state
-      if (tagName === 'i') {
-        isItalic = !isClosingTag;
-      } else if (tagName === 'b' || tagName === 'strong') {
-        isBold = !isClosingTag;
-      } else if (tagName === 'u') {
-        isUnderline = !isClosingTag;
-      }
-      
-      currentText = currentText.substring(tag.length);
-      continue;
-    }
+
     
     // Regular character
     const char = currentText[0];
     if (segments.length === 0 || 
-        segments[segments.length - 1].isFootnote || 
-        segments[segments.length - 1].isAnchor ||
-        segments[segments.length - 1].isItalic !== isItalic ||
-        segments[segments.length - 1].isBold !== isBold ||
-        segments[segments.length - 1].isUnderline !== isUnderline) {
+        segments[segments.length - 1].isFootnote) {
       // Start a new segment
       segments.push({
         text: char,
-        isItalic,
-        isBold,
-        isUnderline,
         isFootnote: false,
-        isAnchor: false
+        footnoteId: undefined,
       });
     } else {
       // Add to current segment
