@@ -4,10 +4,10 @@ import { ThemedView } from '@/components/ThemedView';
 import { BOOK_NAMES } from '@/constants/bibleData';
 import { useBibleContext } from '@/contexts/BibleContext';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { styles } from '@/styles/tabs/index.styles';
 import { useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
 import { Image, ScrollView } from 'react-native';
-import { styles } from './index.styles';
 
 export default function IndexScreen() {
   const router = useRouter();

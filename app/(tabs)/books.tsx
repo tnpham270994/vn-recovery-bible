@@ -1,4 +1,3 @@
-import { styles } from '@/app/(tabs)/books.styles';
 import { BookInfo } from '@/components/bible/BookInfo';
 import { ChapterGrid } from '@/components/bible/ChapterGrid';
 import { VerseDisplay } from '@/components/bible/VerseDisplay';
@@ -6,6 +5,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useBibleContext } from '@/contexts/BibleContext';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { styles } from '@/styles/tabs/books.styles';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
