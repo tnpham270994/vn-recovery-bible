@@ -1,13 +1,15 @@
 import { BORDER_RADIUS, COLORS, FONT_SIZES, FONT_WEIGHTS, SPACING } from '@/constants/styles';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   verseDisplayContainer: {
     flex: 1,
-    paddingHorizontal: SPACING.xl,
+    paddingHorizontal: SPACING.sm,
+    paddingBottom: Platform.OS === 'ios' ? 50 : 0, // Account for iOS tab bar height
+    backgroundColor: COLORS.background,
   },
   navigationContainer: {
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.md
   },
   versesScrollView: {
     flex: 1,
@@ -56,7 +58,8 @@ export const styles = StyleSheet.create({
   chapterTitleContainer: {
     flex: 1,
     alignItems: 'center',
-    paddingHorizontal: SPACING.md,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   chapterTitle: {
     fontSize: FONT_SIZES.xl,
@@ -145,5 +148,14 @@ export const styles = StyleSheet.create({
   },
   footerNavButtonTextDisabled: {
     color: '#ccc',
+  },
+  italicText: {
+    fontStyle: 'italic',
+  },
+  boldText: {
+    fontWeight: 'bold',
+  },
+  underlineText: {
+    textDecorationLine: 'underline',
   },
 });

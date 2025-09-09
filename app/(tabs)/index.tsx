@@ -1,3 +1,57 @@
-import { HomeScreen } from '@/components/bible/HomeScreen';
+import { BookGrid } from '@/components/bible/BookGrid';
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
+import { BOOK_NAMES } from '@/constants/bibleData';
+import { useBibleContext } from '@/contexts/BibleContext';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { useRouter } from 'expo-router';
+import React, { useEffect } from 'react';
+import { ScrollView } from 'react-native';
+import { styles } from './index.styles';
 
-export default HomeScreen;
+export default function IndexScreen() {
+  const router = useRouter();
+  const { selectedBook, handleBookSelect } = useBibleContext();
+  const headerFooterColor = useThemeColor({}, 'headerFooter');
+  const bookButtonColor = useThemeColor({}, 'bookButton');
+
+
+  const handleBookSelection = (book: any) => {
+    try {
+      // Select the book first
+      handleBookSelect(book);
+    } catch (error) {
+      console.error('Error selecting book:', error);
+    }
+  };
+
+  // Auto-navigate to books tab if a book is already selected
+  useEffect(() => {
+    if (selectedBook) {
+      // Small delay to ensure the selection is processed
+      const timer = setTimeout(() => {
+        router.push('/(tabs)/books');
+      }, 100);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [selectedBook, router]);
+
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
+      {/* Header */}
+      <ThemedView style={[styles.header, { backgroundColor: headerFooterColor }]}>
+      </ThemedView>
+
+      {/* Book Grid */}
+      <ThemedView style={styles.mainContent}>
+        <ThemedText style={styles.headerText}>KINH THÁNH BẢN KHÔI PHỤC</ThemedText>
+        <BookGrid 
+          books={BOOK_NAMES}
+          onBookSelect={handleBookSelection}
+          bookButtonColor={bookButtonColor}
+        />
+      </ThemedView>
+    </ScrollView>
+  );
+}

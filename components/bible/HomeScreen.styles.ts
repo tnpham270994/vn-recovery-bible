@@ -1,5 +1,5 @@
 import { BORDER_RADIUS, COLORS, FONT_SIZES, FONT_WEIGHTS, SPACING } from '@/constants/styles';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     padding: 0,
+    paddingBottom: Platform.OS === 'ios' ? 100 : 0, // Account for iOS tab bar height
     alignItems: 'center',
   },
   bookDetailContainer: {

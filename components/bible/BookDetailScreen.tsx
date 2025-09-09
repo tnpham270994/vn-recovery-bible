@@ -1,3 +1,4 @@
+import { styles } from '@/components/bible/BookDetailScreen.styles';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { BOOK_NAMES } from '@/constants/bibleData';
@@ -9,11 +10,9 @@ import React, { useEffect } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { BookInfo } from './BookInfo';
 import { ChapterGrid } from './ChapterGrid';
-import { styles } from './HomeScreen.styles';
 import { VerseDisplay } from './VerseDisplay';
 
-
-export const HomeScreen: React.FC = () => {
+export const BookDetailScreen: React.FC = () => {
   const router = useRouter();
   const params = useLocalSearchParams();
   const {
@@ -79,6 +78,26 @@ export const HomeScreen: React.FC = () => {
   const headerFooterColor = useThemeColor({}, 'headerFooter');
   const bookButtonColor = useThemeColor({}, 'bookButton');
 
+  // If no book is selected, show a message to select from books tab
+  if (!selectedBook) {
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
+        <ThemedView style={[styles.header, { backgroundColor: headerFooterColor }]}>
+          <ThemedText style={styles.headerText}>KINH THÁNH BẢN KHÔI PHỤC</ThemedText>
+        </ThemedView>
+        <ThemedView style={styles.mainContent}>
+          <ThemedView style={styles.emptyStateContainer}>
+            <FontAwesome6 name="book-bible" size={48} color="#5A4A3A" />
+            <ThemedText style={styles.emptyStateTitle}>Chọn Sách Kinh Thánh</ThemedText>
+            <ThemedText style={styles.emptyStateText}>
+              Vui lòng chọn một sách từ tab "Sách" để xem chi tiết và chương
+            </ThemedText>
+          </ThemedView>
+        </ThemedView>
+      </ScrollView>
+    );
+  }
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
       {/* Header */}
@@ -89,43 +108,41 @@ export const HomeScreen: React.FC = () => {
       {/* Main Content */}
       <ThemedView style={styles.mainContent}>
         {/* Book Detail View */}
-        {selectedBook && (
-          <ThemedView style={styles.bookDetailContainer}>
-            {/* Book Header */}
-            <View style={styles.bookHeader}>
-              <TouchableOpacity 
-                style={styles.backButton}
-                onPress={handleBackToBooksWithClear}
-              >
-                <FontAwesome6 name="book-bible" size={20} color="#5A4A3A" />
-              </TouchableOpacity>
-              <ThemedText style={styles.bookTitle}>{selectedBook.name.toUpperCase()}</ThemedText>
-            </View>
+        <ThemedView style={styles.bookDetailContainer}>
+          {/* Book Header */}
+          <View style={styles.bookHeader}>
+            <TouchableOpacity 
+              style={styles.backButton}
+              onPress={handleBackToBooksWithClear}
+            >
+              <FontAwesome6 name="book-bible" size={20} color="#5A4A3A" />
+            </TouchableOpacity>
+            <ThemedText style={styles.bookTitle}>{selectedBook.name.toUpperCase()}</ThemedText>
+          </View>
 
-            {/* Book Information - Only show when no chapter is selected */}
-            {!selectedChapter && <BookInfo bookCode={selectedBook.code} />}
+          {/* Book Information - Only show when no chapter is selected */}
+          {!selectedChapter && <BookInfo bookCode={selectedBook.code} />}
 
-            {/* Chapter Grid - Only show when no chapter is selected */}
-            {!selectedChapter && (
-              <ChapterGrid 
-                bookCode={selectedBook.code}
-                onChapterSelect={handleChapterSelect}
-                bookButtonColor={bookButtonColor}
-              />
-            )}
+          {/* Chapter Grid - Only show when no chapter is selected */}
+          {!selectedChapter && (
+            <ChapterGrid 
+              bookCode={selectedBook.code}
+              onChapterSelect={handleChapterSelect}
+              bookButtonColor={bookButtonColor}
+            />
+          )}
 
-            {/* Verse Display - Show when chapter is selected */}
-            {selectedChapter && (
-              <VerseDisplay 
-                book={selectedBook}
-                chapter={selectedChapter}
-                onBackToChapters={handleBackToChaptersWithClear}
-                onChapterChange={handleChapterChange}
-                targetVerse={params.verse ? parseInt(params.verse as string, 10) : undefined}
-              />
-            )}
-          </ThemedView>
-        )}
+          {/* Verse Display - Show when chapter is selected */}
+          {selectedChapter && (
+            <VerseDisplay 
+              book={selectedBook}
+              chapter={selectedChapter}
+              onBackToChapters={handleBackToChaptersWithClear}
+              onChapterChange={handleChapterChange}
+              targetVerse={params.verse ? parseInt(params.verse as string, 10) : undefined}
+            />
+          )}
+        </ThemedView>
       </ThemedView>
     </ScrollView>
   );

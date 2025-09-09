@@ -4,11 +4,11 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import { BOOK_NAMES } from '@/constants/bibleData';
 import { COLORS } from '@/constants/styles';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { getVersesForChapter } from '@/utils/bibleUtils';
+import { getVersesForChapter, parseTextWithHTML, searchVersesByKeyword } from '@/utils/bibleUtils';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Modal, ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { Modal, Platform, ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function SearchScreen() {
   const router = useRouter();
@@ -174,7 +174,7 @@ export default function SearchScreen() {
               ...ref,
               bookName,
               verseContent,
-              fullReference: `${bookName} ${ref.chapter}:${ref.verse}`
+              fullReference: `${ref.bookCode} ${ref.chapter}:${ref.verse}`
             };
           } catch (error) {
             return {
@@ -202,16 +202,33 @@ export default function SearchScreen() {
         // Show modal with results
         setModalVisible(true);
       } else if (selectedCategory === 'keyword') {
-        // TODO: Implement keyword search
+        // Perform keyword search
+        const keywordResults = searchVersesByKeyword(searchQuery.trim());
+        
+        if (keywordResults.length > 0) {
+          setSearchResults(keywordResults);
+          setSearchErrors([]);
+        } else {
+          setSearchResults([]);
+          setSearchErrors([`Không tìm thấy kết quả nào cho từ khóa "${searchQuery.trim()}"`]);
+        }
+        
+        // Show modal with results
+        setModalVisible(true);
       }
     }
   };
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
+    <ScrollView 
+      style={styles.container} 
+      contentContainerStyle={{ 
+        flexGrow: 1,
+        paddingBottom: Platform.OS === 'ios' ? 100 : 0 // Account for iOS tab bar height
+      }}
+    >
       {/* Header */}
       <ThemedView style={[styles.header, { backgroundColor: headerFooterColor }]}>
-        <ThemedText style={styles.headerText}>TÌM KIẾM KINH THÁNH</ThemedText>
       </ThemedView>
 
       {/* Search Input */}
@@ -302,7 +319,7 @@ export default function SearchScreen() {
       )}
 
       {/* Quick Access */}
-      <ThemedView style={styles.section}>
+      {/* <ThemedView style={styles.section}>
         <ThemedText style={styles.sectionTitle}>Truy cập nhanh</ThemedText>
         <ThemedView style={styles.quickAccessGrid}>
           <TouchableOpacity style={[styles.quickAccessButton, { backgroundColor: bookButtonColor }]}>
@@ -314,7 +331,7 @@ export default function SearchScreen() {
             <ThemedText style={styles.quickAccessText}>Gần đây</ThemedText>
           </TouchableOpacity>
         </ThemedView>
-      </ThemedView>
+      </ThemedView> */}
       
       {/* Search Results Modal */}
       <Modal
@@ -343,10 +360,6 @@ export default function SearchScreen() {
                     <TouchableOpacity
                       key={index}
                       style={styles.resultItem}
-                      onPress={() => {
-                        console.log(`Navigate to: ${result.bookCode} ${result.chapter}:${result.verse}`);
-                        navigateToVerse(result.bookCode, result.chapter, result.verse);
-                      }}
                     >
                       <View style={styles.resultContent}>
                         <View style={styles.resultHeader}>
@@ -356,10 +369,11 @@ export default function SearchScreen() {
                           </ThemedText>
                         </View>
                         <ThemedText style={styles.verseContent} numberOfLines={3}>
-                          {result.verseContent}
+                          {parseTextWithHTML(result.content || result.verseContent || '').map((segment, index) => (
+                            <ThemedText key={index}>{segment.text}</ThemedText>
+                          ))}
                         </ThemedText>
                       </View>
-                      <IconSymbol name="chevron.right" size={16} color="#666" />
                     </TouchableOpacity>
                   ))}
                 </View>
@@ -383,7 +397,7 @@ export default function SearchScreen() {
                 <View style={styles.noResultsSection}>
                   <IconSymbol name="magnifyingglass" size={48} color="#ccc" />
                   <ThemedText style={styles.noResultsText}>
-                    Không tìm thấy tham chiếu nào
+                    Không tìm thấy kết quả nào
                   </ThemedText>
                 </View>
               )}

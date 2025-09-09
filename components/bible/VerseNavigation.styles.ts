@@ -5,45 +5,61 @@ export const styles = StyleSheet.create({
   container: {
     marginBottom: SPACING.md,
     paddingHorizontal: SPACING.sm,
-    maxHeight: 120, // Increased height to accommodate multiple rows
+    paddingVertical: SPACING.sm,
   },
   title: {
-    fontSize: FONT_SIZES.xs,
+    fontSize: FONT_SIZES.sm,
     fontWeight: FONT_WEIGHTS.bold,
-    color: COLORS.text,
+    color: COLORS.primary,
     textAlign: 'center',
-    marginBottom: SPACING.xs,
+    marginBottom: SPACING.sm,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContainer: {
-    paddingHorizontal: SPACING.xs,
-    alignItems: 'center',
-  },
-  verseRow: {
+  navigationRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    width: 320, // Fixed width for 10 items (28px each + margins)
     paddingHorizontal: SPACING.xs,
-    marginBottom: 10, // Add 10px margin bottom between rows
+    marginBottom: 8,
+    gap: 4,
+    flexWrap: 'wrap',
   },
   verseButton: {
-    minWidth: 28,
-    height: 28,
+    minWidth: 32,
+    height: 32,
     borderRadius: BORDER_RADIUS.sm,
-    backgroundColor: COLORS.surface,
+    backgroundColor: COLORS.accent, // Use app's accent color
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: COLORS.border, // Use app's border color
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 1,
     paddingHorizontal: 4,
   },
   verseButtonText: {
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: FONT_WEIGHTS.medium,
-    color: COLORS.text,
+    color: COLORS.text, // Use app's text color
+  },
+  verseButtonPressed: {
+    backgroundColor: COLORS.primary, // Darker background when pressed
+    borderColor: COLORS.secondary, // Golden border when pressed
+  },
+  verseButtonTextPressed: {
+    color: COLORS.white, // White text when pressed
+    fontWeight: FONT_WEIGHTS.bold,
+  },
+  dotButton: {
+    minWidth: 16,
+    height: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 4,
+  },
+  dotButtonPressed: {
+    backgroundColor: COLORS.primary,
+  },
+  emptySlot: {
+    minWidth: 32,
+    height: 32,
   },
 });

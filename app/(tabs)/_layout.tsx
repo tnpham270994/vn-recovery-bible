@@ -7,6 +7,7 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -29,7 +30,13 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: '',
+          tabBarIcon: ({ color, focused }) => <FontAwesome6 size={26} name="book-bible"  color={focused ? color : 'gray'} />,
+          tabBarShowLabel: false,
+        }}
+      />
+      <Tabs.Screen
+        name="books"
+        options={{
           tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="book.fill" color={focused ? color : 'gray'} />,
           tabBarShowLabel: false,
         }}
@@ -37,7 +44,6 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: '',
           tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="magnifyingglass" color={focused ? color : 'gray'} />,
           tabBarShowLabel: false,
         }}
