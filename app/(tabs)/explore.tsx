@@ -12,9 +12,7 @@ import { Modal, Platform, ScrollView, StyleSheet, TextInput, TouchableOpacity, V
 
 export default function SearchScreen() {
   const router = useRouter();
-  const headerFooterColor = useThemeColor({}, 'headerFooter');
   const searchButtonColor = useThemeColor({}, 'searchButton');
-  const bookButtonColor = useThemeColor({}, 'bookButton');
 
   // State for single choice selection
   const [selectedCategory, setSelectedCategory] = useState<string | null>('address'); // Default to first option

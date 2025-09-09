@@ -75,7 +75,6 @@ export default function BooksScreen() {
     }
   }, [selectedBook, params.book]);
 
-  const headerFooterColor = useThemeColor({}, 'headerFooter');
   const bookButtonColor = useThemeColor({}, 'bookButton');
   // If no book is selected, show a message to select from index tab
   if (!selectedBook) {

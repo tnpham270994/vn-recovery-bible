@@ -12,7 +12,6 @@ import { styles } from './index.styles';
 export default function IndexScreen() {
   const router = useRouter();
   const { selectedBook, handleBookSelect } = useBibleContext();
-  const headerFooterColor = useThemeColor({}, 'headerFooter');
   const bookButtonColor = useThemeColor({}, 'bookButton');
 
 
