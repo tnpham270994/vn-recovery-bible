@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     padding: 0,
-    paddingBottom: Platform.OS === 'ios' ? 100 : 0, // Account for iOS tab bar height
+    paddingBottom: Platform.OS === 'ios' ? 20 : 0, // Account for iOS safe area
     alignItems: 'center',
   },
   bookDetailContainer: {

@@ -39,10 +39,6 @@ export default function IndexScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-      {/* Header */}
-      <ThemedView style={[styles.header, { backgroundColor: headerFooterColor }]}>
-      </ThemedView>
-
       {/* Book Grid */}
       <ThemedView style={styles.mainContent}>
         <Image source={require('@/assets/images/icon.png')} style={styles.logo} />

@@ -224,13 +224,9 @@ export default function SearchScreen() {
       style={styles.container} 
       contentContainerStyle={{ 
         flexGrow: 1,
-        paddingBottom: Platform.OS === 'ios' ? 100 : 0 // Account for iOS tab bar height
+        paddingBottom: Platform.OS === 'ios' ? 20 : 0 // Account for iOS safe area
       }}
     >
-      {/* Header */}
-      <ThemedView style={[styles.header, { backgroundColor: headerFooterColor }]}>
-      </ThemedView>
-
       {/* Search Input */}
       <ThemedView style={styles.searchContainer}>
         <ThemedView style={styles.searchInputContainer}>

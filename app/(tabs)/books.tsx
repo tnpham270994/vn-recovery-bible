@@ -81,8 +81,6 @@ export default function BooksScreen() {
   if (!selectedBook) {
     return (
       <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-        <ThemedView style={[styles.header, { backgroundColor: headerFooterColor }]}>
-        </ThemedView>
         <ThemedView style={styles.mainContent}>
           <ThemedView style={styles.emptyStateContainer}>
             <FontAwesome6 name="book-bible" size={48} color="#5A4A3A" />
@@ -98,10 +96,6 @@ export default function BooksScreen() {
 
   return (
     <ThemedView style={styles.container}>
-      {/* Header */}
-      <ThemedView style={[styles.header, { backgroundColor: headerFooterColor }]}>
-      </ThemedView>
-
       {/* Main Content */}
       <ThemedView style={styles.mainContent}>
         {/* Book Detail View */}

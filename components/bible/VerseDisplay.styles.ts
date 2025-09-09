@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   verseDisplayContainer: {
     flex: 1,
     paddingHorizontal: SPACING.sm,
-    paddingBottom: Platform.OS === 'ios' ? 50 : 0, // Account for iOS tab bar height
+    paddingBottom: Platform.OS === 'ios' ? 20 : 0, // Account for iOS safe area
     backgroundColor: COLORS.background,
   },
   navigationContainer: {
