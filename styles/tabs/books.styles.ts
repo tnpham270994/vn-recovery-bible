@@ -1,10 +1,11 @@
-import { BORDER_RADIUS, FONT_SIZES, FONT_WEIGHTS, SPACING } from '@/constants/styles';
+import { BORDER_RADIUS, COLORS, FONT_SIZES, FONT_WEIGHTS, SPACING } from '@/constants/styles';
 import { Platform, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f6f0',
+    backgroundColor: COLORS.background,
+    paddingTop: 30,
   },
   header: {
     paddingVertical: 20,

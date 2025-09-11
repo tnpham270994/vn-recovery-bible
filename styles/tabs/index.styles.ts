@@ -1,10 +1,11 @@
-import { SPACING } from '@/constants/styles';
+import { COLORS, SPACING } from '@/constants/styles';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f6f0',
+    backgroundColor: COLORS.background,
+    paddingTop: 30,
   },
   header: {
     paddingVertical: 20,

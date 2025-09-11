@@ -22,6 +22,7 @@ export default function SearchScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [searchErrors, setSearchErrors] = useState<string[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   
   // State for recent searches
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -68,10 +69,6 @@ export default function SearchScreen() {
   // Handle recent search selection
   const handleRecentSearchSelect = (searchTerm: string) => {
     setSearchQuery(searchTerm);
-    // Trigger search automatically
-    setTimeout(() => {
-      handleSearch();
-    }, 100);
   };
 
   // Clear recent searches
@@ -89,9 +86,9 @@ export default function SearchScreen() {
     // Close modal first
     setModalVisible(false);
     
-    // Navigate to the home tab (index) with parameters
+    // Navigate to the books tab with parameters
     router.push({
-      pathname: '/(tabs)',
+      pathname: '/(tabs)/books',
       params: {
         book: bookCode,
         chapter: chapter.toString(),
@@ -145,74 +142,85 @@ export default function SearchScreen() {
   };
 
   // Handle search
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (searchQuery.trim() && selectedCategory !== null) {
-      // Add to recent searches
-      addToRecentSearches(searchQuery.trim());
+      setIsSearching(true);
       
-      if (selectedCategory === 'address') {
-        const parsedAddresses = parseBibleAddress(searchQuery);
+      try {
+        // Add to recent searches
+        addToRecentSearches(searchQuery.trim());
         
-        const validReferences = parsedAddresses.filter(ref => ref.isValid);
-        const invalidReferences = parsedAddresses.filter(ref => !ref.isValid);
-        
-        // Fetch verse content for valid references
-        const resultsWithContent = validReferences.map(ref => {
-          try {
-            const verses = getVersesForChapter(ref.bookCode || '', ref.chapter || 1);
-            let verseContent = '';
-            if (ref.verse) {
-              verseContent = verses[ref.verse - 1]
-            } else {
-              verseContent = 'Không tìm thấy';
+        if (selectedCategory === 'address') {
+          const parsedAddresses = parseBibleAddress(searchQuery);
+          
+          const validReferences = parsedAddresses.filter(ref => ref.isValid);
+          const invalidReferences = parsedAddresses.filter(ref => !ref.isValid);
+          
+          // Fetch verse content for valid references
+          const resultsWithContent = validReferences.map(ref => {
+            try {
+              const verses = getVersesForChapter(ref.bookCode || '', ref.chapter || 1);
+              let verseContent = '';
+              if (ref.verse) {
+                verseContent = verses[ref.verse - 1]
+              } else {
+                verseContent = 'Không tìm thấy';
+              }
+              const bookName = BOOK_NAMES.find(book => book.code === ref.bookCode)?.name || ref.bookCode;
+              
+              return {
+                ...ref,
+                bookName,
+                verseContent,
+                fullReference: `${ref.bookCode} ${ref.chapter}:${ref.verse}`
+              };
+            } catch (error) {
+              return {
+                ...ref,
+                bookName: ref.bookCode,
+                verseContent: 'Không tìm thấy',
+                fullReference: `${ref.bookCode} ${ref.chapter}:${ref.verse}`,
+                isValid: false,
+                error: 'Không tìm thấy chương hoặc câu'
+              };
             }
-            const bookName = BOOK_NAMES.find(book => book.code === ref.bookCode)?.name || ref.bookCode;
-            
-            return {
-              ...ref,
-              bookName,
-              verseContent,
-              fullReference: `${ref.bookCode} ${ref.chapter}:${ref.verse}`
-            };
-          } catch (error) {
-            return {
-              ...ref,
-              bookName: ref.bookCode,
-              verseContent: 'Không tìm thấy',
-              fullReference: `${ref.bookCode} ${ref.chapter}:${ref.verse}`,
-              isValid: false,
-              error: 'Không tìm thấy chương hoặc câu'
-            };
+          });
+          
+          // Separate valid results from those that failed to load
+          const validResults = resultsWithContent.filter(ref => ref.isValid);
+          const failedResults = resultsWithContent.filter(ref => !ref.isValid);
+          
+          // Set results and errors
+          setSearchResults(validResults);
+          setSearchErrors([
+            ...invalidReferences.map(ref => `${ref.original}: ${ref.error}`),
+            ...failedResults.map(ref => `${ref.original}: ${ref.error}`)
+          ]);
+          
+          // Show modal with results
+          setModalVisible(true);
+        } else if (selectedCategory === 'keyword') {
+          // Perform keyword search
+          const keywordResults = searchVersesByKeyword(searchQuery.trim());
+          
+          if (keywordResults.length > 0) {
+            setSearchResults(keywordResults);
+            setSearchErrors([]);
+          } else {
+            setSearchResults([]);
+            setSearchErrors([`Không tìm thấy kết quả nào cho từ khóa "${searchQuery.trim()}"`]);
           }
-        });
-        
-        // Separate valid results from those that failed to load
-        const validResults = resultsWithContent.filter(ref => ref.isValid);
-        const failedResults = resultsWithContent.filter(ref => !ref.isValid);
-        
-        // Set results and errors
-        setSearchResults(validResults);
-        setSearchErrors([
-          ...invalidReferences.map(ref => `${ref.original}: ${ref.error}`),
-          ...failedResults.map(ref => `${ref.original}: ${ref.error}`)
-        ]);
-        
-        // Show modal with results
-        setModalVisible(true);
-      } else if (selectedCategory === 'keyword') {
-        // Perform keyword search
-        const keywordResults = searchVersesByKeyword(searchQuery.trim());
-        
-        if (keywordResults.length > 0) {
-          setSearchResults(keywordResults);
-          setSearchErrors([]);
-        } else {
-          setSearchResults([]);
-          setSearchErrors([`Không tìm thấy kết quả nào cho từ khóa "${searchQuery.trim()}"`]);
+          
+          // Show modal with results
+          setModalVisible(true);
         }
-        
-        // Show modal with results
+      } catch (error) {
+        console.error('Search error:', error);
+        setSearchResults([]);
+        setSearchErrors(['Có lỗi xảy ra khi tìm kiếm. Vui lòng thử lại.']);
         setModalVisible(true);
+      } finally {
+        setIsSearching(false);
       }
     }
   };
@@ -228,13 +236,18 @@ export default function SearchScreen() {
       {/* Search Input */}
       <ThemedView style={styles.searchContainer}>
         <ThemedView style={styles.searchInputContainer}>
-          <IconSymbol name="magnifyingglass" size={20} color="#666" style={styles.searchIcon} />
+          {isSearching ? (
+            <ThemedText style={styles.loadingText}>Đang tìm...</ThemedText>
+          ) : (
+            <IconSymbol name="magnifyingglass" size={20} color="#666" style={styles.searchIcon} />
+          )}
           <TextInput
             style={styles.searchInput}
             placeholder={selectedCategory === 'address' ? "Ví dụ: Mat. 1:1; Gi. 1:1" : "Nhập từ khóa tìm kiếm..."}
             placeholderTextColor="#666"
             value={searchQuery}
             onChangeText={setSearchQuery}
+            editable={!isSearching}
           />
         </ThemedView>
         <TouchableOpacity 
@@ -242,13 +255,17 @@ export default function SearchScreen() {
             styles.searchButton, 
             { 
               backgroundColor: searchButtonColor,
-              opacity: (searchQuery.trim() && selectedCategory !== null) ? 1 : 0.5
+              opacity: (searchQuery.trim() && selectedCategory !== null && !isSearching) ? 1 : 0.5
             }
           ]}
           onPress={handleSearch}
-          disabled={!searchQuery.trim() || selectedCategory === null}
+          disabled={!searchQuery.trim() || selectedCategory === null || isSearching}
         >
-          <IconSymbol name="magnifyingglass" size={20} color="#5A4A3A" />
+          {isSearching ? (
+            <ThemedText style={styles.loadingText}>Đang tìm...</ThemedText>
+          ) : (
+            <IconSymbol name="magnifyingglass" size={20} color="#5A4A3A" />
+          )}
         </TouchableOpacity>
       </ThemedView>
 
@@ -354,6 +371,7 @@ export default function SearchScreen() {
                     <TouchableOpacity
                       key={index}
                       style={styles.resultItem}
+                      onPress={() => navigateToVerse(result.bookCode, result.chapter, result.verse)}
                     >
                       <View style={styles.resultContent}>
                         <View style={styles.resultHeader}>
@@ -406,8 +424,8 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: '100%',
     backgroundColor: COLORS.background,
+    paddingTop: 30,
   },
   header: {
     paddingVertical: 20,
@@ -624,5 +642,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#999',
     textAlign: 'center',
+  },
+  loadingText: {
+    fontSize: 14,
+    color: '#5A4A3A',
+    fontWeight: '500',
   },
 });

@@ -3,8 +3,8 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Book } from '@/constants/bibleData';
 import { useFootnotes } from '@/hooks/useFootnotes';
 import { getChaptersForBook, getFootnotesForVerse, getVersesForChapter, parseTextWithHTML } from '@/utils/bibleUtils';
-import React, { useEffect, useRef, useState } from 'react';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Dimensions, ScrollView, TouchableOpacity, View } from 'react-native';
 import { FootnoteModal } from './FootnoteModal';
 import { styles } from './VerseDisplay.styles';
 import { VerseNavigation } from './VerseNavigation';
@@ -29,33 +29,37 @@ export const parseVerseWithFootnotes = (
   
   return (
     <View style={styles.verseTextContainer}>
-      {segments.map((segment, index) => {
-        if (segment.isFootnote) {
-          return (
-            <TouchableOpacity
-              key={index}
-              onPress={() => onFootnotePress(segment.footnoteId!, verseNumber)}
-              style={styles.superscriptContainer}
-            >
-              <ThemedText style={styles.superscriptText}>{segment.text}</ThemedText>
-            </TouchableOpacity>
-          );
-        }
-        
-        if (segment.text) {
-          const textStyle = [
-            styles.verseText
-          ].filter(Boolean);
+      <ThemedText style={styles.verseText}>
+        {segments.map((segment, index) => {
+          if (segment.isFootnote) {
+            return (
+              <TouchableOpacity
+                key={index}
+                onPress={() => onFootnotePress(segment.footnoteId!, verseNumber)}
+                style={styles.superscriptContainer}
+              >
+                <ThemedText style={styles.superscriptText}>{segment.text}</ThemedText>
+              </TouchableOpacity>
+            );
+          }
           
-          return (
-            <ThemedText key={index} style={textStyle}>
-              {segment.text}
-            </ThemedText>
-          );
-        }
-        
-        return null;
-      })}
+          if (segment.text) {
+            const textStyle = [
+              segment.isItalic && styles.italicText,
+              segment.isBold && styles.boldText,
+              segment.isUnderline && styles.underlineText
+            ].filter(Boolean);
+            
+            return (
+              <ThemedText key={index} style={textStyle}>
+                {segment.text}
+              </ThemedText>
+            );
+          }
+          
+          return null;
+        })}
+      </ThemedText>
     </View>
   );
 };
@@ -80,41 +84,100 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
     handleFootnotePress(footnoteId, verseNumber, footnotes);
   };
 
-  const handleVersePress = (verseNumber: number) => {
+  const handleVersePress = useCallback((verseNumber: number) => {
     if (!scrollViewRef.current) {
       return;
     }
     
-    // Calculate scroll position based on actual verse heights
     const verseIndex = verseNumber - 1;
+    
+    // Calculate scroll position based on verseHeights array
     let scrollY = 0;
     
-    // If we have measured heights, use them for accurate scrolling
-    if (verseHeights.length > verseIndex) {
-      for (let i = 0; i < verseIndex; i++) {
-        scrollY += verseHeights[i] || 150; // fallback to 140px if height not measured
+    // Add header offset
+    const headerOffset = 120; // Height of chapter header and navigation
+    scrollY += headerOffset;
+    
+    // Sum heights of all verses before the target verse
+    for (let i = 0; i < verseIndex; i++) {
+      const height = verseHeights[i] || 0;
+      if (height > 0) {
+        scrollY += height;
+      } else {
+        // Fallback for unmeasured verses
+        const fallbackHeight = 200; // Estimated height
+        scrollY += fallbackHeight;
       }
-    } else {
-      // Fallback to estimated height if measurements not available
-      scrollY = verseIndex * 150;
     }
     
+    // Get screen dimensions for centering
+    const { height: screenHeight } = Dimensions.get('window');
+    const availableHeight = screenHeight - headerOffset;
+    
+    // Calculate padding to show verse in upper portion of screen
+    const paddingAbove = Math.min(availableHeight * 0.3, 200);
+    scrollY = Math.max(0, scrollY - paddingAbove);
+    
+
     scrollViewRef.current.scrollTo({
       y: scrollY,
       animated: true
     });
+  }, [verseHeights]);
+
+
+  // Calculate verse height more accurately
+  const calculateVerseHeight = (measuredHeight: number, verseText: string, containerWidth?: number) => {
+    // Base components
+    const verseLabelHeight = 24; // Verse number label height
+    const paddingBottom = 20; // SPACING.xl
+    
+    // Get screen width for accurate character calculation
+    const { width: screenWidth } = Dimensions.get('window');
+    const availableWidth = containerWidth || (screenWidth - 40); // Account for padding
+    
+    // Calculate characters per line based on screen width
+    const fontSize = 18; // FONT_SIZES.lg from styles
+    const averageCharWidth = fontSize * 0.6; // Approximate character width
+    const averageCharsPerLine = Math.floor(availableWidth / averageCharWidth);
+    
+    // Estimate text height based on content length and line height
+    const lineHeight = 28; // From styles
+    const estimatedLines = Math.ceil(verseText.length / averageCharsPerLine);
+    const estimatedTextHeight = Math.max(estimatedLines * lineHeight, 50);
+    
+    // Use the larger of measured height or estimated height
+    const textHeight = Math.max(measuredHeight - verseLabelHeight, estimatedTextHeight);
+    
+    // Total height including all components
+    const totalHeight = verseLabelHeight + textHeight + paddingBottom;
+    
+    return {
+      verseLabelHeight,
+      textHeight,
+      paddingBottom,
+      totalHeight: Math.max(totalHeight, 100), // Minimum 100px
+      screenWidth,
+      availableWidth,
+      averageCharsPerLine,
+      estimatedLines
+    };
   };
 
-
-  const handleVerseLayout = (event: any, verseIndex: number) => {
-    const { height } = event.nativeEvent.layout;
-    setVerseHeights((prev: number[]) => {
-      const newHeights = [...prev];
-      newHeights[verseIndex] = height;
-      return newHeights;
-    });
+  // Pre-calculate heights for all verses based on content
+  const preCalculateHeights = () => {
+    const calculatedHeights = verses.map((verseText, index) => {
+      const heightData = calculateVerseHeight(0, verseText); // Use estimation only
+      return heightData.totalHeight;
+    });    
+    setVerseHeights(calculatedHeights);
   };
-
+  // Pre-calculate heights only once when component mounts
+  useEffect(() => {
+    if (verses.length > 0 && verseHeights.length === 0) {
+      preCalculateHeights();
+    }
+  }, [verses.length]); // Only depend on length, not the entire array
 
   // Scroll to target verse when component mounts
   useEffect(() => {
@@ -122,7 +185,7 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
       // Delay to ensure the component is fully rendered and heights are measured
       setTimeout(() => {
         handleVersePress(targetVerse);
-      }, 300);
+      }, 500); // Increased delay to ensure heights are measured
     }
   }, [targetVerse]);
 
@@ -134,6 +197,8 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
       }, 100);
     }
   }, [verseHeights, targetVerse]);
+
+  // Remove expensive re-measurement effect for better performance
 
   const handlePreviousChapter = () => {
     if (chapter > 1 && onChapterChange) {
@@ -151,7 +216,15 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
   
   return (
     <>
-      <View style={styles.verseDisplayContainer}>
+      <ScrollView 
+        ref={scrollViewRef}
+        style={styles.verseDisplayContainer}
+        scrollEventThrottle={16}
+        showsVerticalScrollIndicator={true}
+        bounces={true}
+        scrollEnabled={true}
+        contentContainerStyle={{ flexGrow: 1 }}
+      >
         <View style={styles.chapterHeader}>     
           <View style={styles.chapterTitleContainer}>
             <ThemedText style={styles.chapterTitle}>
@@ -172,21 +245,13 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
           />
         </View>
         
-        <ScrollView 
-          ref={scrollViewRef}
-          style={styles.versesScrollView}
-          scrollEventThrottle={16}
-          showsVerticalScrollIndicator={true}
-          bounces={true}
-          scrollEnabled={true}
-        >
+        <View style={styles.versesContainer}>
           {verses.map((verse: string, index: number) => {
             const verseNumber = index + 1;          
             return (
               <View 
                 key={index} 
                 style={styles.verseItem}
-                onLayout={(event) => handleVerseLayout(event, index)}
               >
                 <ThemedText style={styles.verseLabel}>
                   {book.code}. {chapter}:{verseNumber}
@@ -195,32 +260,27 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
               </View>
             );
           })}
-          {/* Chapter Navigation Footer */}
-          <View style={styles.chapterFooter}>
-            <TouchableOpacity
-              style={[styles.footerNavButton, !onChapterChange || chapter <= 1 ? styles.footerNavButtonDisabled : null]}
-              onPress={handlePreviousChapter}
-              disabled={!onChapterChange || chapter <= 1}
-            >
-              <IconSymbol name="chevron.left" size={24} color={chapter <= 1 ? "#ccc" : "#5A4A3A"} />
-              <ThemedText style={[styles.footerNavButtonText, chapter <= 1 ? styles.footerNavButtonTextDisabled : null]}>
-                Chương trước
-              </ThemedText>
-            </TouchableOpacity>
-            
-            <TouchableOpacity
-              style={[styles.footerNavButton, !onChapterChange || chapter >= getChaptersForBook(book.code).length ? styles.footerNavButtonDisabled : null]}
-              onPress={handleNextChapter}
-              disabled={!onChapterChange || chapter >= getChaptersForBook(book.code).length}
-            >
-              <ThemedText style={[styles.footerNavButtonText, chapter >= getChaptersForBook(book.code).length ? styles.footerNavButtonTextDisabled : null]}>
-                Chương sau
-              </ThemedText>
-              <IconSymbol name="chevron.right" size={24} color={chapter >= getChaptersForBook(book.code).length ? "#ccc" : "#5A4A3A"} />
-            </TouchableOpacity>
-          </View>
-        </ScrollView>     
-      </View>
+        </View>
+        
+        {/* Chapter Navigation Footer */}
+        <View style={styles.chapterFooter}>
+          <TouchableOpacity
+            style={[styles.footerNavButton, !onChapterChange || chapter <= 1 ? styles.footerNavButtonDisabled : null]}
+            onPress={handlePreviousChapter}
+            disabled={!onChapterChange || chapter <= 1}
+          >
+            <IconSymbol name="chevron.left" size={24} color={chapter <= 1 ? "#ccc" : "#5A4A3A"} />
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+            style={[styles.footerNavButton, !onChapterChange || chapter >= getChaptersForBook(book.code).length ? styles.footerNavButtonDisabled : null]}
+            onPress={handleNextChapter}
+            disabled={!onChapterChange || chapter >= getChaptersForBook(book.code).length}
+          >
+            <IconSymbol name="chevron.right" size={24} color={chapter >= getChaptersForBook(book.code).length ? "#ccc" : "#5A4A3A"} />
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
       <FootnoteModal
         visible={modalVisible}
         footnotes={selectedFootnotes}

@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.fanyusong.vnrecoverybible",
+      "bundleIdentifier": "com.fanyusong.recoverybible",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -21,7 +21,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.fanyusong.vnrecoverybible",
+      "package": "com.fanyusong.recoverybible",
       "androidNavigationBar": {
         "visible": "sticky-immersive"
       }

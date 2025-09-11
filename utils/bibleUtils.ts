@@ -19,8 +19,8 @@ export const getVersesForChapter = (bookCode: string, chapter: number): string[]
     "Đây là câu thứ năm của chương này."
   ];
   
-  // Strip HTML tags from all verses
-  return verses.map(verse => stripHTMLTags(verse));
+  // Return verses with HTML formatting preserved
+  return verses;
 };
 
 export const getBookDetail = (bookCode: string): BookDetail => {
@@ -111,23 +111,34 @@ export const parseTextWithHTML = (text: string) => {
     text: string;
     isFootnote: boolean;
     footnoteId?: string;
+    isItalic?: boolean;
+    isBold?: boolean;
+    isUnderline?: boolean;
   }> = [];
   
   let currentText = text;
+  let currentSegment = '';
+  let currentFormatting = {
+    isItalic: false,
+    isBold: false,
+    isUnderline: false
+  };
   
   // Process HTML tags and special patterns
   while (currentText.length > 0) {
     // Check for footnote patterns like [1], [2], [a], etc.
     const footnoteMatch = currentText.match(/^(\[([^\]]+)\])/);
     if (footnoteMatch) {
-      if (segments.length > 0 && segments[segments.length - 1].text) {
-        // Add current accumulated text
+      // Save current segment if it has content
+      if (currentSegment.trim()) {
         segments.push({
-          text: '',
+          text: currentSegment,
           isFootnote: false,
-          footnoteId: footnoteMatch[2]
+          ...currentFormatting
         });
+        currentSegment = '';
       }
+      
       segments.push({
         text: footnoteMatch[1],
         isFootnote: true,
@@ -137,22 +148,64 @@ export const parseTextWithHTML = (text: string) => {
       continue;
     }
 
-    
-    // Regular character
-    const char = currentText[0];
-    if (segments.length === 0 || 
-        segments[segments.length - 1].isFootnote) {
-      // Start a new segment
-      segments.push({
-        text: char,
-        isFootnote: false,
-        footnoteId: undefined,
-      });
-    } else {
-      // Add to current segment
-      segments[segments.length - 1].text += char;
+    // Check for opening HTML tags
+    const openTagMatch = currentText.match(/^<(i|b|u|em|strong)>/);
+    if (openTagMatch) {
+      // Save current segment if it has content
+      if (currentSegment.trim()) {
+        segments.push({
+          text: currentSegment,
+          isFootnote: false,
+          ...currentFormatting
+        });
+        currentSegment = '';
+      }
+      
+      // Update formatting
+      const tag = openTagMatch[1];
+      if (tag === 'i' || tag === 'em') currentFormatting.isItalic = true;
+      if (tag === 'b' || tag === 'strong') currentFormatting.isBold = true;
+      if (tag === 'u') currentFormatting.isUnderline = true;
+      
+      currentText = currentText.substring(openTagMatch[0].length);
+      continue;
     }
+
+    // Check for closing HTML tags
+    const closeTagMatch = currentText.match(/^<\/(i|b|u|em|strong)>/);
+    if (closeTagMatch) {
+      // Save current segment if it has content
+      if (currentSegment.trim()) {
+        segments.push({
+          text: currentSegment,
+          isFootnote: false,
+          ...currentFormatting
+        });
+        currentSegment = '';
+      }
+      
+      // Update formatting
+      const tag = closeTagMatch[1];
+      if (tag === 'i' || tag === 'em') currentFormatting.isItalic = false;
+      if (tag === 'b' || tag === 'strong') currentFormatting.isBold = false;
+      if (tag === 'u') currentFormatting.isUnderline = false;
+      
+      currentText = currentText.substring(closeTagMatch[0].length);
+      continue;
+    }
+    
+    // Regular character - add to current segment
+    currentSegment += currentText[0];
     currentText = currentText.substring(1);
+  }
+  
+  // Save final segment if it has content
+  if (currentSegment.trim()) {
+    segments.push({
+      text: currentSegment,
+      isFootnote: false,
+      ...currentFormatting
+    });
   }
   
   return segments;

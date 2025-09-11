@@ -1,63 +1,61 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        tabBarInactiveTintColor: Colors[colorScheme ?? 'light'].tabIconDefault,
+        tabBarActiveTintColor: '#FFFFFF', // White text for focused tabs
+        tabBarInactiveTintColor: '#8B7D6B', // Light brown for inactive tabs
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
-        tabBarPosition: Platform.OS === 'ios' ? 'bottom' : 'top', // iOS: bottom, Android/Web: top
+        tabBarPosition: 'bottom', // iOS: bottom, Android/Web: top
         tabBarStyle: Platform.select({
           ios: {
-            backgroundColor: 'transparent',
+            backgroundColor: '#F8F4F0', // Light cream background
             borderTopWidth: 0,
             elevation: 0,
             shadowOpacity: 0,
-            height: 88 + insets.bottom,
+            height: 60 + insets.bottom,
             paddingBottom: insets.bottom,
-            paddingTop: 8,
+            paddingTop: 8
           },
           android: {
-            backgroundColor: Colors[colorScheme ?? 'light'].background,
+            backgroundColor: '#F8F4F0', // Light cream background
             borderBottomWidth: 1,
-            borderBottomColor: Colors[colorScheme ?? 'light'].headerFooter,
+            borderBottomColor: '#D4C4B0',
             elevation: 8,
-            height: 64 + insets.top,
-            paddingTop: insets.top,
-            paddingBottom: 8,
+            height: 60 + insets.bottom,
+            paddingBottom: insets.bottom,
+            paddingTop: 8
           },
           web: {
-            backgroundColor: Colors[colorScheme ?? 'light'].background,
+            backgroundColor: '#F8F4F0', // Light cream background
             borderBottomWidth: 1,
-            borderBottomColor: Colors[colorScheme ?? 'light'].headerFooter,
-            height: 64,
-            paddingTop: 8,
-            paddingBottom: 8,
+            borderBottomColor: '#D4C4B0',
+            height: 60 + insets.bottom,
+            paddingBottom: insets.bottom,
+            paddingTop: 8
           },
         }),
         tabBarLabelStyle: {
           fontSize: 12,
-          fontWeight: '500',
+          fontWeight: '600', // Slightly bolder for better visibility
           marginTop: 4,
         },
         tabBarItemStyle: {
           paddingVertical: 4,
+          borderRadius: 20, // Rounded corners for tab items
+          marginHorizontal: 4, // Add some spacing between tabs
         },
       }}>
       <Tabs.Screen
@@ -65,11 +63,20 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <FontAwesome6 
-              size={24} 
-              name="book-bible" 
-              color={focused ? color : Colors[colorScheme ?? 'light'].tabIconDefault} 
-            />
+            <View style={{
+              backgroundColor: focused ? '#8B7D6B' : 'transparent',
+              borderRadius: 20,
+              paddingHorizontal: 12,
+              paddingVertical: 6,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <IconSymbol 
+                size={24} 
+                name="book.closed" 
+                color={focused ? '#FFFFFF' : '#8B7D6B'} 
+              />
+            </View>
           ),
           tabBarShowLabel: false,
         }}
@@ -79,11 +86,20 @@ export default function TabLayout() {
         options={{
           title: 'Books',
           tabBarIcon: ({ color, focused }) => (
-            <IconSymbol 
-              size={24} 
-              name="book.fill" 
-              color={focused ? color : Colors[colorScheme ?? 'light'].tabIconDefault} 
-            />
+            <View style={{
+              backgroundColor: focused ? '#8B7D6B' : 'transparent',
+              borderRadius: 20,
+              paddingHorizontal: 12,
+              paddingVertical: 6,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <IconSymbol 
+                size={24} 
+                name="book.fill" 
+                color={focused ? '#FFFFFF' : '#8B7D6B'} 
+              />
+            </View>
           ),
           tabBarShowLabel: false,
         }}
@@ -93,11 +109,20 @@ export default function TabLayout() {
         options={{
           title: 'Search',
           tabBarIcon: ({ color, focused }) => (
-            <IconSymbol 
-              size={24} 
-              name="magnifyingglass" 
-              color={focused ? color : Colors[colorScheme ?? 'light'].tabIconDefault} 
-            />
+            <View style={{
+              backgroundColor: focused ? '#8B7D6B' : 'transparent',
+              borderRadius: 20,
+              paddingHorizontal: 12,
+              paddingVertical: 6,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <IconSymbol 
+                size={24} 
+                name="magnifyingglass" 
+                color={focused ? '#FFFFFF' : '#8B7D6B'} 
+              />
+            </View>
           ),
           tabBarShowLabel: false,
         }}

@@ -104,16 +104,16 @@ export default function BooksScreen() {
             <ThemedText style={styles.bookTitle}>{selectedBook.name.toUpperCase()}</ThemedText>
           </View>
 
-          {/* Book Information - Only show when no chapter is selected */}
-          {!selectedChapter && <BookInfo bookCode={selectedBook.code} />}
-
-          {/* Chapter Grid - Only show when no chapter is selected */}
+          {/* Book Information and Chapter Grid - Only show when no chapter is selected */}
           {!selectedChapter && (
-            <ChapterGrid 
-              bookCode={selectedBook.code}
-              onChapterSelect={handleChapterSelect}
-              bookButtonColor={bookButtonColor}
-            />
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+              <BookInfo bookCode={selectedBook.code} />
+              <ChapterGrid 
+                bookCode={selectedBook.code}
+                onChapterSelect={handleChapterSelect}
+                bookButtonColor={bookButtonColor}
+              />
+            </ScrollView>
           )}
 
           {/* Verse Display - Show when chapter is selected */}

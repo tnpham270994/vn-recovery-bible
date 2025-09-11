@@ -20,7 +20,7 @@ export interface Footnote {
 export const CHAPTER_COUNTS: { [key: string]: number } = {
   'Mat': 28, 'Mác': 16, 'Lu': 24, 'Gi': 21, 'Công': 28, 'La': 16,
   '1 Cô': 16, '2 Cô': 13, 'Ga': 6, 'Êph': 6, 'Phil': 4, 'Côl': 4,
-  '1 Tê': 5, '2 Tê': 3, '1 Ti': 6, '2 Ti': 4, 'Tít': 3, 'Philm': 1,
+  '1 Tê': 5, '2 Tê': 3, '1 Ti': 6, '2 Ti': 4, 'Tít': 3, 'Plm': 1,
   'Hê': 13, 'Gia': 5, '1 Phi': 5, '2 Phi': 3, '1 Gi': 5, '2 Gi': 1,
   '3 Gi': 1, 'Giu': 1, 'Khải': 22
 };
@@ -145,7 +145,7 @@ export const BOOK_DETAILS: { [key: string]: BookDetail } = {
     recipients: 'Tít (1:4)',
     theme: 'Duy trì trật tự trong Hội thánh'
   },
-  'Philm': {
+  'Plm': {
     author: 'Sứ đồ Phao-lô cùng Ti-mô-thê là anh em (c. 1)',
     time: 'Khoảng năm 64 S.C., không lâu trước khi Phao-lô ra tù lần thứ nhất tại La Mã',
     place: 'Nhà tù La Mã',
@@ -8787,7 +8787,7 @@ export const BOOK_NAMES: Book[] = [
   { code: "1 Ti", name: "1 Ti-mô-thê" },
   { code: "2 Ti", name: "2 Ti-mô-thê" },
   { code: "Tít", name: "Tít" },
-  { code: "Philm", name: "Phi-lê-môn" },
+  { code: "Plm", name: "Phi-lê-môn" },
   { code: "Hê", name: "Hê-bơ-rơ" },
   { code: "Gia", name: "Gia-cơ" },
   { code: "1 Phi", name: "1 Phi-e-rơ" },

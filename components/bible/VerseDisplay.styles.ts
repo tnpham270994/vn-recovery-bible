@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   navigationContainer: {
     marginBottom: SPACING.md
   },
-  versesScrollView: {
+  versesContainer: {
     flex: 1,
   },
   verseItem: {
