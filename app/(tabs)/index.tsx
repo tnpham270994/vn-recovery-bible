@@ -31,9 +31,8 @@ export default function IndexScreen() {
       {/* Book Grid */}
       <ThemedView style={styles.mainContent}>
         <Image source={require('@/assets/images/icon.png')} style={styles.logo} />
-        <ThemedText style={styles.headerText}>KINH THÁNH</ThemedText>
-        <ThemedText style={styles.headerText}>TÂN ƯỚC</ThemedText>
-        <ThemedText style={styles.subtitleText}>BẢN KHÔI PHỤC</ThemedText>
+        <ThemedText style={styles.headerText}>KINH THÁNH TÂN ƯỚC</ThemedText>
+        <ThemedText style={styles.subtitleText}>BẢN KHÔI PHỤC - BẢN VĂN</ThemedText>
         <BookGrid 
           books={BOOK_NAMES}
           onBookSelect={handleBookSelection}

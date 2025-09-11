@@ -27,9 +27,21 @@
       }
     },
     "web": {
-      "output": "server",
+      "output": "static",
       "bundler": "metro",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "name": "Kinh Thánh Tân Ước - Bản Khôi Phục",
+      "shortName": "VN Recovery Bible",
+      "description": "Kinh Thánh Tân Ước - Bản Khôi Phục - Bản Văn",
+      "startUrl": "/",
+      "display": "standalone",
+      "orientation": "portrait",
+      "themeColor": "#000000",
+      "backgroundColor": "#ffffff",
+      "lang": "vi",
+      "scope": "/",
+      "categories": ["books", "religion", "education"],
+      "manifest": "./public/manifest.json"
     },
     "plugins": [
       "expo-router",
