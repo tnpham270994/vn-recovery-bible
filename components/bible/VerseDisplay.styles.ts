@@ -85,20 +85,20 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   superscriptContainer: {
-    marginHorizontal: 1,
-    paddingVertical: 2,
-    paddingHorizontal: 2,
-    minHeight: 20,
-    minWidth: 20,
-    backgroundColor: 'rgba(184, 134, 11, 0.1)',
-    borderRadius: 3,
+    marginRight: 1,
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+    minHeight: 16,
     alignSelf: 'flex-start',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   superscriptText: {
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: 'bold',
-    color: '#B8860B',
-    textDecorationLine: 'underline',
+    color: '#007AFF',
+    lineHeight: 10,
+    transform: [{ translateY: -6 }],
   },
   anchorContainer: {
     marginHorizontal: 2,
@@ -157,5 +157,15 @@ export const styles = StyleSheet.create({
   },
   underlineText: {
     textDecorationLine: 'underline',
+  },
+  highlightedText: {
+    color: '#007AFF',
+    fontWeight: 'bold',
+  },
+  highlightedTextContainer: {
+    backgroundColor: 'rgba(0, 122, 255, 0.1)',
+    paddingHorizontal: 2,
+    paddingVertical: 1,
+    borderRadius: 2,
   },
 });

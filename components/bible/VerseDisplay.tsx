@@ -47,8 +47,22 @@ export const parseVerseWithFootnotes = (
             const textStyle = [
               segment.isItalic && styles.italicText,
               segment.isBold && styles.boldText,
-              segment.isUnderline && styles.underlineText
+              segment.isUnderline && styles.underlineText,
+              segment.isHighlighted && styles.highlightedText
             ].filter(Boolean);
+            
+            if (segment.isHighlighted && segment.footnoteId) {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => onFootnotePress(segment.footnoteId!, verseNumber)}
+                >
+                  <ThemedText style={textStyle}>
+                    {segment.text}
+                  </ThemedText>
+                </TouchableOpacity>
+              );
+            }
             
             return (
               <ThemedText key={index} style={textStyle}>

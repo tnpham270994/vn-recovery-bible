@@ -111,6 +111,7 @@ export const parseTextWithHTML = (text: string) => {
     text: string;
     isFootnote: boolean;
     footnoteId?: string;
+    isHighlighted?: boolean;
     isItalic?: boolean;
     isBold?: boolean;
     isUnderline?: boolean;
@@ -126,7 +127,40 @@ export const parseTextWithHTML = (text: string) => {
   
   // Process HTML tags and special patterns
   while (currentText.length > 0) {
-    // Check for footnote patterns like [1], [2], [a], etc.
+    // Check for new footnote patterns like [1-a|Ban đầu] or [1|Ban đầu]
+    const newFootnoteMatch = currentText.match(/^(\[([^|]+)\|([^\]]+)\])/);
+    if (newFootnoteMatch) {
+      // Save current segment if it has content
+      if (currentSegment.trim()) {
+        segments.push({
+          text: currentSegment,
+          isFootnote: false,
+          ...currentFormatting
+        });
+        currentSegment = '';
+      }
+      
+      // Add the superscript footnote marker
+      segments.push({
+        text: newFootnoteMatch[2],
+        isFootnote: true,
+        footnoteId: newFootnoteMatch[2]
+      });
+      
+      // Add the highlighted text
+      segments.push({
+        text: newFootnoteMatch[3],
+        isFootnote: false,
+        isHighlighted: true,
+        footnoteId: newFootnoteMatch[2],
+        ...currentFormatting
+      });
+      
+      currentText = currentText.substring(newFootnoteMatch[1].length);
+      continue;
+    }
+    
+    // Check for old footnote patterns like [1], [2], [a], etc.
     const footnoteMatch = currentText.match(/^(\[([^\]]+)\])/);
     if (footnoteMatch) {
       // Save current segment if it has content
@@ -140,7 +174,7 @@ export const parseTextWithHTML = (text: string) => {
       }
       
       segments.push({
-        text: footnoteMatch[1],
+        text: footnoteMatch[2],
         isFootnote: true,
         footnoteId: footnoteMatch[2]
       });

@@ -218,18 +218,25 @@ export const BOOK_DETAILS: { [key: string]: BookDetail } = {
 };
 
 export const FOOTNOTES_DATA: { [key: string]: { [key: number]: { [key: number]: Footnote[] } } } = {
-  'Mat.': {
+  'Gi': {
     1: {
       1: [
-        { id: '1', text: "Gia phổ: Bản ghi chép về dòng dõi tổ tiên, thường được dùng để chứng minh quyền thừa kế hoặc danh phận." },
-        { id: '2', text: "Jesus Christ: Jesus là tên riêng, có nghĩa là 'Đức Giê-hô-va là sự cứu rỗi'. Christ là tước hiệu, có nghĩa là 'Đấng được xức dầu' hoặc 'Đấng Mê-si'." },
-        { id: '3', text: "Đa-vít: Vua thứ hai của Y-sơ-ra-ên, được gọi là 'người theo lòng Đức Chúa Trời'. Chúa Jesus là con cháu của Đa-vít theo huyết thống." },
-        { id: '4', text: "Áp-ra-ham: Tổ phụ của dân Y-sơ-ra-ên, được gọi là 'bạn của Đức Chúa Trời'. Chúa Jesus là con cháu của Áp-ra-ham theo lời hứa." },
-        { id: 'a', text: "Con cháu: Chỉ về dòng dõi huyết thống, thể hiện sự liên tục của gia phả từ thế hệ này sang thế hệ khác." },
-        { id: 'b', text: "Huyết thống: Mối liên hệ gia đình qua dòng máu, quan trọng trong việc xác định quyền thừa kế và danh phận." },
-        { id: 'c', text: "Lời hứa: Đức Chúa Trời đã hứa với Áp-ra-ham rằng qua dòng dõi người, tất cả các dân tộc sẽ được phước." },
-        { id: 'd', text: "Vương quốc: Chúa Jesus sẽ cai trị vương quốc đời đời, thực hiện lời hứa về Đấng Mê-si đến từ dòng dõi Đa-vít." }
-      ]
+        { id: '1a', text: 'Ban đầu có nghĩa là trong quá khứ đời đời. Là phần giới thiệu về Phúc âm này, chương này bắt đầu trong quá khứ đời đời với Đức Chúa Trời, Đấng có thần tính nhưng không có nhân tính (c. 1), sau đó trải qua việc Ngài tạo nên mọi sự (c. 3), Ngài nhục hóa (c. 14), Ngài trở nên Chiên con là Đấng cất bỏ tội của thế giới (c. 29), và Ngài là Linh, Đấng làm cho các tín đồ được biến đổi thành những viên đá sống cho sự xây dựng của Ngài (cc. 32, 42) và tiếp tục mãi đến tương lai đời đời, trong đó Con Loài người, Đấng có cả thần tính lẫn nhân tính, là trung tâm cho sự tương thông giữa trời và đất, và cho mối liên hiệp của Đức Chúa Trời với con người trong cõi đời đời. Sau điều này, ch. 2 cho thấy nguyên tắc của Đức Chúa Trời Tam Nhất, tức sự sống, là đổi sự chết thành sự sống (2:1-11) và mục đích của sự sống là xây dựng nhà, đền thờ, của Đức Chúa Trời (2:13-22). Trong cch. 3–11, chín trường hợp được trình bày để minh họa cách Đức Chúa Trời là sự sống thỏa đáp các nhu cầu khác nhau của những loại người khác nhau là như thế nào. Kết quả là ở đầu ch. 12, hình ảnh thu nhỏ về Hội thánh được sản sinh (12:1-11). Từ 12:12 đến cuối ch. 17 có sự giải thích về cách Hội thánh được sản sinh qua sự nhân rộng và gia tăng của Đấng Thần–nhân nhục hóa, bởi sự chết và phục sinh của Ngài là như thế nào. Các chương 18–20 cho thấy việc hoàn tất sự nhân rộng và gia tăng, là điều làm cho Ngài có nhiều em (20:17) và Ngài có thể vào trong họ (20:22) để là sự sống và mọi sự của họ hầu họ có thể được cấu tạo nên Thân thể Ngài, tức là sự gia tăng và biểu lộ của Ngài. Cuối cùng, ch. 21 khải thị rằng Ngài sẽ ở với họ theo cách vô hình cho đến khi Ngài trở lại (21:22).' },
+        { id: '2b', text: 'Lời là sự định nghĩa, giải thích và bày tỏ Đức Chúa Trời; vì vậy, Lời là Đức Chúa Trời được định nghĩa, giải thích và bày tỏ.' },
+        { id: '3', text: 'Lời không tách biệt khỏi Đức Chúa Trời. Không phải Lời là Lời còn Đức Chúa Trời là Đức Chúa Trời, và cả hai tách rời nhau. Trái lại, cả hai là một; vì thế, mệnh đề tiếp theo nói rằng Lời là Đức Chúa Trời.' },
+        { id: '4', text: 'Nói Lời là Đức Chúa Trời ngụ ý rằng Đức Chúa Trời trong thân vị của Ngài không đơn giản; Ngài là tam nhất.' },
+        { id: '5c', text: 'Không phải chỉ là Đức Chúa Trời Con, mà là Đức Chúa Trời Tam Nhất trọn vẹn.' },
+      ]  
+    }
+  }
+};
+
+export const REFERENCE_DATA: { [key: string]: { [key: string]: { [key: string]: string } } } = {
+  "Gi": {
+    "1": {
+      "1a": "1 Gi. 1:1; Côl. 1:17; Sáng. 1:1",
+      "2b": "Gi. 1:14; Khải. 19:13; 1 Gi. 1:1",
+      "5c": "La. 9:5; Hê. 1:8; 1 Gi. 5:20",
     }
   }
 };
@@ -3040,7 +3047,7 @@ export const VERSE_DATA: { [key: string]: { [key: number]: string[] } } = {
   },
   "Gi": {
     "1": [
-      "Ban đầu có Lời, Lời ở với Đức Chúa Trời, và Lời là Đức Chúa Trời.",
+      "[1a|Ban đầu] có [2b|Lời], Lời ở [3|với] Đức Chúa Trời, và [4|Lời] là [5c|Đức Chúa Trời].",
       "Ngài ở với Đức Chúa Trời từ ban đầu.",
       "Mọi sự hiện hữu qua Ngài; ngoài Ngài, không một điều gì đã hiện hữu được hiện hữu.",
       "Sự sống ở trong Ngài, và sự sống này là ánh sáng của con người.",
