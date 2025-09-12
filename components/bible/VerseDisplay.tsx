@@ -4,7 +4,7 @@ import { Book } from '@/constants/bibleData';
 import { useFootnotes } from '@/hooks/useFootnotes';
 import { getChaptersForBook, getFootnotesForVerse, getVersesForChapter, parseTextWithHTML } from '@/utils/bibleUtils';
 import { router } from 'expo-router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { FootnoteModal } from './FootnoteModal';
 import { styles } from './VerseDisplay.styles';
@@ -78,6 +78,8 @@ export const parseVerseWithFootnotes = (
 };
 
 export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBackToChapters, onChapterChange, targetVerse }) => {
+  const scrollViewRef = useRef<ScrollView>(null);
+  const verseRefs = useRef<{ [key: number]: View | null }>({});
   const verses = getVersesForChapter(book.code, chapter);
   const {
     selectedFootnotes,
@@ -94,12 +96,56 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
     handleFootnotePress(footnoteId, verseNumber, footnotes);
   };
 
-  const handleVersePress = ((verseNumber: number) => {
-    const verseElement = document.getElementById(`verse-${verseNumber}`);
-    if (verseElement) {
-      verseElement.scrollIntoView({ behavior: 'smooth', block: 'center'});
+  const scrollToVerse = (verseNumber: number) => {
+    const verseRef = verseRefs.current[verseNumber];
+    if (verseRef && scrollViewRef.current) {
+      // Measure the verse element and scroll to it
+      verseRef.measureLayout(
+        scrollViewRef.current as any,
+        (x, y, width, height) => {
+          scrollViewRef.current?.scrollTo({
+            y: y - 50, // Offset to center the verse better
+            animated: true,
+          });
+        },
+        () => {
+          console.log('Error measuring verse');
+          // Fallback to estimated position
+          const estimatedPosition = (verseNumber - 1) * 100;
+          scrollViewRef.current?.scrollTo({
+            y: estimatedPosition,
+            animated: true,
+          });
+        }
+      );
     }
-  });
+  };
+
+  const handleVersePress = scrollToVerse;
+
+  // Helper functions for navigation
+  const scrollToNextVerse = () => {
+    const currentVerse = selectedVerseNumber || 1;
+    const nextVerse = Math.min(currentVerse + 1, verses.length);
+    scrollToVerse(nextVerse);
+  };
+
+  const scrollToPreviousVerse = () => {
+    const currentVerse = selectedVerseNumber || 1;
+    const prevVerse = Math.max(currentVerse - 1, 1);
+    scrollToVerse(prevVerse);
+  };
+
+  // Navigate to a specific verse by number
+  const navigateToVerse = (verseNumber: number) => {
+    if (verseNumber >= 1 && verseNumber <= verses.length) {
+      scrollToVerse(verseNumber);
+    }
+  };
+
+  // Navigate to first/last verse
+  const scrollToFirstVerse = () => scrollToVerse(1);
+  const scrollToLastVerse = () => scrollToVerse(verses.length);
 
 
   const handlePreviousChapter = () => {
@@ -135,6 +181,7 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
   return (
     <>
       <ScrollView 
+        ref={scrollViewRef}
         style={styles.verseDisplayContainer}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={true}
@@ -168,6 +215,9 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
             return (
               <View 
                 key={index} 
+                ref={(ref) => {
+                  verseRefs.current[verseNumber] = ref;
+                }}
                 style={styles.verseItem}
               >
                 <ThemedText style={styles.verseLabel}>
