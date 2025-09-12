@@ -80,23 +80,10 @@ export const parseVerseWithFootnotes = (
 export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBackToChapters, onChapterChange, targetVerse }) => {
   const scrollViewRef = useRef<ScrollView>(null);
   const verseRefs = useRef<{ [key: number]: View | null }>({});
+  const footnoteRefs = useRef<{ [key: string]: View | null }>({});
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const verses = getVersesForChapter(book.code, chapter);
-  const {
-    selectedFootnotes,
-    selectedVerseNumber,
-    selectedFootnoteId,
-    modalVisible,
-    handleFootnotePress,
-    closeModal,
-    handleFootnoteSelect,
-  } = useFootnotes();
-  
-  const handleVerseFootnotePress = (footnoteId: string, verseNumber: number) => {
-    const footnotes = getFootnotesForVerse(book.code, chapter, verseNumber);
-    handleFootnotePress(footnoteId, verseNumber, footnotes);
-  };
 
   const scrollToVerse = (verseNumber: number) => {
     // Prevent multiple rapid calls
@@ -153,7 +140,138 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
     }, 50); // Small delay to ensure refs are ready
   };
 
+  const scrollToFootnote = (footnoteId: string) => {
+    // Prevent multiple rapid calls
+    if (isScrolling) {
+      return;
+    }
+
+    // Clear any existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
+    const footnoteRef = footnoteRefs.current[footnoteId];
+    if (!footnoteRef || !scrollViewRef.current) {
+      console.log('Footnote ref or scrollView ref not found');
+      return;
+    }
+
+    setIsScrolling(true);
+
+    // Use a longer delay to ensure all footnotes are rendered and measured
+    setTimeout(() => {
+      footnoteRef.measureLayout(
+        scrollViewRef.current as any,
+        (x, y, width, height) => {
+          console.log(`Footnote ${footnoteId} position:`, { x, y, width, height });
+          
+          if (scrollViewRef.current) {
+            // Calculate the center position of the footnote
+            const footnoteCenter = y + (height / 2);
+            const scrollViewHeight = 600; // Use fixed height for calculation
+            const targetY = Math.max(0, footnoteCenter - (scrollViewHeight / 2));
+            
+            scrollViewRef.current.scrollTo({
+              y: targetY,
+              animated: true,
+            });
+          }
+          
+          // Reset scrolling state after animation completes
+          scrollTimeoutRef.current = setTimeout(() => {
+            setIsScrolling(false);
+          }, 800); // Longer timeout for footnote scrolling
+        },
+        () => {
+          console.log('Error measuring footnote, trying alternative approach');
+          
+          // Alternative approach: measure all footnotes and calculate position
+          if (scrollViewRef.current) {
+            const allFootnotes = Object.keys(footnoteRefs.current);
+            const targetIndex = allFootnotes.indexOf(footnoteId);
+            
+            if (targetIndex !== -1) {
+              // Try to measure all previous footnotes to get accurate position
+              let accumulatedHeight = 0;
+              let measurementsCompleted = 0;
+              
+              const measurePreviousFootnotes = (index: number) => {
+                if (index >= allFootnotes.length) {
+                  // All measurements done, scroll to calculated position
+                  scrollViewRef.current?.scrollTo({
+                    y: Math.max(0, accumulatedHeight - 50),
+                    animated: true,
+                  });
+                  
+                  scrollTimeoutRef.current = setTimeout(() => {
+                    setIsScrolling(false);
+                  }, 800);
+                  return;
+                }
+                
+                const currentFootnoteRef = footnoteRefs.current[allFootnotes[index]];
+                if (currentFootnoteRef) {
+                  currentFootnoteRef.measureLayout(
+                    scrollViewRef.current as any,
+                    (x, y, width, height) => {
+                      if (index < targetIndex) {
+                        accumulatedHeight += height + 10; // Add some padding
+                      }
+                      measurePreviousFootnotes(index + 1);
+                    },
+                    () => {
+                      // If measurement fails, add estimated height
+                      if (index < targetIndex) {
+                        accumulatedHeight += 150; // Estimated height
+                      }
+                      measurePreviousFootnotes(index + 1);
+                    }
+                  );
+                } else {
+                  // If ref not found, add estimated height
+                  if (index < targetIndex) {
+                    accumulatedHeight += 150;
+                  }
+                  measurePreviousFootnotes(index + 1);
+                }
+              };
+              
+              measurePreviousFootnotes(0);
+            } else {
+              // Last resort: scroll to top
+              scrollViewRef.current.scrollTo({
+                y: 0,
+                animated: true,
+              });
+              
+              scrollTimeoutRef.current = setTimeout(() => {
+                setIsScrolling(false);
+              }, 800);
+            }
+          }
+        }
+      );
+    }, 150); // Longer delay to ensure all content is rendered
+  };
+
   const handleVersePress = scrollToVerse;
+
+  // Initialize footnotes hook with scrollToFootnote function
+  const {
+    selectedFootnotes,
+    selectedVerseNumber,
+    selectedFootnoteId,
+    modalVisible,
+    handleFootnotePress,
+    closeModal,
+    handleFootnoteSelect,
+  } = useFootnotes(scrollToFootnote);
+
+  const handleVerseFootnotePress = (footnoteId: string, verseNumber: number) => {
+    const footnotes = getFootnotesForVerse(book.code, chapter, verseNumber);
+    handleFootnotePress(footnoteId, verseNumber, footnotes);
+  };
 
   // Helper functions for navigation
   const scrollToNextVerse = () => {
@@ -301,6 +419,7 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
         onClose={closeModal}
         onFootnoteSelect={handleFootnoteSelect}
         onNavigateToVerse={handleNavigateToVerse}
+        footnoteRefs={footnoteRefs}
       />
     </>
   );

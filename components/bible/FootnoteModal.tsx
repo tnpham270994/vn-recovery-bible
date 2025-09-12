@@ -16,6 +16,7 @@ interface FootnoteModalProps {
   onClose: () => void;
   onFootnoteSelect: (footnoteId: string) => void;
   onNavigateToVerse?: (bookCode: string, chapter: number, verse: number) => void;
+  footnoteRefs?: React.MutableRefObject<{ [key: string]: View | null }>;
 }
 
 export const FootnoteModal: React.FC<FootnoteModalProps> = ({
@@ -28,6 +29,7 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
   onClose,
   onFootnoteSelect,
   onNavigateToVerse,
+  footnoteRefs,
 }) => {
   const scrollViewRef = useRef<ScrollView>(null);
   const [verseModalVisible, setVerseModalVisible] = useState(false);
@@ -141,15 +143,43 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
       const footnoteIndex = footnotes.findIndex(f => f.id === selectedFootnoteId);
       
       if (footnoteIndex !== -1) {
+        // Wait for the modal to be fully rendered and refs to be set
         setTimeout(() => {
-          scrollViewRef.current?.scrollTo({
-            y: footnoteIndex * 120,
-            animated: true
-          });
-        }, 200);
+          if (scrollViewRef.current) {
+            // Try to use the actual footnote ref if available
+            if (footnoteRefs && footnoteRefs.current[selectedFootnoteId]) {
+              const footnoteRef = footnoteRefs.current[selectedFootnoteId];
+              footnoteRef.measureLayout(
+                scrollViewRef.current as any,
+                (x, y, width, height) => {
+                  console.log(`Modal footnote ${selectedFootnoteId} position:`, { x, y, width, height });
+                  scrollViewRef.current?.scrollTo({
+                    y: Math.max(0, y - 50),
+                    animated: true,
+                  });
+                },
+                () => {
+                  // Fallback to estimated position
+                  const estimatedPosition = footnoteIndex * 120;
+                  scrollViewRef.current?.scrollTo({
+                    y: estimatedPosition,
+                    animated: true,
+                  });
+                }
+              );
+            } else {
+              // Fallback to estimated position
+              const estimatedPosition = footnoteIndex * 120;
+              scrollViewRef.current.scrollTo({
+                y: estimatedPosition,
+                animated: true,
+              });
+            }
+          }
+        }, 300); // Longer delay to ensure refs are set
       }
     }
-  }, [visible, selectedFootnoteId, footnotes]);
+  }, [visible, selectedFootnoteId, footnotes, footnoteRefs]);
   
   if (footnotes.length === 0) return null;
   
@@ -183,6 +213,11 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
               return (
                 <TouchableOpacity
                   key={footnote.id}
+                  ref={(ref) => {
+                    if (footnoteRefs) {
+                      footnoteRefs.current[footnote.id] = ref;
+                    }
+                  }}
                   onPress={() => onFootnoteSelect(footnote.id)}
                   style={styles.modalFootnoteItem}
                   id={`footnote-${footnote.id}`}

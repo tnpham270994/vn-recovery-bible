@@ -1,7 +1,8 @@
 import { Footnote } from '@/constants/bibleData';
 import { useState } from 'react';
+import { Platform } from 'react-native';
 
-export const useFootnotes = () => {
+export const useFootnotes = (scrollToFootnote?: (footnoteId: string) => void) => {
   const [selectedFootnotes, setSelectedFootnotes] = useState<Footnote[]>([]);
   const [selectedVerseNumber, setSelectedVerseNumber] = useState<number>(0);
   const [selectedFootnoteId, setSelectedFootnoteId] = useState<string | null>(null);
@@ -14,9 +15,19 @@ export const useFootnotes = () => {
       setSelectedFootnoteId(footnoteId);
       setModalVisible(true);
     }
-    const footnoteElement = document.getElementById(`footnote-${footnoteId}`);
-    if (footnoteElement) {
-      footnoteElement.scrollIntoView({ behavior: 'smooth', block: 'center'});
+    
+    // Use cross-platform scrolling behavior
+    if (Platform.OS === 'web') {
+      // Web: use DOM API
+      const footnoteElement = document.getElementById(`footnote-${footnoteId}`);
+      if (footnoteElement) {
+        footnoteElement.scrollIntoView({ behavior: 'smooth', block: 'center'});
+      }
+    } else {
+      // Mobile: use the provided scrollToFootnote function
+      if (scrollToFootnote) {
+        scrollToFootnote(footnoteId);
+      }
     }
   };
 
