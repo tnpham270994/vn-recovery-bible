@@ -4,7 +4,7 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import { BOOK_NAMES } from '@/constants/bibleData';
 import { COLORS } from '@/constants/styles';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { getVersesForChapter, parseTextWithHTML, searchVersesByKeyword } from '@/utils/bibleUtils';
+import { getVersesForChapter, parseTextWithOnlyHTML, searchVersesByKeyword } from '@/utils/bibleUtils';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -381,9 +381,7 @@ export default function SearchScreen() {
                           </ThemedText>
                         </View>
                         <ThemedText style={styles.verseContent} numberOfLines={3}>
-                          {parseTextWithHTML(result.content || result.verseContent || '').map((segment, index) => (
-                            <ThemedText key={index}>{segment.text}</ThemedText>
-                          ))}
+                          {parseTextWithOnlyHTML(result.content || result.verseContent || '')}
                         </ThemedText>
                       </View>
                     </TouchableOpacity>

@@ -1,6 +1,7 @@
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Footnote, REFERENCE_DATA, VERSE_DATA } from '@/constants/bibleData';
+import { parseTextWithOnlyHTML } from '@/utils/bibleUtils';
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, TouchableOpacity, View } from 'react-native';
 import { styles } from './FootnoteModal.styles';
@@ -14,6 +15,7 @@ interface FootnoteModalProps {
   selectedFootnoteId: string | null;
   onClose: () => void;
   onFootnoteSelect: (footnoteId: string) => void;
+  onNavigateToVerse?: (bookCode: string, chapter: number, verse: number) => void;
 }
 
 export const FootnoteModal: React.FC<FootnoteModalProps> = ({
@@ -25,6 +27,7 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
   selectedFootnoteId,
   onClose,
   onFootnoteSelect,
+  onNavigateToVerse,
 }) => {
   const scrollViewRef = useRef<ScrollView>(null);
   const [verseModalVisible, setVerseModalVisible] = useState(false);
@@ -121,6 +124,17 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
       }
     }
   };
+
+  const handleVerseNavigation = (verse: {book: string, chapter: number, verse: number}) => {
+    // Close both modals
+    setVerseModalVisible(false);
+    onClose();
+    
+    // Navigate to the verse if callback is provided
+    if (onNavigateToVerse) {
+      onNavigateToVerse(verse.book, verse.chapter, verse.verse);
+    }
+  };
   
   useEffect(() => {
     if (visible && selectedFootnoteId && footnotes.length > 0) {
@@ -171,6 +185,7 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
                   key={footnote.id}
                   onPress={() => onFootnoteSelect(footnote.id)}
                   style={styles.modalFootnoteItem}
+                  id={`footnote-${footnote.id}`}
                 >
                   <ThemedText style={styles.modalFootnoteNumber}>{footnoteNumber}</ThemedText>
                   <ThemedText style={styles.modalFootnoteContent}>
@@ -205,22 +220,26 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
             </View>
             <ScrollView style={styles.verseModalScrollView}>
               {selectedVerses.map((verse, index) => (
-                <ThemedText key={index} style={styles.verseSection}>
+                <TouchableOpacity 
+                  key={index} 
+                  style={styles.verseSection}
+                  onPress={() => handleVerseNavigation(verse)}
+                >
                   <ThemedText style={styles.verseSectionTitle}>
                     {`${verse.book} ${verse.chapter}:${verse.verse}${verse.endVerse && verse.endVerse !== verse.verse ? `-${verse.endVerse}` : ''}`}
                   </ThemedText>
                   <ThemedText>
                     {verse.text ? verse.text.split('\n').map((line, lineIndex) => (
                       <ThemedText key={lineIndex} style={styles.verseModalText}>
-                        {line || ''}
+                        {parseTextWithOnlyHTML(line) || ''}
                       </ThemedText>
                     )) : (
                       <ThemedText style={styles.verseModalText}>
-                        No text available
+                        Chưa có dữ liệu
                       </ThemedText>
                     )}
                   </ThemedText>
-                </ThemedText>
+                </TouchableOpacity>
               ))}
             </ScrollView>
           </Pressable>

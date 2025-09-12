@@ -17,9 +17,9 @@ export default function BooksScreen() {
   const {
     selectedBook,
     selectedChapter,
+    targetVerse,
     handleBookSelect,
     handleChapterSelect,
-    handleBackToBooks,
     handleBackToChapters,
   } = useBibleContext();
 
@@ -35,12 +35,6 @@ export default function BooksScreen() {
     clearQueryParams();
   };
 
-  // Handle back to books with parameter clearing
-  const handleBackToBooksWithClear = () => {
-    handleBackToBooks();
-    clearQueryParams();
-  };
-
   // Handle back to chapters with parameter clearing
   const handleBackToChaptersWithClear = () => {
     handleBackToChapters();
@@ -52,20 +46,21 @@ export default function BooksScreen() {
     if (params.book && params.chapter) {
       const bookCode = params.book as string;
       const chapter = parseInt(params.chapter as string, 10);
+      const verseNumber = params.verse ? parseInt(params.verse as string, 10) : undefined;
       
       // Find the book by code
       const BOOK_NAMES = require('@/constants/bibleData').BOOK_NAMES;
       const book = BOOK_NAMES.find((b: any) => b.code === bookCode);
       if (book) {
         handleBookSelect(book);
-        handleChapterSelect(chapter);
+        handleChapterSelect(chapter, verseNumber);
         // Clear parameters after navigation
         setTimeout(() => {
           clearQueryParams();
         }, 1000); // Small delay to ensure navigation is complete
       }
     }
-  }, [params.book, params.chapter, handleBookSelect, handleChapterSelect]);
+  }, [params.book, params.chapter, params.verse, handleBookSelect, handleChapterSelect]);
 
   // Clear parameters when component unmounts or when no search params
   useEffect(() => {
@@ -123,7 +118,7 @@ export default function BooksScreen() {
               chapter={selectedChapter}
               onBackToChapters={handleBackToChaptersWithClear}
               onChapterChange={handleChapterChange}
-              targetVerse={params.verse ? parseInt(params.verse as string, 10) : undefined}
+              targetVerse={targetVerse || undefined}
             />
           )}
         </ThemedView>

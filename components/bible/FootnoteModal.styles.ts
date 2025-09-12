@@ -119,6 +119,11 @@ export const styles = StyleSheet.create({
     paddingBottom: SPACING.md,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border,
+    backgroundColor: COLORS.surface,
+    padding: SPACING.md,
+    borderRadius: BORDER_RADIUS.md,
+    borderWidth: 1,
+    borderColor: COLORS.border,
   },
   verseSectionTitle: {
     fontSize: FONT_SIZES.md,

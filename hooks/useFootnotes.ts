@@ -14,6 +14,10 @@ export const useFootnotes = () => {
       setSelectedFootnoteId(footnoteId);
       setModalVisible(true);
     }
+    const footnoteElement = document.getElementById(`footnote-${footnoteId}`);
+    if (footnoteElement) {
+      footnoteElement.scrollIntoView({ behavior: 'smooth', block: 'center'});
+    }
   };
 
   const closeModal = () => {

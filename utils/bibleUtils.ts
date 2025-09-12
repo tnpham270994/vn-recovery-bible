@@ -244,3 +244,7 @@ export const parseTextWithHTML = (text: string) => {
   
   return segments;
 };
+
+export const parseTextWithOnlyHTML = (text: string) => {
+  return text.replace(/<[^>]*>/g, '');
+};

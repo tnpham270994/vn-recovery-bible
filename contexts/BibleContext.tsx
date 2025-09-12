@@ -4,8 +4,9 @@ import React, { createContext, ReactNode, useContext, useState } from 'react';
 interface BibleContextType {
   selectedBook: Book | null;
   selectedChapter: number | null;
+  targetVerse: number | null;
   handleBookSelect: (book: Book) => void;
-  handleChapterSelect: (chapter: number) => void;
+  handleChapterSelect: (chapter: number, targetVerse?: number) => void;
   handleBackToBooks: () => void;
   handleBackToChapters: () => void;
 }
@@ -19,28 +20,34 @@ interface BibleProviderProps {
 export const BibleProvider: React.FC<BibleProviderProps> = ({ children }) => {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [selectedChapter, setSelectedChapter] = useState<number | null>(null);
+  const [targetVerse, setTargetVerse] = useState<number | null>(null);
 
   const handleBookSelect = (book: Book) => {
     setSelectedBook(book);
     setSelectedChapter(null);
+    setTargetVerse(null);
   };
 
-  const handleChapterSelect = (chapter: number) => {
+  const handleChapterSelect = (chapter: number, targetVerse?: number) => {
     setSelectedChapter(chapter);
+    setTargetVerse(targetVerse || null);
   };
 
   const handleBackToBooks = () => {
     setSelectedBook(null);
     setSelectedChapter(null);
+    setTargetVerse(null);
   };
 
   const handleBackToChapters = () => {
     setSelectedChapter(null);
+    setTargetVerse(null);
   };
 
   const value: BibleContextType = {
     selectedBook,
     selectedChapter,
+    targetVerse,
     handleBookSelect,
     handleChapterSelect,
     handleBackToBooks,

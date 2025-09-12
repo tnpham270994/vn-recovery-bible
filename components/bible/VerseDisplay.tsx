@@ -3,8 +3,9 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Book } from '@/constants/bibleData';
 import { useFootnotes } from '@/hooks/useFootnotes';
 import { getChaptersForBook, getFootnotesForVerse, getVersesForChapter, parseTextWithHTML } from '@/utils/bibleUtils';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Dimensions, ScrollView, TouchableOpacity, View } from 'react-native';
+import { router } from 'expo-router';
+import React, { useEffect } from 'react';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { FootnoteModal } from './FootnoteModal';
 import { styles } from './VerseDisplay.styles';
 import { VerseNavigation } from './VerseNavigation';
@@ -24,11 +25,9 @@ export const parseVerseWithFootnotes = (
   onFootnotePress: (footnoteId: string, verseNumber: number) => void,
 ) => {
   // Parse the verse text and create styled segments
-  
   const segments = parseTextWithHTML(verseText);
-  
   return (
-    <View style={styles.verseTextContainer}>
+    <View id={`verse-${verseNumber}`} style={styles.verseTextContainer}>
       <ThemedText style={styles.verseText}>
         {segments.map((segment, index) => {
           if (segment.isFootnote) {
@@ -38,7 +37,7 @@ export const parseVerseWithFootnotes = (
                 onPress={() => onFootnotePress(segment.footnoteId!, verseNumber)}
                 style={styles.superscriptContainer}
               >
-                <ThemedText style={styles.superscriptText}>{segment.text}</ThemedText>
+                <ThemedText id={`verse-${verseNumber}`} style={styles.superscriptText}>{segment.text}</ThemedText>
               </TouchableOpacity>
             );
           }
@@ -80,9 +79,6 @@ export const parseVerseWithFootnotes = (
 
 export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBackToChapters, onChapterChange, targetVerse }) => {
   const verses = getVersesForChapter(book.code, chapter);
-  const scrollViewRef = useRef<ScrollView>(null);
-  const [verseHeights, setVerseHeights] = useState<number[]>([]);
-    
   const {
     selectedFootnotes,
     selectedVerseNumber,
@@ -98,121 +94,13 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
     handleFootnotePress(footnoteId, verseNumber, footnotes);
   };
 
-  const handleVersePress = useCallback((verseNumber: number) => {
-    if (!scrollViewRef.current) {
-      return;
+  const handleVersePress = ((verseNumber: number) => {
+    const verseElement = document.getElementById(`verse-${verseNumber}`);
+    if (verseElement) {
+      verseElement.scrollIntoView({ behavior: 'smooth', block: 'center'});
     }
-    
-    const verseIndex = verseNumber - 1;
-    
-    // Calculate scroll position based on verseHeights array
-    let scrollY = 0;
-    
-    // Add header offset
-    const headerOffset = 120; // Height of chapter header and navigation
-    scrollY += headerOffset;
-    
-    // Sum heights of all verses before the target verse
-    for (let i = 0; i < verseIndex; i++) {
-      const height = verseHeights[i] || 0;
-      if (height > 0) {
-        scrollY += height;
-      } else {
-        // Fallback for unmeasured verses
-        const fallbackHeight = 200; // Estimated height
-        scrollY += fallbackHeight;
-      }
-    }
-    
-    // Get screen dimensions for centering
-    const { height: screenHeight } = Dimensions.get('window');
-    const availableHeight = screenHeight - headerOffset;
-    
-    // Calculate padding to show verse in upper portion of screen
-    const paddingAbove = Math.min(availableHeight * 0.3, 200);
-    scrollY = Math.max(0, scrollY - paddingAbove);
-    
+  });
 
-    scrollViewRef.current.scrollTo({
-      y: scrollY,
-      animated: true
-    });
-  }, [verseHeights]);
-
-
-  // Calculate verse height more accurately
-  const calculateVerseHeight = (measuredHeight: number, verseText: string, containerWidth?: number) => {
-    // Base components
-    const verseLabelHeight = 24; // Verse number label height
-    const paddingBottom = 20; // SPACING.xl
-    
-    // Get screen width for accurate character calculation
-    const { width: screenWidth } = Dimensions.get('window');
-    const availableWidth = containerWidth || (screenWidth - 40); // Account for padding
-    
-    // Calculate characters per line based on screen width
-    const fontSize = 18; // FONT_SIZES.lg from styles
-    const averageCharWidth = fontSize * 0.6; // Approximate character width
-    const averageCharsPerLine = Math.floor(availableWidth / averageCharWidth);
-    
-    // Estimate text height based on content length and line height
-    const lineHeight = 28; // From styles
-    const estimatedLines = Math.ceil(verseText.length / averageCharsPerLine);
-    const estimatedTextHeight = Math.max(estimatedLines * lineHeight, 50);
-    
-    // Use the larger of measured height or estimated height
-    const textHeight = Math.max(measuredHeight - verseLabelHeight, estimatedTextHeight);
-    
-    // Total height including all components
-    const totalHeight = verseLabelHeight + textHeight + paddingBottom;
-    
-    return {
-      verseLabelHeight,
-      textHeight,
-      paddingBottom,
-      totalHeight: Math.max(totalHeight, 100), // Minimum 100px
-      screenWidth,
-      availableWidth,
-      averageCharsPerLine,
-      estimatedLines
-    };
-  };
-
-  // Pre-calculate heights for all verses based on content
-  const preCalculateHeights = () => {
-    const calculatedHeights = verses.map((verseText, index) => {
-      const heightData = calculateVerseHeight(0, verseText); // Use estimation only
-      return heightData.totalHeight;
-    });    
-    setVerseHeights(calculatedHeights);
-  };
-  // Pre-calculate heights only once when component mounts
-  useEffect(() => {
-    if (verses.length > 0 && verseHeights.length === 0) {
-      preCalculateHeights();
-    }
-  }, [verses.length]); // Only depend on length, not the entire array
-
-  // Scroll to target verse when component mounts
-  useEffect(() => {
-    if (targetVerse && scrollViewRef.current) {
-      // Delay to ensure the component is fully rendered and heights are measured
-      setTimeout(() => {
-        handleVersePress(targetVerse);
-      }, 500); // Increased delay to ensure heights are measured
-    }
-  }, [targetVerse]);
-
-  // Also scroll when verse heights are updated and we have a target verse
-  useEffect(() => {
-    if (targetVerse && verseHeights.length > 0 && scrollViewRef.current) {
-      setTimeout(() => {
-        handleVersePress(targetVerse);
-      }, 100);
-    }
-  }, [verseHeights, targetVerse]);
-
-  // Remove expensive re-measurement effect for better performance
 
   const handlePreviousChapter = () => {
     if (chapter > 1 && onChapterChange) {
@@ -227,11 +115,26 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
     }
   };
 
+  const handleNavigateToVerse = (bookCode: string, chapter: number, verse: number) => {
+    router.push({
+      pathname: '/(tabs)/books',
+      params: {
+        book: bookCode,
+        chapter: chapter.toString(),
+        verse: verse.toString()
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (targetVerse) {
+      handleVersePress(targetVerse);
+    }
+  }, [targetVerse]);
   
   return (
     <>
       <ScrollView 
-        ref={scrollViewRef}
         style={styles.verseDisplayContainer}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={true}
@@ -304,6 +207,7 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
         selectedFootnoteId={selectedFootnoteId}
         onClose={closeModal}
         onFootnoteSelect={handleFootnoteSelect}
+        onNavigateToVerse={handleNavigateToVerse}
       />
     </>
   );
