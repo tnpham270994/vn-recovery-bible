@@ -40,7 +40,11 @@
       "backgroundColor": "#ffffff",
       "lang": "vi",
       "scope": "/",
-      "categories": ["books", "religion", "education"],
+      "categories": [
+        "books",
+        "religion",
+        "education"
+      ],
       "manifest": "./public/manifest.json"
     },
     "plugins": [
@@ -69,6 +73,9 @@
       "runtimeVersion": {
         "policy": "nativeVersion"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
