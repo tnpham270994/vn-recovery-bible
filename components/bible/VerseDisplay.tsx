@@ -4,7 +4,7 @@ import { Book } from '@/constants/bibleData';
 import { useFootnotes } from '@/hooks/useFootnotes';
 import { getChaptersForBook, getFootnotesForVerse, getVersesForChapter, parseTextWithHTML } from '@/utils/bibleUtils';
 import { router } from 'expo-router';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { FootnoteModal } from './FootnoteModal';
 import { styles } from './VerseDisplay.styles';
@@ -80,6 +80,8 @@ export const parseVerseWithFootnotes = (
 export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBackToChapters, onChapterChange, targetVerse }) => {
   const scrollViewRef = useRef<ScrollView>(null);
   const verseRefs = useRef<{ [key: number]: View | null }>({});
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const verses = getVersesForChapter(book.code, chapter);
   const {
     selectedFootnotes,
@@ -97,28 +99,58 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
   };
 
   const scrollToVerse = (verseNumber: number) => {
+    // Prevent multiple rapid calls
+    if (isScrolling) {
+      return;
+    }
+
+    // Clear any existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
     const verseRef = verseRefs.current[verseNumber];
-    if (verseRef && scrollViewRef.current) {
-      // Measure the verse element and scroll to it
+    if (!verseRef || !scrollViewRef.current) {
+      return;
+    }
+
+    setIsScrolling(true);
+
+    // Use a small delay to ensure the ref is properly mounted
+    setTimeout(() => {
       verseRef.measureLayout(
         scrollViewRef.current as any,
         (x, y, width, height) => {
-          scrollViewRef.current?.scrollTo({
-            y: y - 50, // Offset to center the verse better
-            animated: true,
-          });
+          if (scrollViewRef.current) {
+            scrollViewRef.current.scrollTo({
+              y: Math.max(0, y - 50), // Ensure y is not negative
+              animated: true,
+            });
+          }
+          
+          // Reset scrolling state after animation completes
+          scrollTimeoutRef.current = setTimeout(() => {
+            setIsScrolling(false);
+          }, 500); // Adjust timing based on your animation duration
         },
         () => {
-          console.log('Error measuring verse');
+          console.log('Error measuring verse, using fallback');
           // Fallback to estimated position
-          const estimatedPosition = (verseNumber - 1) * 100;
-          scrollViewRef.current?.scrollTo({
-            y: estimatedPosition,
-            animated: true,
-          });
+          const estimatedPosition = Math.max(0, (verseNumber - 1) * 100);
+          if (scrollViewRef.current) {
+            scrollViewRef.current.scrollTo({
+              y: estimatedPosition,
+              animated: true,
+            });
+          }
+          
+          // Reset scrolling state
+          scrollTimeoutRef.current = setTimeout(() => {
+            setIsScrolling(false);
+          }, 500);
         }
       );
-    }
+    }, 50); // Small delay to ensure refs are ready
   };
 
   const handleVersePress = scrollToVerse;
@@ -146,6 +178,15 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
   // Navigate to first/last verse
   const scrollToFirstVerse = () => scrollToVerse(1);
   const scrollToLastVerse = () => scrollToVerse(verses.length);
+
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
 
 
   const handlePreviousChapter = () => {
@@ -188,6 +229,8 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
         bounces={true}
         scrollEnabled={true}
         contentContainerStyle={{ flexGrow: 1 }}
+        onScrollEndDrag={() => setIsScrolling(false)}
+        onMomentumScrollEnd={() => setIsScrolling(false)}
       >
         <View style={styles.chapterHeader}>     
           <View style={styles.chapterTitleContainer}>
