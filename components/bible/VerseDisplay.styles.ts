@@ -30,6 +30,12 @@ export const styles = StyleSheet.create({
     color: COLORS.text,
     textAlign: 'justify',
     flexShrink: 1,
+    ...(Platform.OS === 'ios' && {
+      lineHeight: 32, // Slightly more line height for iOS to accommodate superscripts
+    }),
+    ...(Platform.OS === 'android' && {
+      lineHeight: 30, // Slightly more line height for Android to accommodate superscripts
+    }),
   },
   chapterHeader: {
     flexDirection: 'row',
@@ -83,6 +89,12 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
     width: '100%',
     flex: 1,
+    ...(Platform.OS === 'ios' && {
+      alignItems: 'baseline',
+    }),
+    ...(Platform.OS === 'android' && {
+      alignItems: 'baseline',
+    }),
   },
   superscriptContainer: {
     marginRight: 1,
@@ -92,13 +104,37 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+    ...(Platform.OS === 'ios' && {
+      alignSelf: 'baseline',
+      marginTop: -2,
+    }),
+    ...(Platform.OS === 'android' && {
+      alignSelf: 'baseline',
+      marginTop: -3,
+    }),
   },
   superscriptText: {
     fontSize: 10,
     fontWeight: 'bold',
     color: '#007AFF',
     lineHeight: 10,
-    transform: [{ translateY: -6 }],
+    ...(Platform.OS === 'web' 
+      ? { 
+          transform: [{ translateY: -6 }],
+        }
+      : Platform.OS === 'ios'
+      ? {
+          fontSize: 8,
+          lineHeight: 8,
+          marginTop: -4,
+        }
+      : {
+          // Android
+          fontSize: 9,
+          lineHeight: 9,
+          marginTop: -5,
+        }
+    ),
   },
   anchorContainer: {
     marginHorizontal: 2,
