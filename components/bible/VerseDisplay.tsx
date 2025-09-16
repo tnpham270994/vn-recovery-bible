@@ -189,7 +189,6 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
             if (targetIndex !== -1) {
               // Try to measure all previous footnotes to get accurate position
               let accumulatedHeight = 0;
-              let measurementsCompleted = 0;
               
               const measurePreviousFootnotes = (index: number) => {
                 if (index >= allFootnotes.length) {
@@ -305,6 +304,9 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
   const handlePreviousChapter = () => {
     if (chapter > 1 && onChapterChange) {
       onChapterChange(chapter - 1);
+      setTimeout(() => {
+        scrollToVerse(1);
+      }, 100);
     }
   };
 
@@ -312,6 +314,9 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
     const totalChapters = getChaptersForBook(book.code).length;
     if (chapter < totalChapters && onChapterChange) {
       onChapterChange(chapter + 1);
+      setTimeout(() => {
+        scrollToVerse(1);
+      }, 100);
     }
   };
 
