@@ -15,21 +15,18 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   verseItem: {
-    marginBottom: SPACING.xl,
     width: '100%',
   },
   verseLabel: {
     fontSize: FONT_SIZES.md,
     fontWeight: FONT_WEIGHTS.bold,
     color: COLORS.textSecondary,
-    marginBottom: SPACING.sm,
   },
   verseText: {
     fontSize: FONT_SIZES.lg,
-    lineHeight: 28,
+    lineHeight: 32,
     color: COLORS.text,
-    textAlign: 'justify',
-    flexShrink: 1
+    textAlign: 'justify'
   },
   chapterHeader: {
     flexDirection: 'row',
@@ -82,53 +79,23 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     width: '100%',
-    flex: 1,
-    ...(Platform.OS === 'ios' && {
-      alignItems: 'baseline',
-    }),
-    ...(Platform.OS === 'android' && {
-      alignItems: 'baseline',
-    }),
+    flex: 1
   },
   superscriptContainer: {
     marginRight: 1,
     paddingVertical: 0,
     paddingHorizontal: 0,
-    minHeight: 16,
     alignSelf: 'flex-start',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    ...(Platform.OS === 'ios' && {
-      alignSelf: 'baseline',
-      marginTop: -2,
-    }),
-    ...(Platform.OS === 'android' && {
-      alignSelf: 'baseline',
-      marginTop: -3,
-    }),
+    paddingBottom: 6,
   },
   superscriptText: {
-    fontSize: 10,
+    fontSize: 8,
     fontWeight: 'bold',
     color: '#007AFF',
     lineHeight: 10,
-    ...(Platform.OS === 'web' 
-      ? { 
-          transform: [{ translateY: -6 }],
-        }
-      : Platform.OS === 'ios'
-      ? {
-          fontSize: 8,
-          lineHeight: 8,
-          marginTop: -14,
-        }
-      : {
-          // Android
-          fontSize: 9,
-          lineHeight: 9,
-          marginTop: -5,
-        }
-    ),
+    transform: [Platform.OS === 'web' ? { translateY: -6 } : { translateY: 0 }],
   },
   chapterFooter: {
     flexDirection: 'row',
