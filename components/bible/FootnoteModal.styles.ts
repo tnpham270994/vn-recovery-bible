@@ -19,6 +19,17 @@ export const styles = StyleSheet.create({
     borderColor: COLORS.border,
     borderBottomWidth: 0,
   },
+  modalRefContentBottom: {
+    backgroundColor: COLORS.background,
+    borderTopLeftRadius: BORDER_RADIUS.xl,
+    borderTopRightRadius: BORDER_RADIUS.xl,
+    padding: SPACING.xl,
+    width: '100%',
+    height: '50%',
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderBottomWidth: 0,
+  },
   modalDragIndicator: {
     width: 40,
     height: 4,

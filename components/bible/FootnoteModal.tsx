@@ -111,7 +111,7 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
       }
       
       return null;
-    }).filter((verse): verse is NonNullable<typeof verse> => verse !== null);
+    }).filter((verse): verse is NonNullable<typeof verse> => verse !== null);    
     return verses;
   };
 
@@ -246,12 +246,13 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
         onRequestClose={() => setVerseModalVisible(false)}
       >
         <Pressable style={styles.modalOverlay} onPress={() => setVerseModalVisible(false)}>
-          <Pressable style={styles.verseModalContent} onPress={(e: any) => e.stopPropagation()}>
+          <Pressable style={styles.modalRefContentBottom} onPress={(e: any) => e.stopPropagation()}>
             <View style={styles.verseModalHeader}>
               <ThemedText style={styles.verseModalTitle}>Kết quả tham chiếu: </ThemedText>
               <TouchableOpacity onPress={() => setVerseModalVisible(false)} style={styles.closeButton}>
                 <IconSymbol name="xmark" size={20} color="#5A4A3A" />
               </TouchableOpacity>
+              
             </View>
             <ScrollView style={styles.verseModalScrollView}>
               {selectedVerses.map((verse, index) => (

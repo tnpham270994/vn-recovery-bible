@@ -57,7 +57,7 @@ export const VerseNavigation: React.FC<VerseNavigationProps> = ({
       // Add dots if there's a next number and the gap is more than 1
       if (nextNumber && nextNumber - currentNumber > 1) {
         const gap = nextNumber - currentNumber;
-        const dotsCount = Math.min(gap - 1, 3); // Maximum 3 dots
+        const dotsCount = Math.min(gap - 1, 4); // Maximum 4 dots
         
         for (let j = 1; j <= dotsCount; j++) {
           const targetVerse = currentNumber + j;

@@ -52,14 +52,9 @@ export const parseVerseWithFootnotes = (
             
             if (segment.isHighlighted && segment.footnoteId) {
               return (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => onFootnotePress(segment.footnoteId!, verseNumber)}
-                >
-                  <ThemedText style={textStyle}>
-                    {segment.text}
-                  </ThemedText>
-                </TouchableOpacity>
+                <ThemedText style={textStyle} onPress={() => onFootnotePress(segment.footnoteId!, verseNumber)}>
+                  {segment.text}
+                </ThemedText>
               );
             }
             

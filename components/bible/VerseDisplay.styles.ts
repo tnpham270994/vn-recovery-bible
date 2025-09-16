@@ -29,13 +29,7 @@ export const styles = StyleSheet.create({
     lineHeight: 28,
     color: COLORS.text,
     textAlign: 'justify',
-    flexShrink: 1,
-    ...(Platform.OS === 'ios' && {
-      lineHeight: 32, // Slightly more line height for iOS to accommodate superscripts
-    }),
-    ...(Platform.OS === 'android' && {
-      lineHeight: 30, // Slightly more line height for Android to accommodate superscripts
-    }),
+    flexShrink: 1
   },
   chapterHeader: {
     flexDirection: 'row',
@@ -126,7 +120,7 @@ export const styles = StyleSheet.create({
       ? {
           fontSize: 8,
           lineHeight: 8,
-          marginTop: -4,
+          marginTop: -14,
         }
       : {
           // Android
@@ -135,20 +129,6 @@ export const styles = StyleSheet.create({
           marginTop: -5,
         }
     ),
-  },
-  anchorContainer: {
-    marginHorizontal: 2,
-    paddingVertical: 1,
-    paddingHorizontal: 3,
-    backgroundColor: 'rgba(0, 122, 255, 0.1)',
-    borderRadius: 3,
-    alignSelf: 'flex-start',
-  },
-  anchorText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#007AFF',
-    textDecorationLine: 'underline',
   },
   chapterFooter: {
     flexDirection: 'row',
