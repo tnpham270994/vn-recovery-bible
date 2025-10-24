@@ -2,7 +2,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Book } from '@/constants/bibleData';
 import { useFootnotes } from '@/hooks/useFootnotes';
-import { getChaptersForBook, getFootnotesForVerse, getVersesForChapter, parseTextWithHTML } from '@/utils/bibleUtils';
+import { getChaptersForBook, getFootnotesForVerse, getRefsForVerse, getVersesForChapter, parseTextWithHTML, sortFootnotesAndRefs } from '@/utils/bibleUtils';
 import { router } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
@@ -22,7 +22,7 @@ interface VerseDisplayProps {
 export const parseVerseWithFootnotes = (
   verseText: string, 
   verseNumber: number, 
-  onFootnotePress: (footnoteId: string, verseNumber: number) => void,
+  onFootnotePress: (footnoteId: string, referenceId: string, verseNumber: number) => void,
 ) => {
   // Parse the verse text and create styled segments
   const segments = parseTextWithHTML(verseText);
@@ -34,7 +34,7 @@ export const parseVerseWithFootnotes = (
             return (
               <TouchableOpacity
                 key={index}
-                onPress={() => onFootnotePress(segment.footnoteId!, verseNumber)}
+                onPress={() => onFootnotePress(segment.footnoteId!, segment.referenceId!, verseNumber)}
                 style={styles.superscriptContainer}
               >
                 <ThemedText id={`verse-${verseNumber}`} style={styles.superscriptText}>{segment.text}</ThemedText>
@@ -52,7 +52,7 @@ export const parseVerseWithFootnotes = (
             
             if (segment.isHighlighted && segment.footnoteId) {
               return (
-                <ThemedText style={textStyle} onPress={() => onFootnotePress(segment.footnoteId!, verseNumber)}>
+                <ThemedText style={textStyle} onPress={() => onFootnotePress(segment.footnoteId!, segment.referenceId!, verseNumber)}>
                   {segment.text}
                 </ThemedText>
               );
@@ -262,45 +262,14 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
     handleFootnoteSelect,
   } = useFootnotes(scrollToFootnote);
 
-  const handleVerseFootnotePress = (footnoteId: string, verseNumber: number) => {
+  const handleVerseFootnotePress = (footnoteId: string, referenceId: string, verseNumber: number) => {
     const footnotes = getFootnotesForVerse(book.code, chapter, verseNumber);
-    handleFootnotePress(footnoteId, verseNumber, footnotes);
+    const refs = getRefsForVerse(book.code, chapter, verseNumber);
+    // order by key with letter a, b, c, 1,1a,1b, 2,...etc
+    let footnotesAndRefs = [...footnotes, ...refs];    
+    footnotesAndRefs = sortFootnotesAndRefs(footnotesAndRefs);
+    handleFootnotePress(footnoteId, referenceId, verseNumber, footnotesAndRefs);
   };
-
-  // Helper functions for navigation
-  const scrollToNextVerse = () => {
-    const currentVerse = selectedVerseNumber || 1;
-    const nextVerse = Math.min(currentVerse + 1, verses.length);
-    scrollToVerse(nextVerse);
-  };
-
-  const scrollToPreviousVerse = () => {
-    const currentVerse = selectedVerseNumber || 1;
-    const prevVerse = Math.max(currentVerse - 1, 1);
-    scrollToVerse(prevVerse);
-  };
-
-  // Navigate to a specific verse by number
-  const navigateToVerse = (verseNumber: number) => {
-    if (verseNumber >= 1 && verseNumber <= verses.length) {
-      scrollToVerse(verseNumber);
-    }
-  };
-
-  // Navigate to first/last verse
-  const scrollToFirstVerse = () => scrollToVerse(1);
-  const scrollToLastVerse = () => scrollToVerse(verses.length);
-
-  // Cleanup timeouts on unmount
-  useEffect(() => {
-    return () => {
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
-  }, []);
-
-
   const handlePreviousChapter = () => {
     if (chapter > 1 && onChapterChange) {
       onChapterChange(chapter - 1);
@@ -382,7 +351,7 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
                 style={styles.verseItem}
               >
                 <ThemedText style={styles.verseLabel}>
-                  {book.code}. {chapter}:{verseNumber}
+                  {book.shortName}. {chapter}:{verseNumber}
                 </ThemedText>
                 {parseVerseWithFootnotes(verse, verseNumber, handleVerseFootnotePress)}
               </View>

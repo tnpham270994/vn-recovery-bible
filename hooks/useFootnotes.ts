@@ -8,7 +8,7 @@ export const useFootnotes = (scrollToFootnote?: (footnoteId: string) => void) =>
   const [selectedFootnoteId, setSelectedFootnoteId] = useState<string | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const handleFootnotePress = (footnoteId: string, verseNumber: number, footnotes: Footnote[]) => {
+  const handleFootnotePress = (footnoteId: string, referenceId: string, verseNumber: number, footnotes: Footnote[]) => {
     if (footnotes.length > 0) {
       setSelectedFootnotes(footnotes);
       setSelectedVerseNumber(verseNumber);

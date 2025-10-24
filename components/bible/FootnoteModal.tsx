@@ -1,14 +1,13 @@
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import { Footnote, REFERENCE_DATA, VERSE_DATA } from '@/constants/bibleData';
-import { parseTextWithOnlyHTML } from '@/utils/bibleUtils';
+import { getBookData, getBookFromShortName, parseTextWithOnlyHTML } from '@/utils/bibleUtils';
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, TouchableOpacity, View } from 'react-native';
 import { styles } from './FootnoteModal.styles';
 
 interface FootnoteModalProps {
   visible: boolean;
-  footnotes: Footnote[];
+  footnotes: any;
   verseNumber: number;
   bookCode: string;
   chapter: number;
@@ -33,7 +32,7 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
 }) => {
   const scrollViewRef = useRef<ScrollView>(null);
   const [verseModalVisible, setVerseModalVisible] = useState(false);
-  const [selectedVerses, setSelectedVerses] = useState<Array<{book: string, chapter: number, verse: number, endVerse?: number, text: string}>>([]);
+  const [selectedVerses, setSelectedVerses] = useState<Array<{ book: string, bookRef: string, chapter: number, verse: number, endVerse?: number, text: string}>>([]);
   
 
   // Parse reference string (e.g., "1 Gi. 1:1; Côl. 1:17; Sáng. 1:1") and get verse data
@@ -42,6 +41,7 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
     const verses = references.map(ref => {
       // Split by period to get book name and chapter:verse part
       const parts = ref.split('.');
+      
       if (parts.length < 2) {
         console.log(`Invalid reference format: ${ref}`);
         return null;
@@ -49,28 +49,33 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
       
       const bookRef = parts[0].trim();
       const chapterVersePart = parts[1].trim();
+      // get book code from book name
+      const bookCode = getBookFromShortName(bookRef);
       
       // Match single verse: 1:1
       const singleVerseMatch = chapterVersePart.match(/^(\d+):(\d+)$/);
       if (singleVerseMatch) {
         const [, chapter, verse] = singleVerseMatch;
         
-        // Check if book exists in VERSE_DATA
-        if (!VERSE_DATA[bookRef]) {
+        // Get book data using the new utility function
+        const bookData = getBookData(bookCode);
+        if (!bookData || !bookData.verse_data) {
           return {
-            book: bookRef,
+            book: bookCode,
             chapter: parseInt(chapter),
             verse: parseInt(verse),
-            text: `Book "${bookRef}" not available in this version`
+            text: `Book "${bookRef}" not available in this version`,
+            bookRef: bookRef,
           };
         }
         
-        const verseText = VERSE_DATA[bookRef]?.[parseInt(chapter)]?.[parseInt(verse) - 1]; // VERSE_DATA is 0-indexed
+        const verseText = bookData.verse_data[parseInt(chapter)]?.[parseInt(verse) - 1]; // verse_data is 0-indexed
         return {
-          book: bookRef,
+          book: bookCode,
           chapter: parseInt(chapter),
           verse: parseInt(verse),
-          text: verseText || 'Verse not found'
+          text: verseText || 'Verse not found',
+          bookRef: bookRef,
         };
       }
       
@@ -79,14 +84,16 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
       if (rangeMatch) {
         const [, chapter, startVerse, endVerse] = rangeMatch;
         
-        // Check if book exists in VERSE_DATA
-        if (!VERSE_DATA[bookRef]) {
+        // Get book data using the new utility function
+        const bookData = getBookData(bookRef.toLowerCase());
+        if (!bookData || !bookData.verse_data) {
           return {
             book: bookRef,
             chapter: parseInt(chapter),
             verse: parseInt(startVerse),
             endVerse: parseInt(endVerse),
-            text: `Book "${bookRef}" not available in this version`
+            text: `Book "${bookRef}" not available in this version`,
+            bookRef: bookRef,
           };
         }
         
@@ -95,18 +102,19 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
         const verseTexts = [];
         
         for (let verse = start; verse <= end; verse++) {
-          const verseText = VERSE_DATA[bookRef]?.[parseInt(chapter)]?.[verse - 1]; // VERSE_DATA is 0-indexed
+          const verseText = bookData.verse_data[parseInt(chapter)]?.[verse - 1]; // verse_data is 0-indexed
           if (verseText) {
             verseTexts.push(`${verse} ${verseText}`);
           }
         }
         
         return {
-          book: bookRef,
+          book: bookCode,
           chapter: parseInt(chapter),
           verse: start,
           endVerse: end,
-          text: verseTexts.length > 0 ? verseTexts.join('\n') : 'Verses not found'
+          text: verseTexts.length > 0 ? verseTexts.join('\n') : 'Verses not found',
+          bookRef: bookRef,
         };
       }
       
@@ -202,14 +210,9 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
             </TouchableOpacity>
           </View>
           <ScrollView ref={scrollViewRef} style={styles.modalScrollView}>
-            {footnotes.map((footnote) => {
-              // Extract number and character parts
-              const footnoteNumber = footnote.id.replace(/[^0-9]/g, '');
-              const footnoteCharacter = footnote.id.replace(/[0-9]/g, '');
-              
-              // Get reference from nested REFERENCE_DATA structure
-              const reference = REFERENCE_DATA[bookCode]?.[chapter.toString()]?.[footnote.id];
-              
+            {footnotes.map((footnote: any) => {
+              const footnoteNumber = footnote.id.match(/[0-9]+/)?.[0] || '';
+              const footnoteLetter = footnote.id.match(/[a-z]+/)?.[0] || '';
               return (
                 <TouchableOpacity
                   key={footnote.id}
@@ -222,14 +225,15 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
                   style={styles.modalFootnoteItem}
                   id={`footnote-${footnote.id}`}
                 >
-                  <ThemedText style={styles.modalFootnoteNumber}>{footnoteNumber}</ThemedText>
+                  <ThemedText style={styles.modalFootnoteNumber}>{footnote.isFootnote ? footnoteNumber : footnoteLetter}</ThemedText>
                   <ThemedText style={styles.modalFootnoteContent}>
-                    <ThemedText style={styles.modalFootnoteText}>{footnote.text}</ThemedText>
-                    {footnoteCharacter && reference && (
-                      <TouchableOpacity onPress={() => handleReferenceClick(reference)}>
-                        <ThemedText style={styles.modalFootnoteReference}>› {footnoteCharacter}: {reference}</ThemedText>
-                      </TouchableOpacity>
-                    )}
+                    {
+                      footnote.isFootnote ? (<ThemedText style={styles.modalFootnoteText}>{footnote.text}</ThemedText>) : (
+                        <TouchableOpacity onPress={() => handleReferenceClick(footnote.text)}>
+                          <ThemedText style={styles.modalFootnoteReference}>{footnote.text}</ThemedText>
+                        </TouchableOpacity>
+                      )
+                    }
                   </ThemedText>
                 </TouchableOpacity>
               );
@@ -262,7 +266,7 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
                   onPress={() => handleVerseNavigation(verse)}
                 >
                   <ThemedText style={styles.verseSectionTitle}>
-                    {`${verse.book} ${verse.chapter}:${verse.verse}${verse.endVerse && verse.endVerse !== verse.verse ? `-${verse.endVerse}` : ''}`}
+                    {`${verse.bookRef} ${verse.chapter}:${verse.verse}${verse.endVerse && verse.endVerse !== verse.verse ? `-${verse.endVerse}` : ''}`}
                   </ThemedText>
                   <ThemedText>
                     {verse.text ? verse.text.split('\n').map((line, lineIndex) => (

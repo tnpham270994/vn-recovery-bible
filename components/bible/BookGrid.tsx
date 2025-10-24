@@ -30,7 +30,7 @@ export const BookGrid: React.FC<BookGridProps> = ({ books, onBookSelect, bookBut
               style={[styles.bookButton, { backgroundColor: bookButtonColor }]}
               onPress={() => onBookSelect(book)}
             >
-              <ThemedText style={styles.bookButtonText}>{book.code}</ThemedText>
+              <ThemedText style={styles.bookButtonText}>{book.shortName}</ThemedText>
             </TouchableOpacity>
           ))}
         </View>
