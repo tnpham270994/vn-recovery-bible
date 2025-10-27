@@ -3,8 +3,8 @@ import React from 'react';
 import { Platform, View } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function TabLayout() {
@@ -69,11 +69,7 @@ export default function TabLayout() {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-              <IconSymbol 
-                size={24} 
-                name="book.closed" 
-                color={focused ? '#FFFFFF' : '#8B7D6B'} 
-              />
+              <FontAwesome name="home" size={24} color={focused ? '#FFFFFF' : '#8B7D6B'} />
             </View>
           ),
           tabBarShowLabel: false,
@@ -92,11 +88,7 @@ export default function TabLayout() {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-              <IconSymbol 
-                size={24} 
-                name="book.fill" 
-                color={focused ? '#FFFFFF' : '#8B7D6B'} 
-              />
+              <FontAwesome name="book" size={24} color={focused ? '#FFFFFF' : '#8B7D6B'} />
             </View>
           ),
           tabBarShowLabel: false,
@@ -115,11 +107,7 @@ export default function TabLayout() {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-              <IconSymbol 
-                size={24} 
-                name="magnifyingglass" 
-                color={focused ? '#FFFFFF' : '#8B7D6B'} 
-              />
+              <FontAwesome name="search" size={24} color={focused ? '#FFFFFF' : '#8B7D6B'} /> 
             </View>
           ),
           tabBarShowLabel: false,

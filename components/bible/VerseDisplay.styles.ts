@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     color: COLORS.textSecondary,
   },
   verseText: {
-    fontSize: FONT_SIZES.lg,
+    // fontSize removed - will be set dynamically
     lineHeight: 32,
     color: COLORS.text,
     textAlign: 'justify'
@@ -91,10 +91,9 @@ export const styles = StyleSheet.create({
     paddingBottom: 6,
   },
   superscriptText: {
-    fontSize: 8,
+    // fontSize and lineHeight removed - will be set dynamically relative to main font size
     fontWeight: 'bold',
     color: '#007AFF',
-    lineHeight: 10,
     transform: [Platform.OS === 'web' ? { translateY: -6 } : { translateY: 0 }],
   },
   chapterFooter: {

@@ -33,7 +33,7 @@ const MAPPING = {
   'menubar.rectangle': 'menu',
   'xmark': 'close',
   'list.bullet': 'list',
-  'book.closed': 'book'
+  'book.closed': 'book',
 } as IconMapping;
 
 /**

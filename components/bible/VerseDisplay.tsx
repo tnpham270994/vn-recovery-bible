@@ -1,11 +1,13 @@
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Book } from '@/constants/bibleData';
+import { useFontSettings } from '@/contexts/FontSettingsContext';
 import { useFootnotes } from '@/hooks/useFootnotes';
 import { getChaptersForBook, getFootnotesForVerse, getRefsForVerse, getVersesForChapter, parseTextWithHTML, sortFootnotesAndRefs } from '@/utils/bibleUtils';
 import { router } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { FontControls } from './FontControls';
 import { FootnoteModal } from './FootnoteModal';
 import { styles } from './VerseDisplay.styles';
 import { VerseNavigation } from './VerseNavigation';
@@ -23,12 +25,19 @@ export const parseVerseWithFootnotes = (
   verseText: string, 
   verseNumber: number, 
   onFootnotePress: (footnoteId: string, referenceId: string, verseNumber: number) => void,
+  fontSettings: { fontSize: number; fontFamily: string }
 ) => {
   // Parse the verse text and create styled segments
   const segments = parseTextWithHTML(verseText);
   return (
     <View id={`verse-${verseNumber}`} style={styles.verseTextContainer}>
-      <ThemedText style={styles.verseText}>
+      <ThemedText style={[
+        styles.verseText,
+        {
+          fontSize: fontSettings.fontSize || 18, // Default to 18 if not set
+          fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily,
+        }
+      ]}>
         {segments.map((segment, index) => {
           if (segment.isFootnote) {
             return (
@@ -37,7 +46,18 @@ export const parseVerseWithFootnotes = (
                 onPress={() => onFootnotePress(segment.footnoteId!, segment.referenceId!, verseNumber)}
                 style={styles.superscriptContainer}
               >
-                <ThemedText id={`verse-${verseNumber}`} style={styles.superscriptText}>{segment.text}</ThemedText>
+                <ThemedText 
+                  id={`verse-${verseNumber}`} 
+                  style={[
+                    styles.superscriptText,
+                    {
+                      fontSize: (fontSettings.fontSize || 18) * 0.8, // 40% of main font size
+                      lineHeight: (fontSettings.fontSize || 18) * 0.8, // 50% of main font size
+                    }
+                  ]}
+                >
+                  {segment.text}
+                </ThemedText>
               </TouchableOpacity>
             );
           }
@@ -47,7 +67,11 @@ export const parseVerseWithFootnotes = (
               segment.isItalic && styles.italicText,
               segment.isBold && styles.boldText,
               segment.isUnderline && styles.underlineText,
-              segment.isHighlighted && styles.highlightedText
+              segment.isHighlighted && styles.highlightedText,
+              {
+                fontSize: fontSettings.fontSize || 18,
+                fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily,
+              }
             ].filter(Boolean);
             
             if (segment.isHighlighted && segment.footnoteId) {
@@ -79,6 +103,7 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const verses = getVersesForChapter(book.code, chapter);
+  const { fontSettings } = useFontSettings();
 
   const scrollToVerse = (verseNumber: number) => {
     // Prevent multiple rapid calls
@@ -350,10 +375,10 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
                 }}
                 style={styles.verseItem}
               >
-                <ThemedText style={styles.verseLabel}>
+                <ThemedText style={[styles.verseLabel, { fontSize: fontSettings.fontSize || 18, fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily }]}>
                   {book.shortName}. {chapter}:{verseNumber}
                 </ThemedText>
-                {parseVerseWithFootnotes(verse, verseNumber, handleVerseFootnotePress)}
+                {parseVerseWithFootnotes(verse, verseNumber, handleVerseFootnotePress, fontSettings)}
               </View>
             );
           })}
@@ -378,6 +403,10 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
           </TouchableOpacity>
         </View>
       </ScrollView>
+      
+      {/* Font Controls */}
+      <FontControls />
+      
       <FootnoteModal
         visible={modalVisible}
         footnotes={selectedFootnotes}
