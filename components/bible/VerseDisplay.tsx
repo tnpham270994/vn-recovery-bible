@@ -2,15 +2,18 @@ import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Book } from '@/constants/bibleData';
 import { useFontSettings } from '@/contexts/FontSettingsContext';
+import { HIGHLIGHT_COLORS, useHighlights } from '@/contexts/HighlightsContext';
+import { getChaptersForBook, getFootnotesForVerse, getRefsForVerse, getVersesForChapter, parseTextWithHTML, parseTextWithOnlyHTML, sortFootnotesAndRefs } from '@/data/bibleUtils';
 import { useFootnotes } from '@/hooks/useFootnotes';
-import { getChaptersForBook, getFootnotesForVerse, getRefsForVerse, getVersesForChapter, parseTextWithHTML, sortFootnotesAndRefs } from '@/utils/bibleUtils';
 import { router } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { Modal, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import { FontControls } from './FontControls';
 import { FootnoteModal } from './FootnoteModal';
+import { TextSelectionToolbar } from './TextSelectionToolbar';
 import { styles } from './VerseDisplay.styles';
 import { VerseNavigation } from './VerseNavigation';
+
 
 
 interface VerseDisplayProps {
@@ -25,21 +28,75 @@ export const parseVerseWithFootnotes = (
   verseText: string, 
   verseNumber: number, 
   onFootnotePress: (footnoteId: string, referenceId: string, verseNumber: number) => void,
-  fontSettings: { fontSize: number; fontFamily: string }
+  fontSettings: { fontSize: number; fontFamily: string },
+  highlights?: Array<{ color: string; text: string; position: number }>,
+  onVerseSelect?: (verseNumber: number) => void
 ) => {
   // Parse the verse text and create styled segments
   const segments = parseTextWithHTML(verseText);
-  return (
-    <View id={`verse-${verseNumber}`} style={styles.verseTextContainer}>
-      <ThemedText style={[
-        styles.verseText,
-        {
-          fontSize: fontSettings.fontSize || 18, // Default to 18 if not set
-          fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily,
+  const flatText = segments.map(s => s.text).join('');
+  let currentIndex = 0;
+
+  // Build highlight positions map for this verse (excluding footnotes)
+  // Key: position in flatText, Value: highlight color
+  const highlightPositions = new Map<number, string>();
+  highlights?.forEach(h => {
+    const highlightText = h.text.trim();
+    // Only highlight at the specific position stored
+    const pos = h.position;
+    if (pos >= 0 && pos < flatText.length) {
+      for (let i = 0; i < highlightText.length; i++) {
+        if (pos + i < flatText.length) {
+          highlightPositions.set(pos + i, h.color);
         }
-      ]}>
+      }
+    }
+  });
+  
+  // Track highlight ranges for better segment highlighting
+  const highlightRanges: Array<{ start: number; end: number; color: string }> = [];
+  highlights?.forEach(h => {
+    const highlightText = h.text.trim();
+    if (h.position >= 0) {
+      highlightRanges.push({
+        start: h.position,
+        end: h.position + highlightText.length,
+        color: h.color
+      });
+    }
+  });
+
+  // Handle interaction - will be set up with useEffect
+  return (
+    <TouchableOpacity 
+      id={`verse-${verseNumber}`} 
+      style={styles.verseTextContainer}
+      onLongPress={() => {
+        if (Platform.OS !== 'web') {
+          onVerseSelect?.(verseNumber);
+        }
+      }}
+    >
+      <ThemedText 
+        style={[
+          styles.verseText,
+          {
+            fontSize: fontSettings.fontSize || 18,
+            fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily,
+          }
+        ]}
+      >
         {segments.map((segment, index) => {
           if (segment.isFootnote) {
+            // Footnotes should be included in the index calculation
+            const segmentStart = currentIndex;
+            const segmentEnd = currentIndex + segment.text.length;
+            
+            // Don't highlight footnotes themselves
+            const highlight = undefined;
+            
+            currentIndex = segmentEnd;
+            
             return (
               <TouchableOpacity
                 key={index}
@@ -51,9 +108,13 @@ export const parseVerseWithFootnotes = (
                   style={[
                     styles.superscriptText,
                     {
-                      fontSize: (fontSettings.fontSize || 18) * 0.8, // 40% of main font size
-                      lineHeight: (fontSettings.fontSize || 18) * 0.8, // 50% of main font size
-                    }
+                      fontSize: (fontSettings.fontSize || 18) * 0.8,
+                      lineHeight: (fontSettings.fontSize || 18) * 0.8,
+                    ...(false ? {
+                      backgroundColor: '#000',
+                      borderRadius: 2,
+                    } : {}),
+                    },
                   ]}
                 >
                   {segment.text}
@@ -63,6 +124,42 @@ export const parseVerseWithFootnotes = (
           }
           
           if (segment.text) {
+            const segmentStart = currentIndex;
+            const segmentEnd = currentIndex + segment.text.length;
+            
+            // Check if this segment overlaps with any highlight range
+            let segmentColor: string | undefined;
+            let allCharHighlighted = true;
+            
+            for (const range of highlightRanges) {
+              // Check if this segment overlaps with the highlight range
+              if (segmentStart < range.end && segmentEnd > range.start) {
+                // Check if all characters in the overlap are highlighted
+                const overlapStart = Math.max(segmentStart, range.start);
+                const overlapEnd = Math.min(segmentEnd, range.end);
+                
+                // Verify all characters in the overlap are highlighted
+                let allOverlapHighlighted = true;
+                for (let i = overlapStart; i < overlapEnd; i++) {
+                  if (!highlightPositions.has(i)) {
+                    allOverlapHighlighted = false;
+                    break;
+                  }
+                }
+                
+                if (allOverlapHighlighted && overlapEnd - overlapStart === segmentEnd - segmentStart) {
+                  // Entire segment is within this highlight range
+                  segmentColor = range.color;
+                  allCharHighlighted = true;
+                  break;
+                } else if (allOverlapHighlighted) {
+                  // Partial segment is highlighted
+                  segmentColor = range.color;
+                  allCharHighlighted = false;
+                }
+              }
+            }
+            
             const textStyle = [
               segment.isItalic && styles.italicText,
               segment.isBold && styles.boldText,
@@ -71,8 +168,16 @@ export const parseVerseWithFootnotes = (
               {
                 fontSize: fontSettings.fontSize || 18,
                 fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily,
+                ...(segmentColor && allCharHighlighted && {
+                  backgroundColor: segmentColor,
+                  borderRadius: 2,
+                  paddingHorizontal: 1,
+                }),
               }
             ].filter(Boolean);
+            
+            // Update current index for next segment (include footnotes too)
+            currentIndex = segmentEnd;
             
             if (segment.isHighlighted && segment.footnoteId) {
               return (
@@ -92,7 +197,7 @@ export const parseVerseWithFootnotes = (
           return null;
         })}
       </ThemedText>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -104,6 +209,11 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const verses = getVersesForChapter(book.code, chapter);
   const { fontSettings } = useFontSettings();
+  const { getHighlightsForVerse, addHighlight, removeHighlight } = useHighlights();
+  
+  // Verse selection state for highlighting
+  const [selectedVerse, setSelectedVerse] = useState(0);
+  const [selectedHighlightColor, setSelectedHighlightColor] = useState('#FFFF00');
 
   const scrollToVerse = (verseNumber: number) => {
     // Prevent multiple rapid calls
@@ -325,12 +435,96 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
     });
   };
 
+  const handleVerseDoubleClick = (verseNumber: number) => {
+    setSelectedVerse(verseNumber);
+  };
+
+  const handleHighlightVerse = () => {
+    if (selectedVerse > 0) {
+      const verseText = verses[selectedVerse - 1];
+      const segments = parseTextWithHTML(verseText);
+      const flatText = segments.map(s => s.text).join('');
+      
+      // Check if this verse is already highlighted
+      const existingHighlights = getHighlightsForVerse(book.code, chapter, selectedVerse);
+      const existingHighlight = existingHighlights.find(h => 
+        h.text === flatText && h.color === selectedHighlightColor
+      );
+      
+      if (existingHighlight) {
+        // Remove the existing highlight
+        removeHighlight(existingHighlight.id);
+      } else {
+        // Add a new highlight for the entire verse
+        addHighlight({
+          bookCode: book.code,
+          chapter: chapter,
+          verse: selectedVerse,
+          text: flatText,
+          color: selectedHighlightColor,
+          position: 0,
+        });
+      }
+      
+      setSelectedVerse(0);
+    }
+  };
+
+  const handleCopyVerse = () => {
+    if (selectedVerse > 0) {
+      const verseText = verses[selectedVerse - 1];
+      const segments = parseTextWithOnlyHTML(verseText);
+      
+      // Format: bookCode chapter:verse content
+      const formattedText = `${book.shortName} ${chapter}:${selectedVerse} ${segments}`;
+      navigator.clipboard.writeText(formattedText);
+      setSelectedVerse(0);
+    }
+  };
+
+  const handleRemoveHighlight = () => {
+    if (selectedVerse > 0) {
+      // Find all highlights for this verse
+      const existingHighlights = getHighlightsForVerse(book.code, chapter, selectedVerse);
+      // Remove all highlights
+      existingHighlights.forEach(h => {
+        removeHighlight(h.id);
+      });
+      setSelectedVerse(0);
+    }
+  };
+
+
   useEffect(() => {
     if (targetVerse) {
       handleVersePress(targetVerse);
     }
   }, [targetVerse]);
-  
+
+  // Handle double click on web
+  useEffect(() => {
+    if (Platform.OS !== 'web') return;
+    
+    const handleDoubleClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const verseElement = target.closest('[id^="verse-"]');
+      if (verseElement) {
+        const verseId = verseElement.id;
+        const verseMatch = verseId.match(/verse-(\d+)/);
+        if (verseMatch) {
+          const verseNumber = parseInt(verseMatch[1]);
+          setSelectedVerse(verseNumber);
+        }
+      }
+    };
+    
+    document.addEventListener('dblclick', handleDoubleClick);
+    
+    return () => {
+      document.removeEventListener('dblclick', handleDoubleClick);
+    };
+  }, []);
+
   return (
     <>
       <ScrollView 
@@ -343,6 +537,13 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
         contentContainerStyle={{ flexGrow: 1 }}
         onScrollEndDrag={() => setIsScrolling(false)}
         onMomentumScrollEnd={() => setIsScrolling(false)}
+        onStartShouldSetResponder={() => true}
+        onMoveShouldSetResponder={() => false}
+        onResponderGrant={() => {
+          if (Platform.OS !== 'web' && selectedVerse > 0) {
+            setSelectedVerse(0);
+          }
+        }}
       >
         <View style={styles.chapterHeader}>     
           <View style={styles.chapterTitleContainer}>
@@ -366,7 +567,8 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
         
         <View style={styles.versesContainer}>
           {verses.map((verse: string, index: number) => {
-            const verseNumber = index + 1;          
+            const verseNumber = index + 1;
+            const verseHighlights = getHighlightsForVerse(book.code, chapter, verseNumber);
             return (
               <View 
                 key={index} 
@@ -378,7 +580,14 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
                 <ThemedText style={[styles.verseLabel, { fontSize: fontSettings.fontSize || 18, fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily }]}>
                   {book.shortName}. {chapter}:{verseNumber}
                 </ThemedText>
-                {parseVerseWithFootnotes(verse, verseNumber, handleVerseFootnotePress, fontSettings)}
+                {parseVerseWithFootnotes(
+                  verse, 
+                  verseNumber, 
+                  handleVerseFootnotePress, 
+                  fontSettings, 
+                  verseHighlights,
+                  handleVerseDoubleClick
+                )}
               </View>
             );
           })}
@@ -405,7 +614,10 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
       </ScrollView>
       
       {/* Font Controls */}
-      <FontControls />
+      <FontControls 
+        highlightColor={selectedHighlightColor}
+        onHighlightColorChange={setSelectedHighlightColor}
+      />
       
       <FootnoteModal
         visible={modalVisible}
@@ -419,6 +631,55 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
         onNavigateToVerse={handleNavigateToVerse}
         footnoteRefs={footnoteRefs}
       />
+      
+      <TextSelectionToolbar
+        visible={selectedVerse > 0}
+        onHighlight={handleHighlightVerse}
+        onCopy={handleCopyVerse}
+        onRemoveHighlight={handleRemoveHighlight}
+        isHighlighted={selectedVerse > 0 && getHighlightsForVerse(book.code, chapter, selectedVerse).length > 0}
+        onClose={() => setSelectedVerse(0)}
+      />
+      
+      {/* Color Picker Modal - Removed, now using FontControls */}
+      {false && (
+        <Modal
+          visible={false}
+          transparent
+          animationType="fade"
+          onRequestClose={() => {}}
+        >
+          <TouchableOpacity 
+            style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' }} 
+            activeOpacity={1}
+            onPress={() => {}}
+          >
+            <View style={{ backgroundColor: 'white', borderTopLeftRadius: 20, borderTopRightRadius: 20, padding: 20 }}>
+              <ThemedText style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 15 }}>Choose Highlight Color</ThemedText>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap' }}>
+                {HIGHLIGHT_COLORS.map((color: string) => (
+                  <TouchableOpacity
+                    key={color}
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 25,
+                      backgroundColor: color,
+                      margin: 10,
+                      borderWidth: selectedHighlightColor === color ? 4 : 2,
+                      borderColor: selectedHighlightColor === color ? '#333' : '#ddd',
+                    }}
+                    onPress={() => {
+                      setSelectedHighlightColor(color);
+                      // Modal is disabled - using FontControls instead
+                    }}
+                  />
+                ))}
+              </View>
+            </View>
+          </TouchableOpacity>
+        </Modal>
+      )}
     </>
   );
 };

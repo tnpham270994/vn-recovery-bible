@@ -1,5 +1,5 @@
 import { ThemedText } from '@/components/ThemedText';
-import { getChaptersForBook } from '@/utils/bibleUtils';
+import { getChaptersForBook } from '@/data/bibleUtils';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { styles } from './ChapterGrid.styles';

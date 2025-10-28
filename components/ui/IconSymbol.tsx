@@ -34,6 +34,8 @@ const MAPPING = {
   'xmark': 'close',
   'list.bullet': 'list',
   'book.closed': 'book',
+  'highlighter': 'edit',
+  'pencil.and.outline': 'edit',
 } as IconMapping;
 
 /**

@@ -7,6 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { BibleProvider } from '@/contexts/BibleContext';
 import { FontSettingsProvider } from '@/contexts/FontSettingsContext';
+import { HighlightsProvider } from '@/contexts/HighlightsContext';
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -22,13 +23,15 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <BibleProvider>
         <FontSettingsProvider>
-          <ThemeProvider value={DefaultTheme}>
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-            </Stack>
-            <StatusBar style="dark" />
-          </ThemeProvider>
+          <HighlightsProvider>
+            <ThemeProvider value={DefaultTheme}>
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="+not-found" />
+              </Stack>
+              <StatusBar style="dark" />
+            </ThemeProvider>
+          </HighlightsProvider>
         </FontSettingsProvider>
       </BibleProvider>
     </SafeAreaProvider>

@@ -1,6 +1,6 @@
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import { getBookData, getBookFromShortName, parseTextWithOnlyHTML } from '@/utils/bibleUtils';
+import { getBookData, getBookFromShortName, parseTextWithOnlyHTML } from '@/data/bibleUtils';
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, TouchableOpacity, View } from 'react-native';
 import { styles } from './FootnoteModal.styles';
@@ -203,7 +203,7 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
           <View style={styles.modalDragIndicator} />
           <View style={styles.modalHeader}>
             <ThemedText style={styles.modalTitle}>
-              Chú thích {bookCode} {chapter}:{verseNumber}
+              Chú thích {chapter}:{verseNumber}
             </ThemedText>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
               <IconSymbol name="xmark" size={20} color="#5A4A3A" />

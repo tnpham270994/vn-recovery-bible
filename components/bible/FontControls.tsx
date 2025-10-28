@@ -2,6 +2,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { COLORS } from '@/constants/styles';
 import { FONT_FAMILIES, FONT_SIZES, useFontSettings } from '@/contexts/FontSettingsContext';
+import { HIGHLIGHT_COLORS } from '@/contexts/HighlightsContext';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import React, { useState } from 'react';
 import { Modal, ScrollView, TouchableOpacity, View } from 'react-native';
@@ -9,9 +10,11 @@ import { styles } from './FontControls.styles';
 
 interface FontControlsProps {
   onClose?: () => void;
+  highlightColor?: string;
+  onHighlightColorChange?: (color: string) => void;
 }
 
-export const FontControls: React.FC<FontControlsProps> = ({ onClose }) => {
+export const FontControls: React.FC<FontControlsProps> = ({ onClose, highlightColor, onHighlightColorChange }) => {
   const { fontSettings, updateFontSize, updateFontFamily, resetFontSettings } = useFontSettings();
   const [showFontMenu, setShowFontMenu] = useState(false);
 
@@ -114,6 +117,26 @@ export const FontControls: React.FC<FontControlsProps> = ({ onClose }) => {
                 ))}
               </ScrollView>
             </View>
+
+            {/* Highlight Color Section */}
+            {onHighlightColorChange && (
+              <View style={styles.menuSection}>
+                <ThemedText style={styles.sectionTitle}>Highlight Color</ThemedText>
+                <View style={styles.colorPicker}>
+                  {HIGHLIGHT_COLORS.map((color: string) => (
+                    <TouchableOpacity
+                      key={color}
+                      style={[
+                        styles.colorButton,
+                        { backgroundColor: color },
+                        highlightColor === color && styles.selectedColorButton
+                      ]}
+                      onPress={() => onHighlightColorChange(color)}
+                    />
+                  ))}
+                </View>
+              </View>
+            )}
 
             {/* Reset Button */}
             <TouchableOpacity

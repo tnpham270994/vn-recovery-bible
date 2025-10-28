@@ -140,6 +140,26 @@ export const styles = StyleSheet.create({
     fontWeight: FONT_WEIGHTS.bold,
   },
 
+  // Color Picker
+  colorPicker: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: SPACING.sm,
+  },
+
+  colorButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: '#ddd',
+  },
+
+  selectedColorButton: {
+    borderColor: '#333',
+    borderWidth: 3,
+  },
+
   // Reset Button
   resetButton: {
     flexDirection: 'row',
