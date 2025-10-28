@@ -1,6 +1,6 @@
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import { getBookData, getBookFromShortName, parseTextWithOnlyHTML } from '@/data/bibleUtils';
+import { getBookData, getBookFromShortName, parseTextWithOnlyHTML } from '@/utils/bibleUtils';
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, TouchableOpacity, View } from 'react-native';
 import { styles } from './FootnoteModal.styles';
@@ -70,11 +70,17 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
         }
         
         const verseText = bookData.verse_data[parseInt(chapter)]?.[parseInt(verse) - 1]; // verse_data is 0-indexed
+        
+        // Extract content if verseText is an object, otherwise use as string
+        const textContent = typeof verseText === 'object' && verseText !== null
+          ? (verseText.content || 'Verse not found')
+          : (verseText || 'Verse not found');
+        
         return {
           book: bookCode,
           chapter: parseInt(chapter),
           verse: parseInt(verse),
-          text: verseText || 'Verse not found',
+          text: textContent,
           bookRef: bookRef,
         };
       }
@@ -104,7 +110,14 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
         for (let verse = start; verse <= end; verse++) {
           const verseText = bookData.verse_data[parseInt(chapter)]?.[verse - 1]; // verse_data is 0-indexed
           if (verseText) {
-            verseTexts.push(`${verse} ${verseText}`);
+            // Extract content if verseText is an object
+            const textContent = typeof verseText === 'object' && verseText !== null
+              ? (verseText.content || '')
+              : verseText;
+            
+            if (textContent) {
+              verseTexts.push(`${verse} ${textContent}`);
+            }
           }
         }
         

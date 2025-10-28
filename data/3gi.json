@@ -1,20 +1,76 @@
 {
-    "verse_data": {
-        "1": [
-          "Trưởng lão <i>viết</i> cho Gai-út là <i>anh em</i> yêu dấu, người mà tôi yêu thương trong sự chân thật.",
-          "<i>Anh</i> yêu dấu ơi, tôi cầu chúc anh được hưng thịnh về mọi sự và được khoẻ mạnh, cũng như hồn anh được hưng thịnh vậy.",
-          "Vì tôi vô cùng vui mừng khi các anh em đến và làm chứng về <i>sự kiên định trong</i> lẽ thật của anh, cũng như anh bước đi trong lẽ thật.",
-          "Tôi không có niềm vui nào lớn hơn điều này, ấy là nghe con cái mình đang bước đi trong lẽ thật.",
-          "<i>Anh</i> yêu dấu ơi, anh thật trung tín trong những gì anh đã làm cho các anh em và <i>cho</i> khách lạ,",
-          "là những người làm chứng về tình yêu của anh trước Hội thánh; <i>và nếu</i> anh tiễn họ đi cách xứng đáng với Đức Chúa Trời thì thật là một việc làm tốt;",
-          "vì Danh ấy mà họ đi ra, không nhận gì từ dân ngoại.",
-          "Vậy, chúng ta nên hỗ trợ những người như thế để chúng ta trở nên những đồng công trong lẽ thật.",
-          "Tôi đã viết đôi điều cho Hội thánh nhưng Đi-ô-trép, người thích làm đầu giữa họ, không tiếp nhận chúng tôi.",
-          "Vì lẽ đó, nếu tôi đến, tôi sẽ nhắc lại các việc anh ta làm; anh ta rêu rao những lời gian ác nghịch lại chúng ta; và chưa hài lòng với những điều đó, chính anh ta đã không tiếp các anh em mà ai muốn <i>tiếp</i> thì anh ta cấm và đuổi khỏi Hội thánh.",
-          "<i>Anh</i> yêu dấu ơi, đừng bắt chước điều ác, nhưng hãy <i>bắt chước</i> điều thiện. Ai làm thiện thì thuộc về Đức Chúa Trời; ai làm ác thì chưa từng thấy Đức Chúa Trời.",
-          "Đối với Đê-mê-triu thì được mọi người và chính lẽ thật làm chứng cho; chúng tôi cũng làm chứng, và anh biết lời chứng của chúng tôi là thật.",
-          "Tôi có nhiều điều để viết cho anh nhưng không muốn viết bằng mực và bút;",
-          "song tôi hi vọng sớm gặp anh và chúng ta sẽ nói chuyện mặt đối mặt. Nguyện anh được bình an. Các bạn hữu chào thăm anh. Hãy theo đích danh mà chào thăm các bạn hữu."
-        ]
+  "verse_data": {
+    "1": [
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "Trưởng lão <i>viết</i> cho Gai-út là <i>anh em</i> yêu dấu, người mà tôi yêu thương trong sự chân thật."
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "<i>Anh</i> yêu dấu ơi, tôi cầu chúc anh được hưng thịnh về mọi sự và được khoẻ mạnh, cũng như hồn anh được hưng thịnh vậy."
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "Vì tôi vô cùng vui mừng khi các anh em đến và làm chứng về <i>sự kiên định trong</i> lẽ thật của anh, cũng như anh bước đi trong lẽ thật."
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "Tôi không có niềm vui nào lớn hơn điều này, ấy là nghe con cái mình đang bước đi trong lẽ thật."
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "<i>Anh</i> yêu dấu ơi, anh thật trung tín trong những gì anh đã làm cho các anh em và <i>cho</i> khách lạ,"
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "là những người làm chứng về tình yêu của anh trước Hội thánh; <i>và nếu</i> anh tiễn họ đi cách xứng đáng với Đức Chúa Trời thì thật là một việc làm tốt;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "vì Danh ấy mà họ đi ra, không nhận gì từ dân ngoại."
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "Vậy, chúng ta nên hỗ trợ những người như thế để chúng ta trở nên những đồng công trong lẽ thật."
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "Tôi đã viết đôi điều cho Hội thánh nhưng Đi-ô-trép, người thích làm đầu giữa họ, không tiếp nhận chúng tôi."
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "Vì lẽ đó, nếu tôi đến, tôi sẽ nhắc lại các việc anh ta làm; anh ta rêu rao những lời gian ác nghịch lại chúng ta; và chưa hài lòng với những điều đó, chính anh ta đã không tiếp các anh em mà ai muốn <i>tiếp</i> thì anh ta cấm và đuổi khỏi Hội thánh."
+      },
+      {
+        "type": "verse",
+        "verse_no": 11,
+        "content": "<i>Anh</i> yêu dấu ơi, đừng bắt chước điều ác, nhưng hãy <i>bắt chước</i> điều thiện. Ai làm thiện thì thuộc về Đức Chúa Trời; ai làm ác thì chưa từng thấy Đức Chúa Trời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 12,
+        "content": "Đối với Đê-mê-triu thì được mọi người và chính lẽ thật làm chứng cho; chúng tôi cũng làm chứng, và anh biết lời chứng của chúng tôi là thật."
+      },
+      {
+        "type": "verse",
+        "verse_no": 13,
+        "content": "Tôi có nhiều điều để viết cho anh nhưng không muốn viết bằng mực và bút;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 14,
+        "content": "song tôi hi vọng sớm gặp anh và chúng ta sẽ nói chuyện mặt đối mặt. Nguyện anh được bình an. Các bạn hữu chào thăm anh. Hãy theo đích danh mà chào thăm các bạn hữu."
       }
+    ]
+  }
 }

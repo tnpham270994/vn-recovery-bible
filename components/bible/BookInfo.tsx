@@ -1,6 +1,6 @@
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import { getBookDetail } from '@/data/bibleUtils';
+import { getBookDetail } from '@/utils/bibleUtils';
 import React from 'react';
 import { View } from 'react-native';
 import { styles } from './BookInfo.styles';

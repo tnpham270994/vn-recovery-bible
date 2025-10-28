@@ -1,119 +1,539 @@
 {
   "verse_data": {
     "1": [
-      "Điều đã có từ ban đầu, điều chúng tôi đã nghe, điều chúng tôi đã thấy tận mắt, điều chúng tôi đã ngắm xem và tay chúng tôi đã rờ, về Lời sự sống",
-      "(sự sống ấy đã được tỏ ra, chúng tôi đã thấy và <i>bây giờ</i> làm chứng, thuật lại cho anh em sự sống đời đời vốn ở với Cha và đã được tỏ ra cho chúng tôi);",
-      "điều chúng tôi đã thấy, đã nghe thì cũng thuật lại cho anh em để anh em cũng có sự tương giao với chúng tôi; thật vậy, sự tương giao của chúng tôi là với Cha và với Con Ngài, tức Jesus Christ.",
-      "Chúng tôi viết những điều này để niềm vui của chúng tôi được trọn.",
-      "Và đây là sứ điệp chúng tôi đã nghe từ Ngài và rao truyền cho anh em: Đức Chúa Trời là ánh sáng và trong Ngài không có chút bóng tối nào.",
-      "Nếu chúng ta nói mình có sự tương giao với Ngài mà lại bước đi trong bóng tối thì chúng ta nói dối và không đang thực hành lẽ thật.",
-      "Nhưng nếu chúng ta bước đi trong ánh sáng như Ngài ở trong ánh sáng thì chúng ta có sự tương giao với nhau, và huyết Jesus Con Ngài tẩy sạch từng tội chúng ta.",
-      "Nếu chúng ta nói mình không có tội thì chúng ta đang tự lừa dối, và lẽ thật không ở trong chúng ta.",
-      "Nếu chúng ta xưng nhận các tội phạm của mình thì Ngài thành tín và công chính ắt tha thứ các tội phạm cho chúng ta và tẩy sạch chúng ta khỏi mọi bất chính.",
-      "Nếu chúng ta nói mình chưa từng phạm tội thì chúng ta làm cho Ngài thành kẻ nói dối, và lời Ngài không ở trong chúng ta."
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "Điều đã có từ ban đầu, điều chúng tôi đã nghe, điều chúng tôi đã thấy tận mắt, điều chúng tôi đã ngắm xem và tay chúng tôi đã rờ, về Lời sự sống"
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "(sự sống ấy đã được tỏ ra, chúng tôi đã thấy và <i>bây giờ</i> làm chứng, thuật lại cho anh em sự sống đời đời vốn ở với Cha và đã được tỏ ra cho chúng tôi);"
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "điều chúng tôi đã thấy, đã nghe thì cũng thuật lại cho anh em để anh em cũng có sự tương giao với chúng tôi; thật vậy, sự tương giao của chúng tôi là với Cha và với Con Ngài, tức Jesus Christ."
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "Chúng tôi viết những điều này để niềm vui của chúng tôi được trọn."
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "Và đây là sứ điệp chúng tôi đã nghe từ Ngài và rao truyền cho anh em: Đức Chúa Trời là ánh sáng và trong Ngài không có chút bóng tối nào."
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "Nếu chúng ta nói mình có sự tương giao với Ngài mà lại bước đi trong bóng tối thì chúng ta nói dối và không đang thực hành lẽ thật."
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "Nhưng nếu chúng ta bước đi trong ánh sáng như Ngài ở trong ánh sáng thì chúng ta có sự tương giao với nhau, và huyết Jesus Con Ngài tẩy sạch từng tội chúng ta."
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "Nếu chúng ta nói mình không có tội thì chúng ta đang tự lừa dối, và lẽ thật không ở trong chúng ta."
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "Nếu chúng ta xưng nhận các tội phạm của mình thì Ngài thành tín và công chính ắt tha thứ các tội phạm cho chúng ta và tẩy sạch chúng ta khỏi mọi bất chính."
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "Nếu chúng ta nói mình chưa từng phạm tội thì chúng ta làm cho Ngài thành kẻ nói dối, và lời Ngài không ở trong chúng ta."
+      }
     ],
     "2": [
-      "Hỡi <i>anh em</i> là các con trẻ của tôi, tôi viết cho anh em những điều này để anh em có thể không phạm tội. Nếu ai phạm tội thì chúng ta có Đấng biện hộ với Cha, tức Jesus Christ Đấng công chính;",
-      "chính Ngài là sự vãn hồi vì các tội phạm của chúng ta, không những vì <i>các tội phạm</i> của chúng ta mà còn vì cả thế giới.",
-      "Và nếu chúng ta giữ các điều răn của Ngài thì do điều này mà chúng ta biết rằng mình biết Ngài.",
-      "Ai nói: “Tôi biết Ngài” mà không giữ các điều răn của Ngài, ấy là người nói dối và lẽ thật không ở trong người ấy;",
-      "nhưng người nào giữ lời Ngài thì tình yêu của Đức Chúa Trời thật sự đã được hoàn hảo trong người ấy. Do điều này mà chúng ta biết mình ở trong Ngài.",
-      "Ai nói mình luôn ở trong Ngài thì chính người ấy cũng phải bước đi như Ngài đã bước đi.",
-      "<i>Anh em</i> yêu dấu ơi, tôi không viết cho anh em điều răn mới bèn là điều răn cũ mà anh em đã có từ ban đầu; điều răn cũ là lời anh em đã nghe.",
-      "Tuy vậy, tôi lại viết cho anh em một điều răn mới, là điều chân thật trong Ngài và trong anh em, vì bóng tối đang qua đi và ánh sáng thật đã chiếu ra rồi.",
-      "Ai nói mình ở trong ánh sáng mà lại ghét anh em mình thì đến bây giờ vẫn ở trong bóng tối.",
-      "Ai yêu anh em mình thì luôn ở trong ánh sáng, trong người ấy không có cớ vấp ngã;",
-      "nhưng ai ghét anh em mình thì ở trong bóng tối và bước đi trong bóng tối, không biết mình đi đâu, bởi bóng tối đã làm mù mắt người ấy.",
-      "Hỡi <i>anh em</i> là các con trẻ của tôi, tôi viết cho anh em vì tội anh em đã được tha bởi danh Ngài.",
-      "Hỡi các phụ lão, tôi viết cho anh em, vì anh em đã biết Đấng có từ ban đầu. Hỡi những người trẻ, tôi viết cho các anh, vì các anh đã đắc thắng kẻ ác. Hỡi các con thơ, ta viết cho các con, vì các con biết Cha.",
-      "Hỡi các phụ lão, tôi đã viết cho anh em, vì anh em biết Đấng có từ ban đầu. Hỡi những người trẻ, tôi đã viết cho các anh, vì các anh mạnh mẽ và lời Đức Chúa Trời luôn ở trong các anh, và các anh đã đắc thắng kẻ ác.",
-      "Đừng yêu thế giới và những điều trong thế giới. Nếu ai yêu thế giới thì tình yêu dành cho Cha không ở trong người ấy,",
-      "vì mọi điều trong thế giới, như dục vọng của xác thịt, dục vọng của mắt và hư vinh của đời sống, đều không ra từ Cha nhưng ra từ thế giới.",
-      "Thế giới cùng dục vọng của nó đều đang qua đi, song ai thực hiện ý muốn của Đức Chúa Trời thì vĩnh tồn.",
-      "Hỡi các con thơ, đây là giờ cuối cùng; chính như các con đã nghe rằng anti-christ đang đến, ngay cả bây giờ nhiều anti-christ cũng đã đến; bởi đó, chúng ta biết đây là giờ cuối cùng.",
-      "Họ từ chúng ta mà đi ra nhưng không thuộc về chúng ta, vì nếu họ thuộc về chúng ta thì hẳn đã ở lại với chúng ta; song <i>họ đã đi ra</i> để tỏ ra rằng tất cả họ không thuộc về chúng ta.",
-      "Còn các con có sự xức dầu từ Đấng thánh, và tất cả các con đều biết.",
-      "Ta đã viết cho các con chẳng phải vì các con không biết lẽ thật, nhưng vì các con biết lẽ thật và vì không có lời dối nào ra từ lẽ thật.",
-      "Ai là kẻ nói dối nếu chẳng phải kẻ phủ nhận Jesus là Đấng Christ? Đây là anti-christ: Kẻ phủ nhận Cha và Con.",
-      "Hễ ai phủ nhận Con thì cũng không có Cha; ai thừa nhận Con thì cũng có Cha.",
-      "Còn các con, điều các con đã nghe từ ban đầu thì hãy để điều ấy luôn ở trong các con. Nếu điều các con đã nghe từ ban đầu luôn ở trong các con thì các con cũng sẽ luôn ở trong Con và trong Cha.",
-      "Đây là lời hứa mà chính Ngài đã hứa với chúng ta: sự sống đời đời.",
-      "Ta đã viết cho các con những điều này về những kẻ dẫn dụ các con.",
-      "Còn về các con, sự xức dầu mà các con đã nhận từ Ngài luôn ở trong các con, và các con không cần ai dạy mình, song sự xức dầu của Ngài dạy các con về mọi sự; <i>sự xức dầu ấy</i> là thật, không phải lời dối, và như sự xức dầu đã dạy các con, hãy luôn ở trong Ngài.",
-      "Bây giờ, hỡi <i>anh em</i> là các con trẻ, hãy luôn ở trong Ngài, hầu cho nếu Ngài hiển lộ thì chúng ta có sự dạn dĩ và khỏi bị hổ thẹn tách <i>xa</i> Ngài, lúc Ngài đến.",
-      "Nếu anh em biết rằng Ngài công chính thì hãy biết rằng hễ ai thực hành sự công chính cũng đều được sinh bởi Ngài."
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "Hỡi <i>anh em</i> là các con trẻ của tôi, tôi viết cho anh em những điều này để anh em có thể không phạm tội. Nếu ai phạm tội thì chúng ta có Đấng biện hộ với Cha, tức Jesus Christ Đấng công chính;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "chính Ngài là sự vãn hồi vì các tội phạm của chúng ta, không những vì <i>các tội phạm</i> của chúng ta mà còn vì cả thế giới."
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "Và nếu chúng ta giữ các điều răn của Ngài thì do điều này mà chúng ta biết rằng mình biết Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "Ai nói: “Tôi biết Ngài” mà không giữ các điều răn của Ngài, ấy là người nói dối và lẽ thật không ở trong người ấy;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "nhưng người nào giữ lời Ngài thì tình yêu của Đức Chúa Trời thật sự đã được hoàn hảo trong người ấy. Do điều này mà chúng ta biết mình ở trong Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "Ai nói mình luôn ở trong Ngài thì chính người ấy cũng phải bước đi như Ngài đã bước đi."
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "<i>Anh em</i> yêu dấu ơi, tôi không viết cho anh em điều răn mới bèn là điều răn cũ mà anh em đã có từ ban đầu; điều răn cũ là lời anh em đã nghe."
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "Tuy vậy, tôi lại viết cho anh em một điều răn mới, là điều chân thật trong Ngài và trong anh em, vì bóng tối đang qua đi và ánh sáng thật đã chiếu ra rồi."
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "Ai nói mình ở trong ánh sáng mà lại ghét anh em mình thì đến bây giờ vẫn ở trong bóng tối."
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "Ai yêu anh em mình thì luôn ở trong ánh sáng, trong người ấy không có cớ vấp ngã;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 11,
+        "content": "nhưng ai ghét anh em mình thì ở trong bóng tối và bước đi trong bóng tối, không biết mình đi đâu, bởi bóng tối đã làm mù mắt người ấy."
+      },
+      {
+        "type": "verse",
+        "verse_no": 12,
+        "content": "Hỡi <i>anh em</i> là các con trẻ của tôi, tôi viết cho anh em vì tội anh em đã được tha bởi danh Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 13,
+        "content": "Hỡi các phụ lão, tôi viết cho anh em, vì anh em đã biết Đấng có từ ban đầu. Hỡi những người trẻ, tôi viết cho các anh, vì các anh đã đắc thắng kẻ ác. Hỡi các con thơ, ta viết cho các con, vì các con biết Cha."
+      },
+      {
+        "type": "verse",
+        "verse_no": 14,
+        "content": "Hỡi các phụ lão, tôi đã viết cho anh em, vì anh em biết Đấng có từ ban đầu. Hỡi những người trẻ, tôi đã viết cho các anh, vì các anh mạnh mẽ và lời Đức Chúa Trời luôn ở trong các anh, và các anh đã đắc thắng kẻ ác."
+      },
+      {
+        "type": "verse",
+        "verse_no": 15,
+        "content": "Đừng yêu thế giới và những điều trong thế giới. Nếu ai yêu thế giới thì tình yêu dành cho Cha không ở trong người ấy,"
+      },
+      {
+        "type": "verse",
+        "verse_no": 16,
+        "content": "vì mọi điều trong thế giới, như dục vọng của xác thịt, dục vọng của mắt và hư vinh của đời sống, đều không ra từ Cha nhưng ra từ thế giới."
+      },
+      {
+        "type": "verse",
+        "verse_no": 17,
+        "content": "Thế giới cùng dục vọng của nó đều đang qua đi, song ai thực hiện ý muốn của Đức Chúa Trời thì vĩnh tồn."
+      },
+      {
+        "type": "verse",
+        "verse_no": 18,
+        "content": "Hỡi các con thơ, đây là giờ cuối cùng; chính như các con đã nghe rằng anti-christ đang đến, ngay cả bây giờ nhiều anti-christ cũng đã đến; bởi đó, chúng ta biết đây là giờ cuối cùng."
+      },
+      {
+        "type": "verse",
+        "verse_no": 19,
+        "content": "Họ từ chúng ta mà đi ra nhưng không thuộc về chúng ta, vì nếu họ thuộc về chúng ta thì hẳn đã ở lại với chúng ta; song <i>họ đã đi ra</i> để tỏ ra rằng tất cả họ không thuộc về chúng ta."
+      },
+      {
+        "type": "verse",
+        "verse_no": 20,
+        "content": "Còn các con có sự xức dầu từ Đấng thánh, và tất cả các con đều biết."
+      },
+      {
+        "type": "verse",
+        "verse_no": 21,
+        "content": "Ta đã viết cho các con chẳng phải vì các con không biết lẽ thật, nhưng vì các con biết lẽ thật và vì không có lời dối nào ra từ lẽ thật."
+      },
+      {
+        "type": "verse",
+        "verse_no": 22,
+        "content": "Ai là kẻ nói dối nếu chẳng phải kẻ phủ nhận Jesus là Đấng Christ? Đây là anti-christ: Kẻ phủ nhận Cha và Con."
+      },
+      {
+        "type": "verse",
+        "verse_no": 23,
+        "content": "Hễ ai phủ nhận Con thì cũng không có Cha; ai thừa nhận Con thì cũng có Cha."
+      },
+      {
+        "type": "verse",
+        "verse_no": 24,
+        "content": "Còn các con, điều các con đã nghe từ ban đầu thì hãy để điều ấy luôn ở trong các con. Nếu điều các con đã nghe từ ban đầu luôn ở trong các con thì các con cũng sẽ luôn ở trong Con và trong Cha."
+      },
+      {
+        "type": "verse",
+        "verse_no": 25,
+        "content": "Đây là lời hứa mà chính Ngài đã hứa với chúng ta: sự sống đời đời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 26,
+        "content": "Ta đã viết cho các con những điều này về những kẻ dẫn dụ các con."
+      },
+      {
+        "type": "verse",
+        "verse_no": 27,
+        "content": "Còn về các con, sự xức dầu mà các con đã nhận từ Ngài luôn ở trong các con, và các con không cần ai dạy mình, song sự xức dầu của Ngài dạy các con về mọi sự; <i>sự xức dầu ấy</i> là thật, không phải lời dối, và như sự xức dầu đã dạy các con, hãy luôn ở trong Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 28,
+        "content": "Bây giờ, hỡi <i>anh em</i> là các con trẻ, hãy luôn ở trong Ngài, hầu cho nếu Ngài hiển lộ thì chúng ta có sự dạn dĩ và khỏi bị hổ thẹn tách <i>xa</i> Ngài, lúc Ngài đến."
+      },
+      {
+        "type": "verse",
+        "verse_no": 29,
+        "content": "Nếu anh em biết rằng Ngài công chính thì hãy biết rằng hễ ai thực hành sự công chính cũng đều được sinh bởi Ngài."
+      }
     ],
     "3": [
-      "Hãy xem, tình yêu mà Cha đã ban cho chúng ta là thể nào để chúng ta được gọi là con cái của Đức Chúa Trời; và chúng ta <i>thật</i> là <i>vậy.</i> Vì điều này mà thế giới không biết chúng ta, bởi thế giới không biết Ngài.",
-      "<i>Anh em</i> yêu dấu ơi, bây giờ chúng ta là con cái của Đức Chúa Trời, còn chúng ta sẽ như thể nào thì chưa được tỏ ra. <i>Nhưng</i> chúng ta biết rằng nếu Ngài hiển lộ thì chúng ta sẽ giống như Ngài vì chúng ta sẽ thấy Ngài chính như Ngài là vậy.",
-      "Hễ ai có hi vọng này nơi Ngài thì tự thanh tẩy mình, chính như Ngài thuần khiết vậy.",
-      "Hễ ai thực hành tội thì cũng thực hành sự bất pháp, và tội là sự bất pháp.",
-      "Anh em biết rằng Ngài đã hiển lộ để cất bỏ các tội phạm; và tội không ở trong Ngài.",
-      "Hễ ai luôn ở trong Ngài thì không phạm tội; hễ ai phạm tội thì chưa thấy Ngài hoặc chưa biết Ngài.",
-      "Hỡi <i>anh em</i> là các con trẻ, đừng để ai dẫn dụ anh em; hễ ai thực hành sự công chính thì công chính, như Ngài công chính vậy;",
-      "hễ ai thực hành tội thì ra từ ma quỷ, vì ma quỷ phạm tội từ ban đầu. Vì mục đích này mà Con Đức Chúa Trời đã được tỏ ra để Ngài có thể hủy diệt các công việc của ma quỷ.",
-      "Người nào được sinh bởi Đức Chúa Trời thì không thực hành tội, vì hạt giống của Đức Chúa Trời luôn ở trong người ấy; và người ấy không thể phạm tội, vì đã được sinh bởi Đức Chúa Trời.",
-      "Do điều này mà con cái của Đức Chúa Trời và con cái của ma quỷ được tỏ ra. Người nào không thực hành sự công chính thì không ra từ Đức Chúa Trời, và người nào không yêu anh em mình thì cũng vậy.",
-      "Vì đây là sứ điệp anh em đã nghe từ ban đầu: Chúng ta phải yêu thương nhau;",
-      "đừng như Ca-in ra từ kẻ ác mà giết em mình. Vì lí do gì mà ông giết em mình? Vì các công việc của ông là ác, còn các công việc của em ông là công chính.",
-      "Anh em ơi, đừng lấy làm lạ nếu thế giới ghét anh em.",
-      "Chúng ta biết rằng mình đã vượt ra khỏi sự chết mà vào sự sống là vì chúng ta yêu thương anh em. Ai không yêu thương thì luôn ở trong sự chết.",
-      "Hễ ai ghét anh em mình đều là kẻ giết người, và anh em biết rằng không kẻ giết người nào có sự sống đời đời luôn ở trong mình.",
-      "Do điều này mà chúng ta biết tình yêu: Ngài đã bỏ mạng sống Ngài vì chúng ta; chúng ta cũng phải bỏ mạng sống mình vì anh em.",
-      "Song ai có phương tiện sinh sống trên thế giới này và thấy anh em mình có nhu cầu mà chẳng mảy may thương cảm anh em mình, thì thể nào tình yêu của Đức Chúa Trời luôn ở trong người ấy?",
-      "Hỡi các con trẻ, chớ yêu thương bằng lời suông và đầu lưỡi nhưng bằng việc làm và sự chân thật.",
-      "Do điều này mà chúng ta sẽ biết mình thuộc về lẽ thật, và chúng ta sẽ làm cho lòng mình vững tin trước mặt Ngài,",
-      "vì nếu lòng chúng ta lên án <i>chúng ta</i> thì <i>ấy là</i> vì Đức Chúa Trời lớn hơn lòng chúng ta và <i>Ngài</i> biết mọi sự.",
-      "<i>Anh em</i> yêu dấu ơi, nếu lòng chúng ta không lên án <i>chúng ta</i> thì chúng ta có sự dạn dĩ đối với Đức Chúa Trời;",
-      "và chúng ta xin bất cứ điều gì thì đều nhận được từ Ngài, bởi chúng ta giữ các điều răn của Ngài và làm những điều Ngài thấy vui lòng.",
-      "Và đây là điều răn của Ngài: Chúng ta tin nơi danh Con Ngài là Jesus Christ và yêu thương nhau, chính như Ngài đã ban điều răn cho chúng ta.",
-      "Hễ ai giữ các điều răn của Ngài thì luôn ở trong Ngài, và Ngài trong người ấy. Và do điều này mà chúng ta biết Ngài luôn ở trong chúng ta, bởi Linh mà Ngài đã ban cho chúng ta."
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "Hãy xem, tình yêu mà Cha đã ban cho chúng ta là thể nào để chúng ta được gọi là con cái của Đức Chúa Trời; và chúng ta <i>thật</i> là <i>vậy.</i> Vì điều này mà thế giới không biết chúng ta, bởi thế giới không biết Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "<i>Anh em</i> yêu dấu ơi, bây giờ chúng ta là con cái của Đức Chúa Trời, còn chúng ta sẽ như thể nào thì chưa được tỏ ra. <i>Nhưng</i> chúng ta biết rằng nếu Ngài hiển lộ thì chúng ta sẽ giống như Ngài vì chúng ta sẽ thấy Ngài chính như Ngài là vậy."
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "Hễ ai có hi vọng này nơi Ngài thì tự thanh tẩy mình, chính như Ngài thuần khiết vậy."
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "Hễ ai thực hành tội thì cũng thực hành sự bất pháp, và tội là sự bất pháp."
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "Anh em biết rằng Ngài đã hiển lộ để cất bỏ các tội phạm; và tội không ở trong Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "Hễ ai luôn ở trong Ngài thì không phạm tội; hễ ai phạm tội thì chưa thấy Ngài hoặc chưa biết Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "Hỡi <i>anh em</i> là các con trẻ, đừng để ai dẫn dụ anh em; hễ ai thực hành sự công chính thì công chính, như Ngài công chính vậy;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "hễ ai thực hành tội thì ra từ ma quỷ, vì ma quỷ phạm tội từ ban đầu. Vì mục đích này mà Con Đức Chúa Trời đã được tỏ ra để Ngài có thể hủy diệt các công việc của ma quỷ."
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "Người nào được sinh bởi Đức Chúa Trời thì không thực hành tội, vì hạt giống của Đức Chúa Trời luôn ở trong người ấy; và người ấy không thể phạm tội, vì đã được sinh bởi Đức Chúa Trời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "Do điều này mà con cái của Đức Chúa Trời và con cái của ma quỷ được tỏ ra. Người nào không thực hành sự công chính thì không ra từ Đức Chúa Trời, và người nào không yêu anh em mình thì cũng vậy."
+      },
+      {
+        "type": "verse",
+        "verse_no": 11,
+        "content": "Vì đây là sứ điệp anh em đã nghe từ ban đầu: Chúng ta phải yêu thương nhau;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 12,
+        "content": "đừng như Ca-in ra từ kẻ ác mà giết em mình. Vì lí do gì mà ông giết em mình? Vì các công việc của ông là ác, còn các công việc của em ông là công chính."
+      },
+      {
+        "type": "verse",
+        "verse_no": 13,
+        "content": "Anh em ơi, đừng lấy làm lạ nếu thế giới ghét anh em."
+      },
+      {
+        "type": "verse",
+        "verse_no": 14,
+        "content": "Chúng ta biết rằng mình đã vượt ra khỏi sự chết mà vào sự sống là vì chúng ta yêu thương anh em. Ai không yêu thương thì luôn ở trong sự chết."
+      },
+      {
+        "type": "verse",
+        "verse_no": 15,
+        "content": "Hễ ai ghét anh em mình đều là kẻ giết người, và anh em biết rằng không kẻ giết người nào có sự sống đời đời luôn ở trong mình."
+      },
+      {
+        "type": "verse",
+        "verse_no": 16,
+        "content": "Do điều này mà chúng ta biết tình yêu: Ngài đã bỏ mạng sống Ngài vì chúng ta; chúng ta cũng phải bỏ mạng sống mình vì anh em."
+      },
+      {
+        "type": "verse",
+        "verse_no": 17,
+        "content": "Song ai có phương tiện sinh sống trên thế giới này và thấy anh em mình có nhu cầu mà chẳng mảy may thương cảm anh em mình, thì thể nào tình yêu của Đức Chúa Trời luôn ở trong người ấy?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 18,
+        "content": "Hỡi các con trẻ, chớ yêu thương bằng lời suông và đầu lưỡi nhưng bằng việc làm và sự chân thật."
+      },
+      {
+        "type": "verse",
+        "verse_no": 19,
+        "content": "Do điều này mà chúng ta sẽ biết mình thuộc về lẽ thật, và chúng ta sẽ làm cho lòng mình vững tin trước mặt Ngài,"
+      },
+      {
+        "type": "verse",
+        "verse_no": 20,
+        "content": "vì nếu lòng chúng ta lên án <i>chúng ta</i> thì <i>ấy là</i> vì Đức Chúa Trời lớn hơn lòng chúng ta và <i>Ngài</i> biết mọi sự."
+      },
+      {
+        "type": "verse",
+        "verse_no": 21,
+        "content": "<i>Anh em</i> yêu dấu ơi, nếu lòng chúng ta không lên án <i>chúng ta</i> thì chúng ta có sự dạn dĩ đối với Đức Chúa Trời;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 22,
+        "content": "và chúng ta xin bất cứ điều gì thì đều nhận được từ Ngài, bởi chúng ta giữ các điều răn của Ngài và làm những điều Ngài thấy vui lòng."
+      },
+      {
+        "type": "verse",
+        "verse_no": 23,
+        "content": "Và đây là điều răn của Ngài: Chúng ta tin nơi danh Con Ngài là Jesus Christ và yêu thương nhau, chính như Ngài đã ban điều răn cho chúng ta."
+      },
+      {
+        "type": "verse",
+        "verse_no": 24,
+        "content": "Hễ ai giữ các điều răn của Ngài thì luôn ở trong Ngài, và Ngài trong người ấy. Và do điều này mà chúng ta biết Ngài luôn ở trong chúng ta, bởi Linh mà Ngài đã ban cho chúng ta."
+      }
     ],
     "4": [
-      "<i>Anh em</i> yêu dấu ơi, đừng tin mọi linh, nhưng hãy chứng minh xem các linh có thuộc về Đức Chúa Trời không, vì nhiều tiên tri giả đã đi ra mà vào thế giới.",
-      "Do điều này mà anh em biết Linh của Đức Chúa Trời: Hễ linh nào thừa nhận Jesus Christ đã đến trong xác thịt thì thuộc về Đức Chúa Trời,",
-      "còn hễ linh nào không thừa nhận Jesus thì không thuộc về Đức Chúa Trời; đây là <i>linh</i> của anti-christ mà anh em đã nghe nó đang đến và bây giờ đã ở trong thế giới rồi.",
-      "Hỡi <i>anh em là</i> các con trẻ, anh em thuộc về Đức Chúa Trời và đã đắc thắng chúng, vì Đấng ở trong anh em lớn hơn kẻ ở trong thế giới.",
-      "Chúng thuộc về thế giới; vì vậy, <i>điều</i> chúng nói <i>cũng</i> ra từ thế giới, và thế giới nghe chúng.",
-      "Chúng ta thuộc về Đức Chúa Trời; ai biết Đức Chúa Trời thì nghe chúng ta; ai không thuộc về Đức Chúa Trời thì không nghe chúng ta. Từ điều này chúng ta biết Linh của lẽ thật và linh của sự lừa dối.",
-      "<i>Anh em</i> yêu dấu ơi, chúng ta hãy yêu thương nhau, vì tình yêu ra từ Đức Chúa Trời; người nào yêu thương thì được sinh bởi Đức Chúa Trời và biết Đức Chúa Trời.",
-      "Ai không yêu thương thì không biết Đức Chúa Trời, vì Đức Chúa Trời là tình yêu.",
-      "Tình yêu của Đức Chúa Trời được tỏ ra giữa chúng ta trong điều này: Đức Chúa Trời đã sai Con độc sinh của Ngài vào thế giới hầu cho chúng ta có sự sống và sống qua Ngài.",
-      "Tình yêu ở trong điều này: Không phải chúng ta đã yêu Đức Chúa Trời nhưng Ngài đã yêu chúng ta và đã sai Con Ngài làm sự vãn hồi vì các tội phạm của chúng ta.",
-      "<i>Anh em</i> yêu dấu ơi, nếu Đức Chúa Trời đã yêu chúng ta như vậy thì chúng ta cũng phải yêu thương nhau.",
-      "Chưa ai từng thấy Đức Chúa Trời bao giờ; nếu chúng ta yêu thương nhau thì Đức Chúa Trời luôn ở trong chúng ta, và tình yêu của Ngài được hoàn hảo trong chúng ta.",
-      "Do điều này mà chúng ta biết mình luôn ở trong Ngài và Ngài trong chúng ta: Ngài đã ban cho chúng ta ra từ Linh Ngài.",
-      "Chúng tôi đã ngắm xem và làm chứng rằng Cha đã sai phái Con tức là Đấng cứu rỗi của thế giới.",
-      "Hễ người nào thừa nhận Jesus là Con Đức Chúa Trời thì Đức Chúa Trời luôn ở trong người ấy và người ấy trong Đức Chúa Trời.",
-      "Chúng ta biết và tin tình yêu mà Đức Chúa Trời có trong chúng ta. Đức Chúa Trời là tình yêu; ai luôn ở trong tình yêu thì luôn ở trong Đức Chúa Trời, và Đức Chúa Trời luôn ở trong người ấy.",
-      "Do điều này mà tình yêu được hoàn hảo đối với chúng ta hầu cho chúng ta có sự dạn dĩ trong ngày phán xét, vì như Ngài thể nào thì chúng ta cũng thể ấy trong thế giới này.",
-      "Không có sự sợ hãi trong tình yêu, nhưng tình yêu hoàn hảo ném bỏ sự sợ hãi, vì sự sợ hãi có hình phạt, và ai sợ hãi thì chưa được hoàn hảo trong tình yêu.",
-      "Chúng ta yêu vì Ngài đã yêu chúng ta trước.",
-      "Nếu ai nói: “Tôi yêu Đức Chúa Trời” mà lại ghét anh em mình thì là kẻ nói dối, vì ai không yêu anh em mình, là người mình thấy, thì không thể yêu Đức Chúa Trời, Đấng mình chưa thấy.",
-      "Và đây là điều răn mà chúng ta có từ Ngài: Ai yêu Đức Chúa Trời thì cũng yêu anh em mình."
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "<i>Anh em</i> yêu dấu ơi, đừng tin mọi linh, nhưng hãy chứng minh xem các linh có thuộc về Đức Chúa Trời không, vì nhiều tiên tri giả đã đi ra mà vào thế giới."
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "Do điều này mà anh em biết Linh của Đức Chúa Trời: Hễ linh nào thừa nhận Jesus Christ đã đến trong xác thịt thì thuộc về Đức Chúa Trời,"
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "còn hễ linh nào không thừa nhận Jesus thì không thuộc về Đức Chúa Trời; đây là <i>linh</i> của anti-christ mà anh em đã nghe nó đang đến và bây giờ đã ở trong thế giới rồi."
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "Hỡi <i>anh em là</i> các con trẻ, anh em thuộc về Đức Chúa Trời và đã đắc thắng chúng, vì Đấng ở trong anh em lớn hơn kẻ ở trong thế giới."
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "Chúng thuộc về thế giới; vì vậy, <i>điều</i> chúng nói <i>cũng</i> ra từ thế giới, và thế giới nghe chúng."
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "Chúng ta thuộc về Đức Chúa Trời; ai biết Đức Chúa Trời thì nghe chúng ta; ai không thuộc về Đức Chúa Trời thì không nghe chúng ta. Từ điều này chúng ta biết Linh của lẽ thật và linh của sự lừa dối."
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "<i>Anh em</i> yêu dấu ơi, chúng ta hãy yêu thương nhau, vì tình yêu ra từ Đức Chúa Trời; người nào yêu thương thì được sinh bởi Đức Chúa Trời và biết Đức Chúa Trời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "Ai không yêu thương thì không biết Đức Chúa Trời, vì Đức Chúa Trời là tình yêu."
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "Tình yêu của Đức Chúa Trời được tỏ ra giữa chúng ta trong điều này: Đức Chúa Trời đã sai Con độc sinh của Ngài vào thế giới hầu cho chúng ta có sự sống và sống qua Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "Tình yêu ở trong điều này: Không phải chúng ta đã yêu Đức Chúa Trời nhưng Ngài đã yêu chúng ta và đã sai Con Ngài làm sự vãn hồi vì các tội phạm của chúng ta."
+      },
+      {
+        "type": "verse",
+        "verse_no": 11,
+        "content": "<i>Anh em</i> yêu dấu ơi, nếu Đức Chúa Trời đã yêu chúng ta như vậy thì chúng ta cũng phải yêu thương nhau."
+      },
+      {
+        "type": "verse",
+        "verse_no": 12,
+        "content": "Chưa ai từng thấy Đức Chúa Trời bao giờ; nếu chúng ta yêu thương nhau thì Đức Chúa Trời luôn ở trong chúng ta, và tình yêu của Ngài được hoàn hảo trong chúng ta."
+      },
+      {
+        "type": "verse",
+        "verse_no": 13,
+        "content": "Do điều này mà chúng ta biết mình luôn ở trong Ngài và Ngài trong chúng ta: Ngài đã ban cho chúng ta ra từ Linh Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 14,
+        "content": "Chúng tôi đã ngắm xem và làm chứng rằng Cha đã sai phái Con tức là Đấng cứu rỗi của thế giới."
+      },
+      {
+        "type": "verse",
+        "verse_no": 15,
+        "content": "Hễ người nào thừa nhận Jesus là Con Đức Chúa Trời thì Đức Chúa Trời luôn ở trong người ấy và người ấy trong Đức Chúa Trời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 16,
+        "content": "Chúng ta biết và tin tình yêu mà Đức Chúa Trời có trong chúng ta. Đức Chúa Trời là tình yêu; ai luôn ở trong tình yêu thì luôn ở trong Đức Chúa Trời, và Đức Chúa Trời luôn ở trong người ấy."
+      },
+      {
+        "type": "verse",
+        "verse_no": 17,
+        "content": "Do điều này mà tình yêu được hoàn hảo đối với chúng ta hầu cho chúng ta có sự dạn dĩ trong ngày phán xét, vì như Ngài thể nào thì chúng ta cũng thể ấy trong thế giới này."
+      },
+      {
+        "type": "verse",
+        "verse_no": 18,
+        "content": "Không có sự sợ hãi trong tình yêu, nhưng tình yêu hoàn hảo ném bỏ sự sợ hãi, vì sự sợ hãi có hình phạt, và ai sợ hãi thì chưa được hoàn hảo trong tình yêu."
+      },
+      {
+        "type": "verse",
+        "verse_no": 19,
+        "content": "Chúng ta yêu vì Ngài đã yêu chúng ta trước."
+      },
+      {
+        "type": "verse",
+        "verse_no": 20,
+        "content": "Nếu ai nói: “Tôi yêu Đức Chúa Trời” mà lại ghét anh em mình thì là kẻ nói dối, vì ai không yêu anh em mình, là người mình thấy, thì không thể yêu Đức Chúa Trời, Đấng mình chưa thấy."
+      },
+      {
+        "type": "verse",
+        "verse_no": 21,
+        "content": "Và đây là điều răn mà chúng ta có từ Ngài: Ai yêu Đức Chúa Trời thì cũng yêu anh em mình."
+      }
     ],
     "5": [
-      "Hễ ai tin Jesus là Đấng Christ thì được sinh bởi Đức Chúa Trời; hễ ai yêu Đấng sinh thành thì cũng yêu người được sinh bởi Ngài.",
-      "Do điều này mà chúng ta biết mình yêu con cái của Đức Chúa Trời, <i>ấy là</i> khi chúng ta yêu Đức Chúa Trời và thực hiện các điều răn của Ngài.",
-      "Vì đây là tình yêu của Đức Chúa Trời: Chúng ta giữ các điều răn của Ngài; và các điều răn của Ngài không phải là gánh nặng.",
-      "Vì mọi sự được sinh bởi Đức Chúa Trời đều đắc thắng thế giới; và đây là sự chiến thắng mà đã đắc thắng thế giới – đức tin của chúng ta.",
-      "Ai là người đắc thắng thế giới nếu không phải là người tin rằng Jesus là Con Đức Chúa Trời?",
-      "Đây là Đấng đã đến qua nước và huyết, tức là Jesus Christ; không chỉ trong nước mà thôi, song trong nước và trong huyết; và Linh là Đấng làm chứng, vì Linh là thực tại.",
-      "Vì có ba <i>bên</i> làm chứng:",
-      "Linh, nước và huyết; và cả ba dẫn đến một điều.",
-      "Nếu chúng ta nhận lời chứng của con người thì lời chứng của Đức Chúa Trời còn lớn hơn, vì đây là lời chứng của Đức Chúa Trời làm chứng về Con Ngài.",
-      "Ai tin vào Con Đức Chúa Trời thì có lời chứng trong người ấy; ai không tin Đức Chúa Trời thì làm cho Ngài thành kẻ nói dối, vì người ấy không tin nơi lời chứng mà Đức Chúa Trời đã làm chứng về Con Ngài.",
-      "Và đây là lời chứng: Đức Chúa Trời đã ban cho chúng ta sự sống đời đời, và sự sống này ở trong Con Ngài.",
-      "Ai có Con <i>Ngài</i> thì có sự sống; ai không có Con Đức Chúa Trời thì không có sự sống.",
-      "Tôi đã viết những điều này cho anh em để anh em biết mình có sự sống đời đời, cho anh em là người tin vào danh của Con Đức Chúa Trời.",
-      "Và đây là sự dạn dĩ mà chúng ta có đối với Ngài: Nếu chúng ta cầu xin bất cứ điều gì theo ý muốn Ngài thì Ngài nghe chúng ta.",
-      "Nếu chúng ta biết Ngài nghe bất cứ điều gì chúng ta cầu xin thì chúng ta biết mình có được những điều đã thỉnh cầu nơi Ngài.",
-      "Nếu ai thấy anh em mình phạm một tội không đến nỗi chết thì hãy cầu xin và ban sự sống cho người ấy, cho những người phạm tội không đến nỗi chết. Có tội đến nỗi chết, nhưng tôi không nói nên thỉnh cầu về <i>tội</i> đó.",
-      "Mọi sự bất chính đều là tội, nhưng cũng có tội không đến nỗi chết.",
-      "Chúng ta biết rằng người nào được sinh bởi Đức Chúa Trời thì không phạm tội, nhưng ai được sinh bởi Đức Chúa Trời thì giữ chính mình, và kẻ ác không chạm đến người ấy.",
-      "Chúng ta biết mình thuộc về Đức Chúa Trời, còn cả thế giới nằm trong kẻ ác.",
-      "Chúng ta biết rằng Con Đức Chúa Trời đã đến và ban sự hiểu biết cho chúng ta để chúng ta có thể biết Ngài là Đấng thật; và chúng ta ở trong Ngài là Đấng thật, trong Con Ngài là Jesus Christ. Đây là Đức Chúa Trời thật và sự sống đời đời.",
-      "Các con trẻ ơi, hãy giữ mình khỏi hình tượng."
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "Hễ ai tin Jesus là Đấng Christ thì được sinh bởi Đức Chúa Trời; hễ ai yêu Đấng sinh thành thì cũng yêu người được sinh bởi Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "Do điều này mà chúng ta biết mình yêu con cái của Đức Chúa Trời, <i>ấy là</i> khi chúng ta yêu Đức Chúa Trời và thực hiện các điều răn của Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "Vì đây là tình yêu của Đức Chúa Trời: Chúng ta giữ các điều răn của Ngài; và các điều răn của Ngài không phải là gánh nặng."
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "Vì mọi sự được sinh bởi Đức Chúa Trời đều đắc thắng thế giới; và đây là sự chiến thắng mà đã đắc thắng thế giới – đức tin của chúng ta."
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "Ai là người đắc thắng thế giới nếu không phải là người tin rằng Jesus là Con Đức Chúa Trời?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "Đây là Đấng đã đến qua nước và huyết, tức là Jesus Christ; không chỉ trong nước mà thôi, song trong nước và trong huyết; và Linh là Đấng làm chứng, vì Linh là thực tại."
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "Vì có ba <i>bên</i> làm chứng:"
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "Linh, nước và huyết; và cả ba dẫn đến một điều."
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "Nếu chúng ta nhận lời chứng của con người thì lời chứng của Đức Chúa Trời còn lớn hơn, vì đây là lời chứng của Đức Chúa Trời làm chứng về Con Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "Ai tin vào Con Đức Chúa Trời thì có lời chứng trong người ấy; ai không tin Đức Chúa Trời thì làm cho Ngài thành kẻ nói dối, vì người ấy không tin nơi lời chứng mà Đức Chúa Trời đã làm chứng về Con Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 11,
+        "content": "Và đây là lời chứng: Đức Chúa Trời đã ban cho chúng ta sự sống đời đời, và sự sống này ở trong Con Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 12,
+        "content": "Ai có Con <i>Ngài</i> thì có sự sống; ai không có Con Đức Chúa Trời thì không có sự sống."
+      },
+      {
+        "type": "verse",
+        "verse_no": 13,
+        "content": "Tôi đã viết những điều này cho anh em để anh em biết mình có sự sống đời đời, cho anh em là người tin vào danh của Con Đức Chúa Trời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 14,
+        "content": "Và đây là sự dạn dĩ mà chúng ta có đối với Ngài: Nếu chúng ta cầu xin bất cứ điều gì theo ý muốn Ngài thì Ngài nghe chúng ta."
+      },
+      {
+        "type": "verse",
+        "verse_no": 15,
+        "content": "Nếu chúng ta biết Ngài nghe bất cứ điều gì chúng ta cầu xin thì chúng ta biết mình có được những điều đã thỉnh cầu nơi Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 16,
+        "content": "Nếu ai thấy anh em mình phạm một tội không đến nỗi chết thì hãy cầu xin và ban sự sống cho người ấy, cho những người phạm tội không đến nỗi chết. Có tội đến nỗi chết, nhưng tôi không nói nên thỉnh cầu về <i>tội</i> đó."
+      },
+      {
+        "type": "verse",
+        "verse_no": 17,
+        "content": "Mọi sự bất chính đều là tội, nhưng cũng có tội không đến nỗi chết."
+      },
+      {
+        "type": "verse",
+        "verse_no": 18,
+        "content": "Chúng ta biết rằng người nào được sinh bởi Đức Chúa Trời thì không phạm tội, nhưng ai được sinh bởi Đức Chúa Trời thì giữ chính mình, và kẻ ác không chạm đến người ấy."
+      },
+      {
+        "type": "verse",
+        "verse_no": 19,
+        "content": "Chúng ta biết mình thuộc về Đức Chúa Trời, còn cả thế giới nằm trong kẻ ác."
+      },
+      {
+        "type": "verse",
+        "verse_no": 20,
+        "content": "Chúng ta biết rằng Con Đức Chúa Trời đã đến và ban sự hiểu biết cho chúng ta để chúng ta có thể biết Ngài là Đấng thật; và chúng ta ở trong Ngài là Đấng thật, trong Con Ngài là Jesus Christ. Đây là Đức Chúa Trời thật và sự sống đời đời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 21,
+        "content": "Các con trẻ ơi, hãy giữ mình khỏi hình tượng."
+      }
     ]
   }
 }

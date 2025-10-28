@@ -1,122 +1,554 @@
 {
-    "verse_data": {
-        "1": [
-          "Gia-cơ, nô lệ của Đức Chúa Trời và của Chúa Jesus Christ, <i>viết</i> cho mười hai chi phái đang tản trú: Chào mừng!",
-          "Anh em tôi ơi, hễ khi nào lâm vào những thử thách khác nhau thì hãy kể <i>đó</i> hoàn toàn là niềm vui,",
-          "biết rằng việc chứng minh đức tin anh em sinh ra nhẫn nại.",
-          "Và nhẫn nại <i>cũng</i> phải có công việc hoàn hảo hầu cho anh em được hoàn hảo và vẹn toàn, không thiếu hụt gì.",
-          "Nhưng nếu ai trong anh em thiếu khôn ngoan, người ấy hãy cầu xin Đức Chúa Trời, Đấng ban cho mọi người cách hào phóng, không nhục mạ <i>ai,</i> rồi người sẽ được ban cho.",
-          "Nhưng người ấy phải cầu xin trong đức tin, không nghi ngờ gì, vì kẻ nghi ngờ giống như sóng biển, bị gió đưa đẩy và dồi dập.",
-          "Người ấy đừng tưởng rằng mình sẽ nhận được gì từ Chúa,",
-          "<i>vì đó là</i> người hai lòng, không vững vàng trong mọi đường lối mình.",
-          "Người anh em <i>có thân phận</i> thấp hèn hãy khoe khoang khi được tôn cao,",
-          "còn người giàu cũng <i>hãy khoe khoang</i> khi bị hạ xuống, bởi người sẽ qua đi như hoa cỏ.",
-          "Vì mặt trời mọc lên nóng bức sẽ làm cỏ héo, hoa rơi và vẻ đẹp nó sẽ tiêu biến; người giàu cũng sẽ suy tàn như thế trong những điều họ theo đuổi.",
-          "Phước hạnh cho người nhẫn chịu thử thách, vì khi đã được chuẩn thuận bởi thử nghiệm, người ấy sẽ nhận lãnh mũ miện sự sống mà Ngài đã hứa cho những người yêu Ngài.",
-          "Khi bị cám dỗ, đừng ai nói: “Tôi bị Đức Chúa Trời cám dỗ”, vì Đức Chúa Trời không thể bị điều ác cám dỗ; chính Ngài cũng không cám dỗ ai.",
-          "Nhưng mỗi người bị cám dỗ khi bị chính dục vọng của mình lôi kéo, dẫn dụ;",
-          "còn dục vọng, sau khi được thai nghén thì sinh ra tội; và tội, khi đã lớn lên trọn vẹn thì sản sinh sự chết.",
-          "Anh em yêu dấu của tôi ơi, đừng để bị lừa dối.",
-          "Mọi sự ban cho tốt lành và mỗi ân tứ hoàn hảo đều từ trên, từ Cha của các ánh sáng mà xuống, nơi Ngài không có biến động hoặc bóng đổi dời.",
-          "Ngài đã sinh ra chúng ta bởi lời lẽ thật, dự định để chúng ta là một loại trái đầu mùa trong các tạo vật của Ngài.",
-          "Anh em yêu dấu của tôi ơi, anh em biết <i>điều này;</i> song mỗi người phải mau nghe, chậm nói, chậm thịnh nộ,",
-          "vì cơn thịnh nộ của con người không hoàn thành sự công chính của Đức Chúa Trời.",
-          "Vậy, hãy dứt bỏ mọi bẩn thỉu và vô số hiểm độc, lấy sự nhu mì mà nhận lãnh lời được trồng<i>,</i> là lời có thể cứu rỗi hồn anh em.",
-          "Hãy trở nên người thực hiện lời, đừng chỉ là người nghe mà tự đánh lừa mình.",
-          "Bởi lẽ, nếu ai <i>chỉ</i> là người nghe lời mà không là người thực hiện thì giống như người xem mặt thật của mình trong gương,",
-          "vì người ấy xem thấy mình rồi bỏ đi, liền quên mình là người thể nào.",
-          "Còn ai xem xét kĩ càng luật hoàn hảo, tức <i>luật</i> của sự tự do, và cứ giữ <i>nó,</i> không trở nên người nghe rồi quên bèn là người thực hiện công việc, thì người ấy sẽ được phước hạnh trong việc mình làm.",
-          "Nếu ai nghĩ mình sùng đạo <i>mà lại</i> không kiềm chế lưỡi mình, song lại lừa dối lòng mình, thì sự sùng đạo của người ấy là hư không.",
-          "Đây là sự sùng đạo thuần khiết, không nhơ bẩn trước mặt Đức Chúa Trời và Cha chúng ta: thăm viếng kẻ mồ côi và góa phụ trong hoạn nạn của họ, <i>và</i> giữ mình không bị nhơ nhuốc bởi thế giới."
-        ],
-        "2": [
-          "Anh em tôi ơi, <i>anh em</i> đã giữ đức tin của Chúa Jesus Christ vinh hiển của chúng ta thì đừng thiên vị ai.",
-          "Vì nếu có một người đeo nhẫn vàng, ăn mặc sang trọng vào nhà hội của anh em, và có một người nghèo ăn mặc bẩn thỉu cũng vào,",
-          "rồi anh em nhìn người ăn mặc sang trọng mà nói: “Mời anh ngồi chỗ tốt này” còn đối với người nghèo kia thì nói: “Anh hãy đứng đó hoặc ngồi dưới bệ chân tôi”",
-          "thì chẳng phải anh em đã tạo sự phân biệt giữa vòng anh em và trở nên thẩm phán có ý xấu sao?",
-          "Anh em yêu dấu của tôi ơi, hãy lắng nghe: Chẳng phải Đức Chúa Trời đã chọn người nghèo trong thế giới này <i>để được</i> giàu có trong đức tin và thừa kế vương quốc mà Ngài đã hứa cho những người yêu Ngài sao?",
-          "Song anh em lại sỉ nhục người nghèo. Chẳng phải kẻ giàu áp bức anh em và kéo anh em đến tòa án sao?",
-          "Chẳng phải họ phỉ báng danh đáng tôn trọng mà bởi đó anh em đã được gọi sao?",
-          "Nếu thật sự anh em đang làm trọn luật hoàng gia theo Kinh văn: “Con hãy yêu người lân cận như chính mình” thì anh em làm tốt lắm;",
-          "song nếu anh em thiên vị người ta thì anh em phạm tội, bị kinh luật kết án là kẻ vi phạm.",
-          "Vì hễ ai giữ cả kinh luật nhưng chỉ vấp một <i>điều</i> thì cũng trở nên người phạm tất cả.",
-          "Bởi lẽ, Đấng đã phán: “Chớ phạm tội ngoại tình” thì cũng phán: “Chớ giết người.” Vậy, nếu anh không phạm tội ngoại tình nhưng lại giết người thì đã trở nên kẻ vi phạm kinh luật.",
-          "Hãy nói thể nào đó và làm thể nào đó như người sắp chịu phán xét bởi luật của sự tự do.",
-          "Vì sự phán xét không thương xót kẻ chẳng thương xót; nhưng sự thương xót thắng hơn sự phán xét.",
-          "Anh em tôi ơi, nếu ai nói mình có đức tin song không có công việc thì ích lợi gì? Đức tin ấy có thể cứu người đó được không?",
-          "Nếu anh em hoặc chị em nào đang không có đồ mặc và thiếu thức ăn hằng ngày",
-          "mà có người trong anh em nói với họ: “Hãy đi trong bình an, hãy ấm và no” nhưng không cung cấp các nhu cầu thuộc thể cho họ, thì ích lợi gì?",
-          "Đức tin cũng vậy, nếu không có công việc thì tự nó chết.",
-          "Song có người sẽ nói: “Anh có đức tin, còn tôi có công việc; hãy chỉ cho tôi thấy đức tin không có công việc của anh, rồi tôi sẽ chỉ cho anh thấy đức tin bởi công việc của tôi.",
-          "Anh tin rằng Đức Chúa Trời là duy nhất; anh tin đúng; các quỷ cũng tin và run sợ.”",
-          "Nhưng hỡi người phù phiếm kia, anh có muốn biết rằng đức tin không có công việc là vô dụng chăng?",
-          "Chẳng phải Áp-ra-ham, tổ phụ chúng ta, được xưng công chính bởi công việc khi ông dâng I-sác con mình trên bàn thờ sao?",
-          "Anh thấy rằng đức tin đồng hành với công việc của ông, và bởi công việc này mà đức tin được hoàn hảo.",
-          "Và Kinh văn được ứng nghiệm rằng: “Áp-ra-ham tin Đức Chúa Trời, và điều đó được kể là công chính cho ông”; rồi ông được gọi là bạn của Đức Chúa Trời.",
-          "Anh thấy rằng một người được xưng công chính bởi công việc chứ không chỉ bởi đức tin.",
-          "Cũng vậy, chẳng phải kĩ nữ Ra-háp được xưng công chính bởi công việc khi bà tiếp đón các sứ giả và tiễn <i>họ</i> đi bằng đường khác sao?",
-          "Vì như thân thể không có linh là chết thể nào thì đức tin không có công việc cũng chết thể ấy."
-        ],
-        "3": [
-          "Anh em tôi ơi, đừng có nhiều người làm thầy, vì biết rằng chúng ta sẽ chịu phán xét nặng hơn.",
-          "Vì tất cả chúng ta đều vấp trong nhiều điều. Nếu ai không vấp trong lời nói, ấy là người hoàn hảo, cũng có thể kiềm chế cả thân thể mình.",
-          "Nếu chúng ta tra cương vào miệng ngựa mà khiến chúng phục mình thì chúng ta cũng điều khiển được toàn thân chúng.",
-          "Hãy xem, thuyền bè cũng vậy, dù rất lớn và bị gió mạnh đưa đẩy, song cũng được điều khiển bởi một bánh lái rất nhỏ theo bất cứ hướng nào hoa tiêu muốn.",
-          "Cũng vậy, lưỡi tuy là một chi thể nhỏ song lại khoe khoang những việc lớn. Kìa, một đốm lửa rất nhỏ cũng có thể đốt cháy cả khu rừng lớn!",
-          "Lưỡi cũng là lửa; là thế giới bất chính, lưỡi được đặt giữa các chi thể chúng ta, làm toàn thân ô nhiễm và đốt cháy cả cuộc đời, rồi bị lửa Ghê-hen-na đốt cháy.",
-          "Mọi bản chất, cả của thú vật lẫn chim chóc, cả của bò sát lẫn sinh vật biển, đều bị chế ngự, và đã bị bản chất con người chế ngự;",
-          "nhưng lưỡi thì không ai giữa vòng con người có thể chế ngự được; <i>nó là</i> một vật ác không ngừng nghỉ, đầy chất độc chết người.",
-          "Chúng ta dùng lưỡi chúc tụng Chúa và Cha, và cũng dùng lưỡi rủa sả con người được làm nên theo hình dạng của Đức Chúa Trời.",
-          "Từ một miệng mà ra cả lời chúc tụng lẫn nguyền rủa. Anh em tôi ơi, không nên như vậy.",
-          "Suối ra từ một khe lại phun ra cả <i>nước</i> ngọt lẫn <i>nước</i> đắng sao?",
-          "Anh em tôi ơi, có thể nào cây vả lại ra trái ô-liu hoặc cây nho lại <i>ra</i> trái vả? Nước mặn cũng không thể ra <i>nước</i> ngọt.",
-          "Ai khôn ngoan và hiểu biết giữa anh em? Người ấy hãy lấy cách sống tốt đẹp mà bày tỏ các công việc mình trong sự nhu mì của sự khôn ngoan.",
-          "Nhưng nếu anh em có sự ganh ghét đắng cay và tham vọng ích kỉ trong lòng mình thì đừng khoe khoang và nói dối nghịch lại lẽ thật.",
-          "Sự khôn ngoan này không phải là điều từ trên xuống, bèn là thuộc đất, thuộc hồn, thuộc quỷ.",
-          "Vì nơi nào có sự ganh ghét và tham vọng ích kỉ thì nơi đó có sự vô trật tự và mọi thực hành vô giá trị.",
-          "Nhưng sự khôn ngoan từ trên thì trước nhất là thuần khiết, sau đó là hòa bình, khoan nhẫn, nhu hòa, đầy thương xót và trái tốt lành, không thiên kiến, không đạo đức giả.",
-          "Trái của sự công chính được gieo trong hòa bình bởi những người kiến tạo hòa bình."
-        ],
-        "4": [
-          "Chiến tranh và đấu đá giữa anh em <i>đến từ</i> đâu? Ấy chẳng phải là từ điều này, từ các thú vui đang giao chiến trong các chi thể của anh em sao?",
-          "Anh em ham muốn mà không có <i>gì;</i> anh em giết chóc và ganh ghét mà không thể đạt được <i>gì;</i> anh em đấu đá và gây chiến. Anh em không có vì anh em không cầu xin;",
-          "anh em cầu xin mà không nhận được vì anh em cầu xin bậy để tiêu phí cho các thú vui của mình.",
-          "Hỡi những kẻ ngoại tình, các người không biết rằng làm bạn với thế giới là thù nghịch với Đức Chúa Trời sao? Vì thế, hễ ai quyết định làm bạn với thế giới thì bị cấu thành kẻ thù của Đức Chúa Trời.",
-          "Hay các người tưởng Kinh văn nói: “Linh mà Ngài đã khiến cư ngụ trong chúng ta, nóng lòng đến nỗi ghen tuông” là vô ích?",
-          "Nhưng Ngài ban ân điển lớn hơn; vì vậy, có lời phán: “Đức Chúa Trời kháng cự kẻ kiêu ngạo nhưng ban ân điển cho người khiêm nhường.”",
-          "Vì thế, hãy thuận phục Đức Chúa Trời; hãy chống trả ma quỷ, rồi hắn sẽ trốn khỏi anh em.",
-          "Hãy đến gần Đức Chúa Trời, rồi Ngài sẽ đến gần anh em. Hỡi tội nhân, hãy rửa tay đi; hỡi kẻ hai lòng, hãy thanh tẩy lòng đi.",
-          "Hãy nhẫn chịu khốn khổ, hãy đau buồn và khóc lóc. Hãy đổi cười ra khóc, đổi vui ra buồn.",
-          "Hãy hạ mình xuống trước mặt Chúa, rồi Ngài sẽ tôn anh em lên.",
-          "Anh em ơi, đừng nói nghịch nhau. Ai nói nghịch một anh em <i></i>hoặc phán xét anh em mình là nói nghịch kinh luật và phán xét kinh luật. Nhưng nếu anh phán xét kinh luật thì anh không phải là người thực hiện kinh luật bèn là thẩm phán.",
-          "Chỉ có một Đấng ban hành kinh luật và Thẩm phán, là Đấng có thể cứu và diệt. Nhưng anh là ai mà phán xét người lân cận mình?",
-          "Này, các anh nói: “Hôm nay hoặc ngày mai chúng tôi sẽ đến thành này hoặc thành kia rồi ở đó một năm, kinh doanh và kiếm lời.”",
-          "Song các anh lại không biết việc ngày mai và sự sống các anh thể nào, vì các anh là hơi nước hiện ra một chút rồi biến mất.",
-          "Thay vào đó, các anh <i>nên</i> nói: “Nếu Chúa muốn, chúng ta sẽ vừa sống vừa làm việc này việc kia.”",
-          "Nhưng bây giờ, các anh lại khoe khoang trong sự ngạo mạn của mình; mọi khoe khoang như vậy là gian ác.",
-          "Vậy, người nào biết làm thiện mà không làm thì đối với người ấy, đó là tội."
-        ],
-        "5": [
-          "Này, hỡi người giàu, hãy khóc lóc, kêu la về những khốn khổ sắp đến trên các người!",
-          "Của cải các người bị mục nát, y phục các người bị sâu mọt ăn;",
-          "vàng bạc của các người bị hoen gỉ; sự hoen gỉ đó sẽ là chứng cớ nghịch lại các người và sẽ ăn thịt các người như lửa. Các người đã tích trữ báu vật trong những ngày cuối cùng.",
-          "Kìa, tiền công của thợ cắt <i>lúa trong</i> ruộng các người mà các người đã giữ lại, đang kêu lên; và tiếng kêu của thợ gặt đã đến tai Chúa vạn quân.",
-          "Các người sống xa hoa trên đất, buông mình vào thú vui; các người nuôi béo lòng mình trong ngày đánh giết.",
-          "Các người đã định tội và giết người công chính, và người ấy không kháng cự các người.",
-          "Vậy anh em ơi, hãy bền chịu cho tới khi Chúa đến. Kìa, người nông dân háo hức trông đợi bông trái quý giá của đất, luyện tập bền chịu cho đến khi được mưa sớm và muộn.",
-          "Anh em cũng hãy bền chịu; hãy làm cho lòng mình vững vàng vì sự hiện đến của Chúa đã gần.",
-          "Anh em ơi, đừng phàn nàn nhau kẻo bị phán xét. Kìa, Thẩm phán đang đứng trước cửa.",
-          "Anh em ơi, về việc chịu khốn khổ và bền chịu, hãy lấy các tiên tri đã phát ngôn trong danh Chúa làm gương mẫu.",
-          "Kìa, chúng tôi gọi những người nhẫn chịu ấy là được phước. Anh em đã nghe về sự nhẫn nại của Gióp và đã thấy kết cục của ông từ Chúa, rằng Chúa đầy từ tâm và trắc ẩn.",
-          "Nhưng anh em tôi ơi, trên hết mọi sự, đừng thề, đừng chỉ trời, đừng chỉ đất, hay dùng bất cứ lời thề nào khác; nhưng phải thì <i>nói</i> phải, không thì <i>nói</i> không, hầu cho anh em không sa vào sự phán xét.",
-          "Giữa anh em có ai chịu khốn khổ chăng? Người ấy hãy cầu nguyện. Có ai vui vẻ chăng? Người ấy hãy hát ngợi khen.",
-          "Giữa anh em có ai đau ốm chăng? Người ấy hãy mời các trưởng lão của Hội thánh đến; hãy để họ cầu nguyện, xức dầu cho người ấy trong danh Chúa.",
-          "Lời cầu nguyện của đức tin sẽ cứu người bệnh, rồi Chúa sẽ vực người ấy dậy; nếu người ấy đã phạm tội thì sẽ được tha thứ.",
-          "Vì thế, hãy xưng nhận các tội phạm mình với nhau và cầu nguyện cho nhau để anh em được chữa lành. Lời cầu xin của người công chính rất hiệu quả trong sự vận hành.",
-          "Ê-li vốn là người có tính tình giống như chúng ta, và ông đã tha thiết cầu nguyện để trời đừng mưa thì không có mưa trên đất trong ba năm sáu tháng.",
-          "Rồi ông cầu nguyện lại thì trời ban mưa, và đất sinh bông trái.",
-          "Anh em tôi ơi, nếu có người nào trong anh em bị dẫn dụ xa rời lẽ thật và ai đó đưa người ấy trở lại",
-          "thì người ấy phải biết rằng ai đem một tội nhân lầm đường lạc lối trở về là cứu một hồn người khỏi sự chết và che phủ vô số tội."
-        ]
+  "verse_data": {
+    "1": [
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "Gia-cơ, nô lệ của Đức Chúa Trời và của Chúa Jesus Christ, <i>viết</i> cho mười hai chi phái đang tản trú: Chào mừng!"
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "Anh em tôi ơi, hễ khi nào lâm vào những thử thách khác nhau thì hãy kể <i>đó</i> hoàn toàn là niềm vui,"
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "biết rằng việc chứng minh đức tin anh em sinh ra nhẫn nại."
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "Và nhẫn nại <i>cũng</i> phải có công việc hoàn hảo hầu cho anh em được hoàn hảo và vẹn toàn, không thiếu hụt gì."
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "Nhưng nếu ai trong anh em thiếu khôn ngoan, người ấy hãy cầu xin Đức Chúa Trời, Đấng ban cho mọi người cách hào phóng, không nhục mạ <i>ai,</i> rồi người sẽ được ban cho."
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "Nhưng người ấy phải cầu xin trong đức tin, không nghi ngờ gì, vì kẻ nghi ngờ giống như sóng biển, bị gió đưa đẩy và dồi dập."
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "Người ấy đừng tưởng rằng mình sẽ nhận được gì từ Chúa,"
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "<i>vì đó là</i> người hai lòng, không vững vàng trong mọi đường lối mình."
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "Người anh em <i>có thân phận</i> thấp hèn hãy khoe khoang khi được tôn cao,"
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "còn người giàu cũng <i>hãy khoe khoang</i> khi bị hạ xuống, bởi người sẽ qua đi như hoa cỏ."
+      },
+      {
+        "type": "verse",
+        "verse_no": 11,
+        "content": "Vì mặt trời mọc lên nóng bức sẽ làm cỏ héo, hoa rơi và vẻ đẹp nó sẽ tiêu biến; người giàu cũng sẽ suy tàn như thế trong những điều họ theo đuổi."
+      },
+      {
+        "type": "verse",
+        "verse_no": 12,
+        "content": "Phước hạnh cho người nhẫn chịu thử thách, vì khi đã được chuẩn thuận bởi thử nghiệm, người ấy sẽ nhận lãnh mũ miện sự sống mà Ngài đã hứa cho những người yêu Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 13,
+        "content": "Khi bị cám dỗ, đừng ai nói: “Tôi bị Đức Chúa Trời cám dỗ”, vì Đức Chúa Trời không thể bị điều ác cám dỗ; chính Ngài cũng không cám dỗ ai."
+      },
+      {
+        "type": "verse",
+        "verse_no": 14,
+        "content": "Nhưng mỗi người bị cám dỗ khi bị chính dục vọng của mình lôi kéo, dẫn dụ;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 15,
+        "content": "còn dục vọng, sau khi được thai nghén thì sinh ra tội; và tội, khi đã lớn lên trọn vẹn thì sản sinh sự chết."
+      },
+      {
+        "type": "verse",
+        "verse_no": 16,
+        "content": "Anh em yêu dấu của tôi ơi, đừng để bị lừa dối."
+      },
+      {
+        "type": "verse",
+        "verse_no": 17,
+        "content": "Mọi sự ban cho tốt lành và mỗi ân tứ hoàn hảo đều từ trên, từ Cha của các ánh sáng mà xuống, nơi Ngài không có biến động hoặc bóng đổi dời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 18,
+        "content": "Ngài đã sinh ra chúng ta bởi lời lẽ thật, dự định để chúng ta là một loại trái đầu mùa trong các tạo vật của Ngài."
+      },
+      {
+        "type": "verse",
+        "verse_no": 19,
+        "content": "Anh em yêu dấu của tôi ơi, anh em biết <i>điều này;</i> song mỗi người phải mau nghe, chậm nói, chậm thịnh nộ,"
+      },
+      {
+        "type": "verse",
+        "verse_no": 20,
+        "content": "vì cơn thịnh nộ của con người không hoàn thành sự công chính của Đức Chúa Trời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 21,
+        "content": "Vậy, hãy dứt bỏ mọi bẩn thỉu và vô số hiểm độc, lấy sự nhu mì mà nhận lãnh lời được trồng<i>,</i> là lời có thể cứu rỗi hồn anh em."
+      },
+      {
+        "type": "verse",
+        "verse_no": 22,
+        "content": "Hãy trở nên người thực hiện lời, đừng chỉ là người nghe mà tự đánh lừa mình."
+      },
+      {
+        "type": "verse",
+        "verse_no": 23,
+        "content": "Bởi lẽ, nếu ai <i>chỉ</i> là người nghe lời mà không là người thực hiện thì giống như người xem mặt thật của mình trong gương,"
+      },
+      {
+        "type": "verse",
+        "verse_no": 24,
+        "content": "vì người ấy xem thấy mình rồi bỏ đi, liền quên mình là người thể nào."
+      },
+      {
+        "type": "verse",
+        "verse_no": 25,
+        "content": "Còn ai xem xét kĩ càng luật hoàn hảo, tức <i>luật</i> của sự tự do, và cứ giữ <i>nó,</i> không trở nên người nghe rồi quên bèn là người thực hiện công việc, thì người ấy sẽ được phước hạnh trong việc mình làm."
+      },
+      {
+        "type": "verse",
+        "verse_no": 26,
+        "content": "Nếu ai nghĩ mình sùng đạo <i>mà lại</i> không kiềm chế lưỡi mình, song lại lừa dối lòng mình, thì sự sùng đạo của người ấy là hư không."
+      },
+      {
+        "type": "verse",
+        "verse_no": 27,
+        "content": "Đây là sự sùng đạo thuần khiết, không nhơ bẩn trước mặt Đức Chúa Trời và Cha chúng ta: thăm viếng kẻ mồ côi và góa phụ trong hoạn nạn của họ, <i>và</i> giữ mình không bị nhơ nhuốc bởi thế giới."
       }
+    ],
+    "2": [
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "Anh em tôi ơi, <i>anh em</i> đã giữ đức tin của Chúa Jesus Christ vinh hiển của chúng ta thì đừng thiên vị ai."
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "Vì nếu có một người đeo nhẫn vàng, ăn mặc sang trọng vào nhà hội của anh em, và có một người nghèo ăn mặc bẩn thỉu cũng vào,"
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "rồi anh em nhìn người ăn mặc sang trọng mà nói: “Mời anh ngồi chỗ tốt này” còn đối với người nghèo kia thì nói: “Anh hãy đứng đó hoặc ngồi dưới bệ chân tôi”"
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "thì chẳng phải anh em đã tạo sự phân biệt giữa vòng anh em và trở nên thẩm phán có ý xấu sao?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "Anh em yêu dấu của tôi ơi, hãy lắng nghe: Chẳng phải Đức Chúa Trời đã chọn người nghèo trong thế giới này <i>để được</i> giàu có trong đức tin và thừa kế vương quốc mà Ngài đã hứa cho những người yêu Ngài sao?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "Song anh em lại sỉ nhục người nghèo. Chẳng phải kẻ giàu áp bức anh em và kéo anh em đến tòa án sao?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "Chẳng phải họ phỉ báng danh đáng tôn trọng mà bởi đó anh em đã được gọi sao?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "Nếu thật sự anh em đang làm trọn luật hoàng gia theo Kinh văn: “Con hãy yêu người lân cận như chính mình” thì anh em làm tốt lắm;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "song nếu anh em thiên vị người ta thì anh em phạm tội, bị kinh luật kết án là kẻ vi phạm."
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "Vì hễ ai giữ cả kinh luật nhưng chỉ vấp một <i>điều</i> thì cũng trở nên người phạm tất cả."
+      },
+      {
+        "type": "verse",
+        "verse_no": 11,
+        "content": "Bởi lẽ, Đấng đã phán: “Chớ phạm tội ngoại tình” thì cũng phán: “Chớ giết người.” Vậy, nếu anh không phạm tội ngoại tình nhưng lại giết người thì đã trở nên kẻ vi phạm kinh luật."
+      },
+      {
+        "type": "verse",
+        "verse_no": 12,
+        "content": "Hãy nói thể nào đó và làm thể nào đó như người sắp chịu phán xét bởi luật của sự tự do."
+      },
+      {
+        "type": "verse",
+        "verse_no": 13,
+        "content": "Vì sự phán xét không thương xót kẻ chẳng thương xót; nhưng sự thương xót thắng hơn sự phán xét."
+      },
+      {
+        "type": "verse",
+        "verse_no": 14,
+        "content": "Anh em tôi ơi, nếu ai nói mình có đức tin song không có công việc thì ích lợi gì? Đức tin ấy có thể cứu người đó được không?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 15,
+        "content": "Nếu anh em hoặc chị em nào đang không có đồ mặc và thiếu thức ăn hằng ngày"
+      },
+      {
+        "type": "verse",
+        "verse_no": 16,
+        "content": "mà có người trong anh em nói với họ: “Hãy đi trong bình an, hãy ấm và no” nhưng không cung cấp các nhu cầu thuộc thể cho họ, thì ích lợi gì?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 17,
+        "content": "Đức tin cũng vậy, nếu không có công việc thì tự nó chết."
+      },
+      {
+        "type": "verse",
+        "verse_no": 18,
+        "content": "Song có người sẽ nói: “Anh có đức tin, còn tôi có công việc; hãy chỉ cho tôi thấy đức tin không có công việc của anh, rồi tôi sẽ chỉ cho anh thấy đức tin bởi công việc của tôi."
+      },
+      {
+        "type": "verse",
+        "verse_no": 19,
+        "content": "Anh tin rằng Đức Chúa Trời là duy nhất; anh tin đúng; các quỷ cũng tin và run sợ.”"
+      },
+      {
+        "type": "verse",
+        "verse_no": 20,
+        "content": "Nhưng hỡi người phù phiếm kia, anh có muốn biết rằng đức tin không có công việc là vô dụng chăng?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 21,
+        "content": "Chẳng phải Áp-ra-ham, tổ phụ chúng ta, được xưng công chính bởi công việc khi ông dâng I-sác con mình trên bàn thờ sao?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 22,
+        "content": "Anh thấy rằng đức tin đồng hành với công việc của ông, và bởi công việc này mà đức tin được hoàn hảo."
+      },
+      {
+        "type": "verse",
+        "verse_no": 23,
+        "content": "Và Kinh văn được ứng nghiệm rằng: “Áp-ra-ham tin Đức Chúa Trời, và điều đó được kể là công chính cho ông”; rồi ông được gọi là bạn của Đức Chúa Trời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 24,
+        "content": "Anh thấy rằng một người được xưng công chính bởi công việc chứ không chỉ bởi đức tin."
+      },
+      {
+        "type": "verse",
+        "verse_no": 25,
+        "content": "Cũng vậy, chẳng phải kĩ nữ Ra-háp được xưng công chính bởi công việc khi bà tiếp đón các sứ giả và tiễn <i>họ</i> đi bằng đường khác sao?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 26,
+        "content": "Vì như thân thể không có linh là chết thể nào thì đức tin không có công việc cũng chết thể ấy."
+      }
+    ],
+    "3": [
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "Anh em tôi ơi, đừng có nhiều người làm thầy, vì biết rằng chúng ta sẽ chịu phán xét nặng hơn."
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "Vì tất cả chúng ta đều vấp trong nhiều điều. Nếu ai không vấp trong lời nói, ấy là người hoàn hảo, cũng có thể kiềm chế cả thân thể mình."
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "Nếu chúng ta tra cương vào miệng ngựa mà khiến chúng phục mình thì chúng ta cũng điều khiển được toàn thân chúng."
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "Hãy xem, thuyền bè cũng vậy, dù rất lớn và bị gió mạnh đưa đẩy, song cũng được điều khiển bởi một bánh lái rất nhỏ theo bất cứ hướng nào hoa tiêu muốn."
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "Cũng vậy, lưỡi tuy là một chi thể nhỏ song lại khoe khoang những việc lớn. Kìa, một đốm lửa rất nhỏ cũng có thể đốt cháy cả khu rừng lớn!"
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "Lưỡi cũng là lửa; là thế giới bất chính, lưỡi được đặt giữa các chi thể chúng ta, làm toàn thân ô nhiễm và đốt cháy cả cuộc đời, rồi bị lửa Ghê-hen-na đốt cháy."
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "Mọi bản chất, cả của thú vật lẫn chim chóc, cả của bò sát lẫn sinh vật biển, đều bị chế ngự, và đã bị bản chất con người chế ngự;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "nhưng lưỡi thì không ai giữa vòng con người có thể chế ngự được; <i>nó là</i> một vật ác không ngừng nghỉ, đầy chất độc chết người."
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "Chúng ta dùng lưỡi chúc tụng Chúa và Cha, và cũng dùng lưỡi rủa sả con người được làm nên theo hình dạng của Đức Chúa Trời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "Từ một miệng mà ra cả lời chúc tụng lẫn nguyền rủa. Anh em tôi ơi, không nên như vậy."
+      },
+      {
+        "type": "verse",
+        "verse_no": 11,
+        "content": "Suối ra từ một khe lại phun ra cả <i>nước</i> ngọt lẫn <i>nước</i> đắng sao?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 12,
+        "content": "Anh em tôi ơi, có thể nào cây vả lại ra trái ô-liu hoặc cây nho lại <i>ra</i> trái vả? Nước mặn cũng không thể ra <i>nước</i> ngọt."
+      },
+      {
+        "type": "verse",
+        "verse_no": 13,
+        "content": "Ai khôn ngoan và hiểu biết giữa anh em? Người ấy hãy lấy cách sống tốt đẹp mà bày tỏ các công việc mình trong sự nhu mì của sự khôn ngoan."
+      },
+      {
+        "type": "verse",
+        "verse_no": 14,
+        "content": "Nhưng nếu anh em có sự ganh ghét đắng cay và tham vọng ích kỉ trong lòng mình thì đừng khoe khoang và nói dối nghịch lại lẽ thật."
+      },
+      {
+        "type": "verse",
+        "verse_no": 15,
+        "content": "Sự khôn ngoan này không phải là điều từ trên xuống, bèn là thuộc đất, thuộc hồn, thuộc quỷ."
+      },
+      {
+        "type": "verse",
+        "verse_no": 16,
+        "content": "Vì nơi nào có sự ganh ghét và tham vọng ích kỉ thì nơi đó có sự vô trật tự và mọi thực hành vô giá trị."
+      },
+      {
+        "type": "verse",
+        "verse_no": 17,
+        "content": "Nhưng sự khôn ngoan từ trên thì trước nhất là thuần khiết, sau đó là hòa bình, khoan nhẫn, nhu hòa, đầy thương xót và trái tốt lành, không thiên kiến, không đạo đức giả."
+      },
+      {
+        "type": "verse",
+        "verse_no": 18,
+        "content": "Trái của sự công chính được gieo trong hòa bình bởi những người kiến tạo hòa bình."
+      }
+    ],
+    "4": [
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "Chiến tranh và đấu đá giữa anh em <i>đến từ</i> đâu? Ấy chẳng phải là từ điều này, từ các thú vui đang giao chiến trong các chi thể của anh em sao?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "Anh em ham muốn mà không có <i>gì;</i> anh em giết chóc và ganh ghét mà không thể đạt được <i>gì;</i> anh em đấu đá và gây chiến. Anh em không có vì anh em không cầu xin;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "anh em cầu xin mà không nhận được vì anh em cầu xin bậy để tiêu phí cho các thú vui của mình."
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "Hỡi những kẻ ngoại tình, các người không biết rằng làm bạn với thế giới là thù nghịch với Đức Chúa Trời sao? Vì thế, hễ ai quyết định làm bạn với thế giới thì bị cấu thành kẻ thù của Đức Chúa Trời."
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "Hay các người tưởng Kinh văn nói: “Linh mà Ngài đã khiến cư ngụ trong chúng ta, nóng lòng đến nỗi ghen tuông” là vô ích?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "Nhưng Ngài ban ân điển lớn hơn; vì vậy, có lời phán: “Đức Chúa Trời kháng cự kẻ kiêu ngạo nhưng ban ân điển cho người khiêm nhường.”"
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "Vì thế, hãy thuận phục Đức Chúa Trời; hãy chống trả ma quỷ, rồi hắn sẽ trốn khỏi anh em."
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "Hãy đến gần Đức Chúa Trời, rồi Ngài sẽ đến gần anh em. Hỡi tội nhân, hãy rửa tay đi; hỡi kẻ hai lòng, hãy thanh tẩy lòng đi."
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "Hãy nhẫn chịu khốn khổ, hãy đau buồn và khóc lóc. Hãy đổi cười ra khóc, đổi vui ra buồn."
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "Hãy hạ mình xuống trước mặt Chúa, rồi Ngài sẽ tôn anh em lên."
+      },
+      {
+        "type": "verse",
+        "verse_no": 11,
+        "content": "Anh em ơi, đừng nói nghịch nhau. Ai nói nghịch một anh em <i></i>hoặc phán xét anh em mình là nói nghịch kinh luật và phán xét kinh luật. Nhưng nếu anh phán xét kinh luật thì anh không phải là người thực hiện kinh luật bèn là thẩm phán."
+      },
+      {
+        "type": "verse",
+        "verse_no": 12,
+        "content": "Chỉ có một Đấng ban hành kinh luật và Thẩm phán, là Đấng có thể cứu và diệt. Nhưng anh là ai mà phán xét người lân cận mình?"
+      },
+      {
+        "type": "verse",
+        "verse_no": 13,
+        "content": "Này, các anh nói: “Hôm nay hoặc ngày mai chúng tôi sẽ đến thành này hoặc thành kia rồi ở đó một năm, kinh doanh và kiếm lời.”"
+      },
+      {
+        "type": "verse",
+        "verse_no": 14,
+        "content": "Song các anh lại không biết việc ngày mai và sự sống các anh thể nào, vì các anh là hơi nước hiện ra một chút rồi biến mất."
+      },
+      {
+        "type": "verse",
+        "verse_no": 15,
+        "content": "Thay vào đó, các anh <i>nên</i> nói: “Nếu Chúa muốn, chúng ta sẽ vừa sống vừa làm việc này việc kia.”"
+      },
+      {
+        "type": "verse",
+        "verse_no": 16,
+        "content": "Nhưng bây giờ, các anh lại khoe khoang trong sự ngạo mạn của mình; mọi khoe khoang như vậy là gian ác."
+      },
+      {
+        "type": "verse",
+        "verse_no": 17,
+        "content": "Vậy, người nào biết làm thiện mà không làm thì đối với người ấy, đó là tội."
+      }
+    ],
+    "5": [
+      {
+        "type": "verse",
+        "verse_no": 1,
+        "content": "Này, hỡi người giàu, hãy khóc lóc, kêu la về những khốn khổ sắp đến trên các người!"
+      },
+      {
+        "type": "verse",
+        "verse_no": 2,
+        "content": "Của cải các người bị mục nát, y phục các người bị sâu mọt ăn;"
+      },
+      {
+        "type": "verse",
+        "verse_no": 3,
+        "content": "vàng bạc của các người bị hoen gỉ; sự hoen gỉ đó sẽ là chứng cớ nghịch lại các người và sẽ ăn thịt các người như lửa. Các người đã tích trữ báu vật trong những ngày cuối cùng."
+      },
+      {
+        "type": "verse",
+        "verse_no": 4,
+        "content": "Kìa, tiền công của thợ cắt <i>lúa trong</i> ruộng các người mà các người đã giữ lại, đang kêu lên; và tiếng kêu của thợ gặt đã đến tai Chúa vạn quân."
+      },
+      {
+        "type": "verse",
+        "verse_no": 5,
+        "content": "Các người sống xa hoa trên đất, buông mình vào thú vui; các người nuôi béo lòng mình trong ngày đánh giết."
+      },
+      {
+        "type": "verse",
+        "verse_no": 6,
+        "content": "Các người đã định tội và giết người công chính, và người ấy không kháng cự các người."
+      },
+      {
+        "type": "verse",
+        "verse_no": 7,
+        "content": "Vậy anh em ơi, hãy bền chịu cho tới khi Chúa đến. Kìa, người nông dân háo hức trông đợi bông trái quý giá của đất, luyện tập bền chịu cho đến khi được mưa sớm và muộn."
+      },
+      {
+        "type": "verse",
+        "verse_no": 8,
+        "content": "Anh em cũng hãy bền chịu; hãy làm cho lòng mình vững vàng vì sự hiện đến của Chúa đã gần."
+      },
+      {
+        "type": "verse",
+        "verse_no": 9,
+        "content": "Anh em ơi, đừng phàn nàn nhau kẻo bị phán xét. Kìa, Thẩm phán đang đứng trước cửa."
+      },
+      {
+        "type": "verse",
+        "verse_no": 10,
+        "content": "Anh em ơi, về việc chịu khốn khổ và bền chịu, hãy lấy các tiên tri đã phát ngôn trong danh Chúa làm gương mẫu."
+      },
+      {
+        "type": "verse",
+        "verse_no": 11,
+        "content": "Kìa, chúng tôi gọi những người nhẫn chịu ấy là được phước. Anh em đã nghe về sự nhẫn nại của Gióp và đã thấy kết cục của ông từ Chúa, rằng Chúa đầy từ tâm và trắc ẩn."
+      },
+      {
+        "type": "verse",
+        "verse_no": 12,
+        "content": "Nhưng anh em tôi ơi, trên hết mọi sự, đừng thề, đừng chỉ trời, đừng chỉ đất, hay dùng bất cứ lời thề nào khác; nhưng phải thì <i>nói</i> phải, không thì <i>nói</i> không, hầu cho anh em không sa vào sự phán xét."
+      },
+      {
+        "type": "verse",
+        "verse_no": 13,
+        "content": "Giữa anh em có ai chịu khốn khổ chăng? Người ấy hãy cầu nguyện. Có ai vui vẻ chăng? Người ấy hãy hát ngợi khen."
+      },
+      {
+        "type": "verse",
+        "verse_no": 14,
+        "content": "Giữa anh em có ai đau ốm chăng? Người ấy hãy mời các trưởng lão của Hội thánh đến; hãy để họ cầu nguyện, xức dầu cho người ấy trong danh Chúa."
+      },
+      {
+        "type": "verse",
+        "verse_no": 15,
+        "content": "Lời cầu nguyện của đức tin sẽ cứu người bệnh, rồi Chúa sẽ vực người ấy dậy; nếu người ấy đã phạm tội thì sẽ được tha thứ."
+      },
+      {
+        "type": "verse",
+        "verse_no": 16,
+        "content": "Vì thế, hãy xưng nhận các tội phạm mình với nhau và cầu nguyện cho nhau để anh em được chữa lành. Lời cầu xin của người công chính rất hiệu quả trong sự vận hành."
+      },
+      {
+        "type": "verse",
+        "verse_no": 17,
+        "content": "Ê-li vốn là người có tính tình giống như chúng ta, và ông đã tha thiết cầu nguyện để trời đừng mưa thì không có mưa trên đất trong ba năm sáu tháng."
+      },
+      {
+        "type": "verse",
+        "verse_no": 18,
+        "content": "Rồi ông cầu nguyện lại thì trời ban mưa, và đất sinh bông trái."
+      },
+      {
+        "type": "verse",
+        "verse_no": 19,
+        "content": "Anh em tôi ơi, nếu có người nào trong anh em bị dẫn dụ xa rời lẽ thật và ai đó đưa người ấy trở lại"
+      },
+      {
+        "type": "verse",
+        "verse_no": 20,
+        "content": "thì người ấy phải biết rằng ai đem một tội nhân lầm đường lạc lối trở về là cứu một hồn người khỏi sự chết và che phủ vô số tội."
+      }
+    ]
+  }
 }

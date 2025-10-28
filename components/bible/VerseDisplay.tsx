@@ -3,8 +3,8 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Book } from '@/constants/bibleData';
 import { useFontSettings } from '@/contexts/FontSettingsContext';
 import { HIGHLIGHT_COLORS, useHighlights } from '@/contexts/HighlightsContext';
-import { getChaptersForBook, getFootnotesForVerse, getRefsForVerse, getVersesForChapter, parseTextWithHTML, parseTextWithOnlyHTML, sortFootnotesAndRefs } from '@/data/bibleUtils';
 import { useFootnotes } from '@/hooks/useFootnotes';
+import { getChaptersForBook, getFootnotesForVerse, getRefsForVerse, getVersesForChapter, parseTextWithHTML, parseTextWithOnlyHTML, sortFootnotesAndRefs } from '@/utils/bibleUtils';
 import { router } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
@@ -13,8 +13,6 @@ import { FootnoteModal } from './FootnoteModal';
 import { TextSelectionToolbar } from './TextSelectionToolbar';
 import { styles } from './VerseDisplay.styles';
 import { VerseNavigation } from './VerseNavigation';
-
-
 
 interface VerseDisplayProps {
   book: Book;
@@ -566,30 +564,41 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
         </View>
         
         <View style={styles.versesContainer}>
-          {verses.map((verse: string, index: number) => {
-            const verseNumber = index + 1;
-            const verseHighlights = getHighlightsForVerse(book.code, chapter, verseNumber);
-            return (
-              <View 
-                key={index} 
-                ref={(ref) => {
-                  verseRefs.current[verseNumber] = ref;
-                }}
-                style={styles.verseItem}
-              >
-                <ThemedText style={[styles.verseLabel, { fontSize: fontSettings.fontSize || 18, fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily }]}>
-                  {book.shortName}. {chapter}:{verseNumber}
-                </ThemedText>
-                {parseVerseWithFootnotes(
-                  verse, 
-                  verseNumber, 
-                  handleVerseFootnotePress, 
-                  fontSettings, 
-                  verseHighlights,
-                  handleVerseDoubleClick
-                )}
-              </View>
-            );
+          {verses.map((verse: any, index: number) => {
+            if (verse.type === 'verse') {
+              const verseContent = verse.content;
+              const verseNumber = verse.verse_no;
+              const verseHighlights = getHighlightsForVerse(book.code, chapter, verseNumber);
+              return (
+                <View 
+                  key={index} 
+                  ref={(ref) => {
+                    verseRefs.current[verseNumber] = ref;
+                  }}
+                  style={styles.verseItem}
+                >
+                  <ThemedText style={[styles.verseLabel, { fontSize: fontSettings.fontSize || 18, fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily }]}>
+                    {chapter}:{verseNumber}
+                  </ThemedText>
+                  {parseVerseWithFootnotes(
+                    verseContent, 
+                    verseNumber, 
+                    handleVerseFootnotePress, 
+                    fontSettings, 
+                    verseHighlights,
+                    handleVerseDoubleClick
+                  )}
+                </View>
+              );
+            } else {
+              return (
+                <View key={index} style={styles.verseItem}>
+                  <ThemedText style={[styles.verseLabel, { fontSize: fontSettings.fontSize || 18, fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily }]}>
+                    {verse.content}
+                  </ThemedText>
+                </View>
+              );
+            }
           })}
         </View>
         

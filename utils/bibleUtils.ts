@@ -404,28 +404,6 @@ export const getBookData = (bookCode: string) => {
   }
 };
 
-export const getVerseWithFootnotes = (bookCode: string, chapter: number, verse: number) => {
-  try {
-    const data = getDataFile(bookCode);
-    if (!data || !data.verse_data || !data.verse_data[chapter.toString()]) {
-      return null;
-    }
-    
-    const verseContent = data.verse_data[chapter.toString()][verse - 1];
-    const footnotes = getFootnotesForVerse(bookCode, chapter, verse);
-    const refs = getRefsForVerse(bookCode, chapter, verse);
-    
-    return {
-      content: verseContent,
-      footnotes,
-      refs
-    };
-  } catch (error) {
-    console.error(`Error loading verse with footnotes for ${bookCode} ${chapter}:${verse}:`, error);
-    return null;
-  }
-};
-
 export const getChapterData = (bookCode: string, chapter: number) => {
   try {
     const data = getDataFile(bookCode);
