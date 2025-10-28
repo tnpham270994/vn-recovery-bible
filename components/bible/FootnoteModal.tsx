@@ -32,7 +32,7 @@ export const FootnoteModal: React.FC<FootnoteModalProps> = ({
 }) => {
   const scrollViewRef = useRef<ScrollView>(null);
   const [verseModalVisible, setVerseModalVisible] = useState(false);
-  const [selectedVerses, setSelectedVerses] = useState<Array<{ book: string, bookRef: string, chapter: number, verse: number, endVerse?: number, text: string}>>([]);
+  const [selectedVerses, setSelectedVerses] = useState<{ book: string, bookRef: string, chapter: number, verse: number, endVerse?: number, text: string}[]>([]);
   
 
   // Parse reference string (e.g., "1 Gi. 1:1; Côl. 1:17; Sáng. 1:1") and get verse data

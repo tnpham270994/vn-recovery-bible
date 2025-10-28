@@ -1,3 +1,6 @@
+import { AllBookmarksScreen } from '@/components/bible/AllBookmarksScreen';
+import { AllNotesScreen } from '@/components/bible/AllNotesScreen';
+import { AllTagsScreen } from '@/components/bible/AllTagsScreen';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
@@ -5,6 +8,7 @@ import { BOOK_NAMES } from '@/constants/bibleData';
 import { COLORS } from '@/constants/styles';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { getVersesForChapter, parseTextWithOnlyHTML, searchVersesByKeyword } from '@/utils/bibleUtils';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -26,6 +30,11 @@ export default function SearchScreen() {
   
   // State for recent searches
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  
+  // State for showing all notes, bookmarks, or tags
+  const [showAllNotes, setShowAllNotes] = useState(false);
+  const [showAllBookmarks, setShowAllBookmarks] = useState(false);
+  const [showAllTags, setShowAllTags] = useState(false);
 
   const searchCategories = [
     {
@@ -225,6 +234,19 @@ export default function SearchScreen() {
     }
   };
 
+  // If showing all notes, bookmarks, or tags, render those screens
+  if (showAllNotes) {
+    return <AllNotesScreen onBack={() => setShowAllNotes(false)} />;
+  }
+  
+  if (showAllBookmarks) {
+    return <AllBookmarksScreen onBack={() => setShowAllBookmarks(false)} />;
+  }
+  
+  if (showAllTags) {
+    return <AllTagsScreen onBack={() => setShowAllTags(false)} />;
+  }
+
   return (
     <ScrollView 
       style={styles.container} 
@@ -233,6 +255,35 @@ export default function SearchScreen() {
         paddingBottom: Platform.OS === 'ios' ? 20 : 0 // Account for iOS safe area
       }}
     >
+      {/* Quick Access */}
+      <ThemedView style={styles.section}>
+        <ThemedText style={styles.sectionTitle}>Truy cập nhanh</ThemedText>
+        <View style={styles.quickAccessGrid}>
+          <TouchableOpacity 
+            style={[styles.quickAccessButton, { backgroundColor: '#FFF3E0', borderColor: '#FF9500' }]}
+            onPress={() => setShowAllNotes(true)}
+          >
+            <FontAwesome name="sticky-note" size={32} color="#FF9500" />
+            <ThemedText style={[styles.quickAccessText, { color: '#FF9500' }]}>Tất cả ghi chú</ThemedText>
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={[styles.quickAccessButton, { backgroundColor: '#E6F3FF', borderColor: '#007AFF' }]}
+            onPress={() => setShowAllBookmarks(true)}
+          >
+            <FontAwesome name="bookmark" size={32} color="#007AFF" />
+            <ThemedText style={[styles.quickAccessText, { color: '#007AFF' }]}>Tất cả dấu trang</ThemedText>
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={[styles.quickAccessButton, { backgroundColor: '#F3E5F5', borderColor: '#AF52DE' }]}
+            onPress={() => setShowAllTags(true)}
+          >
+            <FontAwesome name="tags" size={32} color="#AF52DE" />
+            <ThemedText style={[styles.quickAccessText, { color: '#AF52DE' }]}>Tất cả thẻ</ThemedText>
+          </TouchableOpacity>
+        </View>
+      </ThemedView>
       {/* Search Input */}
       <ThemedView style={styles.searchContainer}>
         <ThemedView style={styles.searchInputContainer}>
@@ -268,6 +319,8 @@ export default function SearchScreen() {
           )}
         </TouchableOpacity>
       </ThemedView>
+
+
 
       {/* Search Categories */}
       <ThemedView style={styles.section}>

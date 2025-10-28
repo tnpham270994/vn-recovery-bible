@@ -1,8 +1,11 @@
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Book } from '@/constants/bibleData';
+import { useBookmarks } from '@/contexts/BookmarkContext';
 import { useFontSettings } from '@/contexts/FontSettingsContext';
 import { HIGHLIGHT_COLORS, useHighlights } from '@/contexts/HighlightsContext';
+import { useNotes } from '@/contexts/NotesContext';
+import { useTags } from '@/contexts/TagsContext';
 import { useFootnotes } from '@/hooks/useFootnotes';
 import { getChaptersForBook, getFootnotesForVerse, getRefsForVerse, getVersesForChapter, parseTextWithHTML, parseTextWithOnlyHTML, sortFootnotesAndRefs } from '@/utils/bibleUtils';
 import { router } from 'expo-router';
@@ -10,6 +13,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import { FontControls } from './FontControls';
 import { FootnoteModal } from './FootnoteModal';
+import { NoteModal } from './NoteModal';
+import { TagModal } from './TagModal';
 import { TextSelectionToolbar } from './TextSelectionToolbar';
 import { styles } from './VerseDisplay.styles';
 import { VerseNavigation } from './VerseNavigation';
@@ -27,48 +32,25 @@ export const parseVerseWithFootnotes = (
   verseNumber: number, 
   onFootnotePress: (footnoteId: string, referenceId: string, verseNumber: number) => void,
   fontSettings: { fontSize: number; fontFamily: string },
-  highlights?: Array<{ color: string; text: string; position: number }>,
-  onVerseSelect?: (verseNumber: number) => void
+  highlights?: { color: string; text: string; position: number }[],
+  onVerseSelect?: (verseNumber: number) => void,
+  hasNote?: boolean,
+  isSelected?: boolean
 ) => {
   // Parse the verse text and create styled segments
   const segments = parseTextWithHTML(verseText);
-  const flatText = segments.map(s => s.text).join('');
-  let currentIndex = 0;
-
-  // Build highlight positions map for this verse (excluding footnotes)
-  // Key: position in flatText, Value: highlight color
-  const highlightPositions = new Map<number, string>();
-  highlights?.forEach(h => {
-    const highlightText = h.text.trim();
-    // Only highlight at the specific position stored
-    const pos = h.position;
-    if (pos >= 0 && pos < flatText.length) {
-      for (let i = 0; i < highlightText.length; i++) {
-        if (pos + i < flatText.length) {
-          highlightPositions.set(pos + i, h.color);
-        }
-      }
-    }
-  });
   
-  // Track highlight ranges for better segment highlighting
-  const highlightRanges: Array<{ start: number; end: number; color: string }> = [];
-  highlights?.forEach(h => {
-    const highlightText = h.text.trim();
-    if (h.position >= 0) {
-      highlightRanges.push({
-        start: h.position,
-        end: h.position + highlightText.length,
-        color: h.color
-      });
-    }
-  });
+  // If there are any highlights, use the first one's color for the entire verse
+  const hasHighlights = highlights && highlights.length > 0;
+  const highlightColor = hasHighlights ? highlights[0].color : undefined;
 
-  // Handle interaction - will be set up with useEffect
   return (
     <TouchableOpacity 
       id={`verse-${verseNumber}`} 
-      style={styles.verseTextContainer}
+      style={[
+        styles.verseTextContainer,
+        isSelected && styles.selectedVerseContainer
+      ]}
       onLongPress={() => {
         if (Platform.OS !== 'web') {
           onVerseSelect?.(verseNumber);
@@ -81,20 +63,12 @@ export const parseVerseWithFootnotes = (
           {
             fontSize: fontSettings.fontSize || 18,
             fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily,
+            ...(hasNote && styles.noteUnderline),
           }
         ]}
       >
         {segments.map((segment, index) => {
           if (segment.isFootnote) {
-            // Footnotes should be included in the index calculation
-            const segmentStart = currentIndex;
-            const segmentEnd = currentIndex + segment.text.length;
-            
-            // Don't highlight footnotes themselves
-            const highlight = undefined;
-            
-            currentIndex = segmentEnd;
-            
             return (
               <TouchableOpacity
                 key={index}
@@ -102,7 +76,6 @@ export const parseVerseWithFootnotes = (
                 style={styles.superscriptContainer}
               >
                 <ThemedText 
-                  id={`verse-${verseNumber}`} 
                   style={[
                     styles.superscriptText,
                     {
@@ -122,42 +95,6 @@ export const parseVerseWithFootnotes = (
           }
           
           if (segment.text) {
-            const segmentStart = currentIndex;
-            const segmentEnd = currentIndex + segment.text.length;
-            
-            // Check if this segment overlaps with any highlight range
-            let segmentColor: string | undefined;
-            let allCharHighlighted = true;
-            
-            for (const range of highlightRanges) {
-              // Check if this segment overlaps with the highlight range
-              if (segmentStart < range.end && segmentEnd > range.start) {
-                // Check if all characters in the overlap are highlighted
-                const overlapStart = Math.max(segmentStart, range.start);
-                const overlapEnd = Math.min(segmentEnd, range.end);
-                
-                // Verify all characters in the overlap are highlighted
-                let allOverlapHighlighted = true;
-                for (let i = overlapStart; i < overlapEnd; i++) {
-                  if (!highlightPositions.has(i)) {
-                    allOverlapHighlighted = false;
-                    break;
-                  }
-                }
-                
-                if (allOverlapHighlighted && overlapEnd - overlapStart === segmentEnd - segmentStart) {
-                  // Entire segment is within this highlight range
-                  segmentColor = range.color;
-                  allCharHighlighted = true;
-                  break;
-                } else if (allOverlapHighlighted) {
-                  // Partial segment is highlighted
-                  segmentColor = range.color;
-                  allCharHighlighted = false;
-                }
-              }
-            }
-            
             const textStyle = [
               segment.isItalic && styles.italicText,
               segment.isBold && styles.boldText,
@@ -166,16 +103,13 @@ export const parseVerseWithFootnotes = (
               {
                 fontSize: fontSettings.fontSize || 18,
                 fontFamily: fontSettings.fontFamily === 'System' ? undefined : fontSettings.fontFamily,
-                ...(segmentColor && allCharHighlighted && {
-                  backgroundColor: segmentColor,
+                ...(highlightColor && {
+                  backgroundColor: highlightColor,
                   borderRadius: 2,
                   paddingHorizontal: 1,
                 }),
               }
             ].filter(Boolean);
-            
-            // Update current index for next segment (include footnotes too)
-            currentIndex = segmentEnd;
             
             if (segment.isHighlighted && segment.footnoteId) {
               return (
@@ -208,10 +142,15 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
   const verses = getVersesForChapter(book.code, chapter);
   const { fontSettings } = useFontSettings();
   const { getHighlightsForVerse, addHighlight, removeHighlight } = useHighlights();
+  const { getNoteForVerse, addNote, updateNote, deleteNote } = useNotes();
+  const { toggleBookmark, isBookmarked } = useBookmarks();
+  const { getTagsForVerse } = useTags();
   
   // Verse selection state for highlighting
   const [selectedVerse, setSelectedVerse] = useState(0);
   const [selectedHighlightColor, setSelectedHighlightColor] = useState('#FFFF00');
+  const [noteModalVisible, setNoteModalVisible] = useState(false);
+  const [tagModalVisible, setTagModalVisible] = useState(false);
 
   const scrollToVerse = (verseNumber: number) => {
     // Prevent multiple rapid calls
@@ -439,7 +378,8 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
 
   const handleHighlightVerse = () => {
     if (selectedVerse > 0) {
-      const verseText = verses[selectedVerse - 1];
+      const verse: any = verses[selectedVerse - 1];
+      const verseText = verse.content;
       const segments = parseTextWithHTML(verseText);
       const flatText = segments.map(s => s.text).join('');
       
@@ -470,7 +410,8 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
 
   const handleCopyVerse = () => {
     if (selectedVerse > 0) {
-      const verseText = verses[selectedVerse - 1];
+      const verse: any = verses[selectedVerse - 1];
+      const verseText = verse.content;
       const segments = parseTextWithOnlyHTML(verseText);
       
       // Format: bookCode chapter:verse content
@@ -492,6 +433,48 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
     }
   };
 
+  const handleOpenNote = () => {
+    if (selectedVerse > 0) {
+      setNoteModalVisible(true);
+    }
+  };
+
+  const handleSaveNote = (text: string) => {
+    if (selectedVerse > 0) {
+      const existingNote = getNoteForVerse(book.code, chapter, selectedVerse);
+      if (existingNote) {
+        updateNote(existingNote.id, text);
+      } else {
+        addNote({
+          bookCode: book.code,
+          chapter: chapter,
+          verse: selectedVerse,
+          text: text,
+        });
+      }
+    }
+  };
+
+  const handleDeleteNote = () => {
+    if (selectedVerse > 0) {
+      const existingNote = getNoteForVerse(book.code, chapter, selectedVerse);
+      if (existingNote) {
+        deleteNote(existingNote.id);
+      }
+    }
+  };
+
+  const handleToggleBookmark = () => {
+    if (selectedVerse > 0) {
+      toggleBookmark(book.code, chapter, selectedVerse);
+    }
+  };
+
+  const handleOpenTagModal = () => {
+    if (selectedVerse > 0) {
+      setTagModalVisible(true);
+    }
+  };
 
   useEffect(() => {
     if (targetVerse) {
@@ -586,7 +569,9 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
                     handleVerseFootnotePress, 
                     fontSettings, 
                     verseHighlights,
-                    handleVerseDoubleClick
+                    handleVerseDoubleClick,
+                    !!getNoteForVerse(book.code, chapter, verseNumber),
+                    selectedVerse === verseNumber
                   )}
                 </View>
               );
@@ -645,9 +630,38 @@ export const VerseDisplay: React.FC<VerseDisplayProps> = ({ book, chapter, onBac
         visible={selectedVerse > 0}
         onHighlight={handleHighlightVerse}
         onCopy={handleCopyVerse}
+        onNote={handleOpenNote}
+        onBookmark={handleToggleBookmark}
+        onTag={handleOpenTagModal}
         onRemoveHighlight={handleRemoveHighlight}
         isHighlighted={selectedVerse > 0 && getHighlightsForVerse(book.code, chapter, selectedVerse).length > 0}
+        hasNote={selectedVerse > 0 && !!getNoteForVerse(book.code, chapter, selectedVerse)}
+        isBookmarked={selectedVerse > 0 && isBookmarked(book.code, chapter, selectedVerse)}
+        hasTags={selectedVerse > 0 && getTagsForVerse(book.code, chapter, selectedVerse).length > 0}
         onClose={() => setSelectedVerse(0)}
+      />
+      
+      <TagModal
+        visible={tagModalVisible}
+        bookCode={book.code}
+        chapter={chapter}
+        verse={selectedVerse}
+        onClose={() => {
+          setTagModalVisible(false);
+          setSelectedVerse(0);
+        }}
+      />
+      
+      <NoteModal
+        visible={noteModalVisible}
+        book={book}
+        chapter={chapter}
+        verse={selectedVerse}
+        existingNote={selectedVerse > 0 ? getNoteForVerse(book.code, chapter, selectedVerse)?.text : undefined}
+        scale={1}
+        onClose={() => setNoteModalVisible(false)}
+        onSave={handleSaveNote}
+        onDelete={handleDeleteNote}
       />
       
       {/* Color Picker Modal - Removed, now using FontControls */}

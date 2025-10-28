@@ -6,8 +6,11 @@ import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { BibleProvider } from '@/contexts/BibleContext';
+import { BookmarkProvider } from '@/contexts/BookmarkContext';
 import { FontSettingsProvider } from '@/contexts/FontSettingsContext';
 import { HighlightsProvider } from '@/contexts/HighlightsContext';
+import { NotesProvider } from '@/contexts/NotesContext';
+import { TagsProvider } from '@/contexts/TagsContext';
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -24,13 +27,19 @@ export default function RootLayout() {
       <BibleProvider>
         <FontSettingsProvider>
           <HighlightsProvider>
-            <ThemeProvider value={DefaultTheme}>
+            <NotesProvider>
+              <BookmarkProvider>
+                <TagsProvider>
+                  <ThemeProvider value={DefaultTheme}>
               <Stack>
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                 <Stack.Screen name="+not-found" />
               </Stack>
               <StatusBar style="dark" />
             </ThemeProvider>
+                </TagsProvider>
+              </BookmarkProvider>
+            </NotesProvider>
           </HighlightsProvider>
         </FontSettingsProvider>
       </BibleProvider>

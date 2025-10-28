@@ -150,4 +150,16 @@ export const styles = StyleSheet.create({
     paddingVertical: 1,
     borderRadius: 2,
   },
+  noteUnderline: {
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'solid',
+    textDecorationColor: COLORS.primary
+  },
+  selectedVerseContainer: {
+    backgroundColor: 'rgba(0, 122, 255, 0.15)',
+    borderRadius: BORDER_RADIUS.sm,
+    padding: SPACING.xs,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 122, 255, 0.3)',
+  },
 });
